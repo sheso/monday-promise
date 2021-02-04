@@ -35,7 +35,7 @@ const Navbar = () => {
         </Link>
       </li>
       {currentUser ? (
-        <li className="nav-item">Welcome, {currentUser.email} </li>
+        <li className="nav-item">Welcome, {currentUser} </li>
       ) : (
         <p>Нахуй шел</p>
       )}
