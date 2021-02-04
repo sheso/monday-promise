@@ -9,18 +9,18 @@ const Register = () => {
   const { setCurrentUser } = useContext(AuthContext);
   const history = useHistory();
 
-  const SignUp = async (inputs) => {
+  const SignUp = (inputs) => {
     try {
-      await fire
+      fire
         .auth()
         .createUserWithEmailAndPassword(inputs.email, inputs.password)
         .then((userCredential) => {
           let user = userCredential.user;
-          setCurrentUser(user);
+					setCurrentUser(user);
         });
       history.push("/");
     } catch (error) {
-      alert(error);
+      alert(error); // TODO: handle errors
     }
   };
 
