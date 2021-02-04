@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 import "firebase/auth";
@@ -31,20 +30,6 @@ function App() {
         </div>
       </InputsProvider>
     </AuthProvider>
-=======
-import { BrowserRouter as Router } from "react-router-dom";
-import AppSwitch from "./Components/Utilities/AppSwitch";
-import Navbar from "./Components/Navbar/Navbar";
-
-function App() {
-  return (
-    <div className="container">
-      <Router>
-        <Navbar />
-        <AppSwitch />
-      </Router>
-    </div>
->>>>>>> 9710b8f3df3f94d54c0c4e7d3b35b8c730734e59
   );
 }
 
