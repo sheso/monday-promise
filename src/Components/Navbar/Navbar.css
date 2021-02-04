@@ -1,0 +1,16 @@
+.nav {
+  background: white;
+  height: 5vh;
+  width: 100%;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.3)
+  );
+  border-radius: 2rem;
+  backdrop-filter: blur(2rem);
+}
+
+.route {
+  text-decoration: none;
+}
