@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import fire from "../../Auth/Fire";
-import { AuthContext } from "../../Context/AuthContext";
+import fire from "../../../Auth/Fire";
+import { AuthContext } from "../../../Context/AuthContext";
 import "./Navbar.css";
 
 const Navbar = () => {
   let user = fire.auth().currentUser;
-  console.log(user);
+  console.log('user', user);
   let name, email, uid;
 
   if (user != null) {

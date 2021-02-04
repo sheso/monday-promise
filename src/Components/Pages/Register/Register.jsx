@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import fire from "../../Auth/Fire";
-import { AuthContext } from "../../Context/AuthContext";
-import { InputsContext } from "../../Context/InputsContext";
+import fire from "../../../Auth/Fire";
+import { AuthContext } from "../../../Context/AuthContext";
+import { InputsContext } from "../../../Context/InputsContext";
 import "./Register.css";
 const Register = () => {
   const { inputs, changeRegisterHandler } = useContext(InputsContext);

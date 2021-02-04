@@ -1,4 +1,7 @@
 import { Route, Switch } from "react-router-dom";
+import Register from "../../Pages/Register/Register";
+import Login from "../../Pages/Login/Login";
+import Main from "../../Layout/Main/Main";
 
 const AppSwitch = () => {
   return (
