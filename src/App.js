@@ -1,4 +1,4 @@
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import "firebase/auth";
 import Navbar from "./Components/Layout/Navbar/Navbar";
