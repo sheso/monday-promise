@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthContext";
 import "./Menu.css";
 const Menu = () => {
@@ -17,11 +18,15 @@ const Menu = () => {
         <div className="links">
           <div className="link">
             <img src="./images/twitch.png" alt="" />
-            <h2>Сообщения</h2>
+            <h2>
+              <Link to="/register">Регистрация</Link>
+            </h2>
           </div>
           <div className="link">
             <img src="./images/steam.png" alt="" />
-            <h2>Цели</h2>
+            <h2>
+              <Link to="/login">Войти</Link>
+            </h2>
           </div>
           <div className="link">
             <img src="./images/upcoming.png" alt="" />

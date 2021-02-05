@@ -12,15 +12,13 @@ function App() {
   return (
     <AuthProvider>
       <InputsProvider>
-        <div className="container">
-          <Router>
-            <Navbar />
-            <div className="main d-flex flex-row">
-              <Menu />
-              <Main />
-            </div>
-          </Router>
-        </div>
+        <Router>
+          <div className="container d-flex align-items-center justify-content-around">
+            {/* <Navbar /> */}
+            <Menu />
+            <Main />
+          </div>
+        </Router>
       </InputsProvider>
     </AuthProvider>
   );

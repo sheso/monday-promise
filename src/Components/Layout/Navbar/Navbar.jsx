@@ -5,16 +5,6 @@ import { AuthContext } from "../../../Context/AuthContext";
 import "./Navbar.css";
 
 const Navbar = () => {
-  // let user = fire.auth().currentUser;
-  // console.log('user', user);
-  // let name, email, uid;
-
-  // if (user != null) {
-  //   name = user.displayName;
-  //   email = user.email;
-  //   uid = user.uid;
-  // }
-
   const { currentUser } = useContext(AuthContext);
 
   return (
@@ -34,11 +24,6 @@ const Navbar = () => {
           Войти
         </Link>
       </li>
-      {currentUser ? (
-        <li className="nav-item">Welcome, {currentUser} </li>
-      ) : (
-        <p>Нахуй шел</p>
-      )}
     </ul>
   );
 };
