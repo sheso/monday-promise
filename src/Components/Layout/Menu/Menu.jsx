@@ -1,12 +1,18 @@
+import { useContext } from "react";
+import { AuthContext } from "../../../Context/AuthContext";
 import "./Menu.css";
 const Menu = () => {
+  const { userPhoto, currentUser } = useContext(AuthContext);
   return (
     <div>
       <div className="dashboard">
         <div className="user">
-          <img src="./images/sackboy.png" alt="" />
-          <h3>Simon Twix</h3>
-          <p>Pro Member</p>
+          <img
+            src={userPhoto}
+            alt="userPhoto"
+            style={{ borderRadius: "10px" }}
+          />
+          <h3>{currentUser}</h3>
         </div>
         <div className="links">
           <div className="link">

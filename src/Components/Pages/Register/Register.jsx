@@ -53,6 +53,7 @@ const Register = () => {
           placeholder="Введите пароль"
           onChange={changeRegisterHandler}
         />
+
         <button className="btn btn-primary" onClick={() => SignUp(inputs)}>
           Регистрация
         </button>

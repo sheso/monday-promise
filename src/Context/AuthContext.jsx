@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState("");
+  const [userPhoto, setUserPhoto] = useState("");
   console.log(currentUser);
 
   useEffect(() => {
@@ -12,12 +13,15 @@ export const AuthProvider = ({ children }) => {
       if (currentUser) {
         console.log(currentUser);
         setCurrentUser(currentUser.displayName);
+        setUserPhoto(currentUser.photoURL);
       }
     });
   }, []);
 
   return (
-    <AuthContext.Provider value={{ currentUser, setCurrentUser }}>
+    <AuthContext.Provider
+      value={{ currentUser, setCurrentUser, userPhoto, setUserPhoto }}
+    >
       {children}
     </AuthContext.Provider>
   );
