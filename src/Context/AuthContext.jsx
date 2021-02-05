@@ -10,10 +10,14 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     fire.auth().onAuthStateChanged((currentUser) => {
+      console.log(currentUser);
       if (currentUser) {
         console.log(currentUser);
         setCurrentUser(currentUser.displayName);
         setUserPhoto(currentUser.photoURL);
+      } else {
+        setCurrentUser(null);
+        setUserPhoto("http://penoksal.ru/images/imgcont16.png");
       }
     });
   }, []);
