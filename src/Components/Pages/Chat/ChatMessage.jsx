@@ -1,6 +1,11 @@
 //uid photoUrl - данные о юзере
+import firebase from 'firebase/app'
+import 'firebase/firestore'
+import 'firebase/auth'
+import 'firebase/analytics'
+const auth = firebase.auth();
 
-const ChatMessage = ({ text, uid, photoUrl }) => {
+const ChatMessage = ({ text, uid, photoURL }) => {
   
   const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received'
   

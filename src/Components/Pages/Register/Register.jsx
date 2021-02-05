@@ -30,7 +30,10 @@ const Register = () => {
 
   return (
     <main>
-      <section className="glass my-5 flex-column align-items-center justify-content-evenly">
+      <section
+        className="glass my-5 flex-column align-items-center justify-content-evenly"
+        style={{ width: "30vw" }}
+      >
         <h3>Регистрация</h3>
         <input
           type="text"
@@ -53,6 +56,7 @@ const Register = () => {
           placeholder="Введите пароль"
           onChange={changeRegisterHandler}
         />
+
         <button className="btn btn-primary" onClick={() => SignUp(inputs)}>
           Регистрация
         </button>

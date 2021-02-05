@@ -1,10 +1,10 @@
-import Menu from "../Menu/Menu";
+import AppSwitch from '../../Utilities/AppSwitch/AppSwitch';
 import "./Main.css";
+
 const Main = () => {
-  return (
-    <div className="main d-flex flex-row ">
-      <Menu />
-      <div className="cards d-flex flex-column align-items-center mx-5">
+  return (<>
+    <AppSwitch />
+     {/* <div className="cards d-flex flex-column align-items-center mx-5">
         <div className="card">
           <img src="./images/assassins.png" alt="" />
           <div className="card-info">
@@ -33,7 +33,8 @@ const Main = () => {
           <h2 className="percentage">60%</h2>
         </div>
       </div>
-    </div>
+		*/}
+	</>
   );
 };
 

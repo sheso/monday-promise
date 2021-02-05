@@ -1,11 +1,18 @@
 import { Route, Switch } from "react-router-dom";
 import Register from "../../Pages/Register/Register";
 import Login from "../../Pages/Login/Login";
-import Main from "../../Layout/Main/Main";
+import Feed from '../../Pages/Feed/Feed';
+import Chat from "../../Pages/Chat/Chat";
 
 const AppSwitch = () => {
   return (
     <Switch>
+
+<Route path="/chat">
+				{/* Неавторизованный - на лендинг. Авторизованный - на ленту */}
+        <Chat />
+      </Route>
+
 			<Route path="/account">
 				{/* личный кабинет */}
       </Route>
@@ -32,8 +39,10 @@ const AppSwitch = () => {
       </Route>
       <Route path="/">
 				{/* Неавторизованный - на лендинг. Авторизованный - на ленту */}
-        <Main />
+        <Feed />
       </Route>
+
+      
     </Switch>
   );
 };

@@ -6,6 +6,8 @@ import 'firebase/analytics'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import ChatMessage from './ChatMessage'
 
+
+const auth = firebase.auth()
 const firestore = firebase.firestore()
 
 const Chat = () => {
@@ -20,11 +22,12 @@ const Chat = () => {
   const sendMessage = async (event) => {
     event.preventDefault()
     // const { } =  здесь мы забираем данные юзера (фото, айди(имя - так как шифр) ) const { uid, photoURL } = auth.currentUser;
+    const { uid, photoURL } = auth.currentUser
     await messagesRef.add({
       text: formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      // uid,
-      // photoUrl запись данных юзера, которые мы получим выше
+      uid,
+      photoURL,
     })
     setFormValue('')
     scroll.current.scrollIntoView({ behavior: 'smooth' })
