@@ -1,18 +1,21 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-import fire from "../../../Auth/Fire";
+// import fire from "../../../Auth/Fire";
 import { AuthContext } from "../../../Context/AuthContext";
 import "./Navbar.css";
 
 const Navbar = () => {
-  let user = fire.auth().currentUser;
-  console.log(user);
-  let name, email, uid;
+  // let user = fire.auth().currentUser;
+  // console.log('user', user);
+  // let name, email, uid;
 
-  if (user != null) {
-    name = user.displayName;
-    email = user.email;
-    uid = user.uid;
-  }
+  // if (user != null) {
+  //   name = user.displayName;
+  //   email = user.email;
+  //   uid = user.uid;
+  // }
+
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <ul className="nav d-flex justify-content-around align-items-center my-3">
@@ -31,8 +34,8 @@ const Navbar = () => {
           Войти
         </Link>
       </li>
-      {user ? (
-        <li className="nav-item">Welcome, {email} </li>
+      {currentUser ? (
+        <li className="nav-item">Welcome, {currentUser} </li>
       ) : (
         <p>Нахуй шел</p>
       )}

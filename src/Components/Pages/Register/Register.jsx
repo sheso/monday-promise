@@ -7,20 +7,24 @@ import "./Register.css";
 const Register = () => {
   const { inputs, changeRegisterHandler } = useContext(InputsContext);
   const { setCurrentUser } = useContext(AuthContext);
+
   const history = useHistory();
 
-  const SignUp = async (inputs) => {
+  const SignUp = (inputs) => {
     try {
-      await fire
+      fire
         .auth()
         .createUserWithEmailAndPassword(inputs.email, inputs.password)
-        .then((userCredential) => {
-          let user = userCredential.user;
-          setCurrentUser(user);
+        .then(() => {
+          let user = fire.auth().currentUser;
+          user.updateProfile({
+            displayName: inputs.name,
+          });
         });
+
       history.push("/");
     } catch (error) {
-      alert(error);
+      alert(error); // TODO: handle errors
     }
   };
 

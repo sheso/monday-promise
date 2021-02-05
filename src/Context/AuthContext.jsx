@@ -11,11 +11,14 @@ export const AuthProvider = ({ children }) => {
     fire.auth().onAuthStateChanged((currentUser) => {
       if (currentUser) {
         console.log(currentUser);
+        setCurrentUser(currentUser.displayName);
       }
     });
   }, []);
 
   return (
-    <AuthContext.Provider value={currentUser}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ currentUser, setCurrentUser }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
