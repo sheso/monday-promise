@@ -1,40 +1,61 @@
 import { useState } from 'react';
 
-const LEFT = 'left';
-const RIGHT = 'right';
+// const LEFT = 'left';
+// const RIGHT = 'right';
 
 const PromiseForm = () => {
-	const [buttonActive, setButtonActive] = useState('right');
+	// const [buttonActive, setButtonActive] = useState('right');
+	const [inputs, setInputs] = useState({
+		deadline: Date.now(),
+		description: '',
+		difficulty: 5,
+		startdate: Date.now(),
+		title: '',
+		why: '',
+	});
 
-	const handleButtonClick = (side) => {
-		if (side === LEFT && buttonActive === RIGHT) {
-			setButtonActive(LEFT);
-		} else if (side === RIGHT && buttonActive === LEFT) {
-			setButtonActive(RIGHT);
-		}
+	// const handleButtonClick = (side) => {
+	// 	if (side === LEFT && buttonActive === RIGHT) {
+	// 		setButtonActive(LEFT);
+	// 	} else if (side === RIGHT && buttonActive === LEFT) {
+	// 		setButtonActive(RIGHT);
+	// 	}
+	// }
+
+	const handleInput = e => {
+		setInputs({...inputs, [e.target.name]: e.target.value});
+	}
+
+	const handleSubmit = e => {
+		e.preventDefault();
+		console.log(inputs);
 	}
 
 	return (
 		<div className="promise-form-container">
 			<h2>Новое обещание</h2>
-			<form>
+			<form onSubmit={handleSubmit}>
 				<p>
-					<label for="promise-title">Цель:</label>
-					<input type="text" id="promise-title"/>
+					<label htmlFor="promise-title">Цель:</label>
+					<input type="text" name="title" id="promise-title" onChange={handleInput} value={inputs.title} />
 				</p>
 				<p>
-					<label for="promise-description">Описание:</label>
-					<textarea type="text" id="promise-description"></textarea>
+					<label htmlFor="promise-description">Описание:</label>
+					<textarea type="text" name="description" id="promise-description" onChange={handleInput} value={inputs.description} ></textarea>
 				</p>
 				<p>
-					<label for="promise-deadline">Срок:</label>
-					<input type="date" id="promise-deadline" />
+					<label htmlFor="promise-deadline">Срок:</label>
+					<input type="date" name="deadline" id="promise-deadline" onChange={handleInput} value={inputs.deadline} />
 				</p>
 				<p>
-					<label for="promise-why">Зачем?</label>
-					<input type="text" id="promise-why" />
+					<label htmlFor="promise-startdate">Начало:</label>
+					<input type="date" name="startdate" id="promise-startdate" onChange={handleInput} value={inputs.startdate} />
 				</p>
 				<p>
+					<label htmlFor="promise-why">Зачем?</label>
+					<input type="text" name="why" id="promise-why" onChange={handleInput} value={inputs.why} />
+				</p>
+				{/* <p>
 					<span>Шаги: </span>
 					<div>
 						<span>
@@ -54,23 +75,26 @@ const PromiseForm = () => {
 					buttonActive === LEFT && (
 						<>
 							<p>
-								<label for="promise-why">Зачем?</label>
+								<label htmlFor="promise-why">Зачем?</label>
 								<input type="text" id="promise-why" />
 							</p>
 							<p>
-								<label for="promise-why">Зачем?</label>
+								<label htmlFor="promise-why">Зачем?</label>
 								<input type="text" id="promise-why" />
 							</p>
 							<p>
-								<label for="promise-why">Зачем?</label>
+								<label htmlFor="promise-why">Зачем?</label>
 								<input type="text" id="promise-why" />
 							</p>
 						</>
 					)
-				}
-
+				} */}
+				<p>
+					<label htmlFor="promise-difficulty">Сложность:</label>
+  				<input type="range" id="promise-difficulty" name="difficulty" min="1" max="10" onChange={handleInput} value={inputs.difficulty} />	
+				</p>
+				<button type="submit">Даю обещание!</button>
 			</form>
-			
 		</div>
 	)
 }

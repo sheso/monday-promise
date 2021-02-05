@@ -2,7 +2,13 @@ import { Route, Switch } from "react-router-dom";
 import Register from "../../Pages/Register/Register";
 import Login from "../../Pages/Login/Login";
 import Feed from '../../Pages/Feed/Feed';
-import Chat from "../../Pages/Chat/Chat";
+import Profile from '../../Pages/Profile/Profile';
+import PromiseForm from '../../Pages/PromiseForm/PromiseForm';
+import Friends from '../../Pages/Friends/Friends';
+import Promise from '../../Pages/Promise/Promise';
+// import Chat from '../../Pages/Chat/Chat';
+import User from '../../Pages/User/User';
+
 
 const AppSwitch = () => {
   return (
@@ -14,13 +20,13 @@ const AppSwitch = () => {
       </Route>
 
 			<Route path="/account">
-				{/* личный кабинет */}
+				<Profile />
       </Route>
 			<Route path="/promise/new">
-        {/* создание новой цели */}
+        <PromiseForm />
       </Route>
 			<Route path="/friends">
-        {/* друзья/поиск друзей */}
+        <Friends />
       </Route>
       <Route path="/register">
         <Register />
@@ -29,13 +35,13 @@ const AppSwitch = () => {
         <Login />
       </Route>
 			<Route path="/promise/:id">
-        {/* конкретная цель */}
+        <Promise />
       </Route>
 			<Route path="/chat/:id">
-        {/* конкретный чат по конкретной цели */}
+        {/* <Chat /> */}
       </Route>
 			<Route path="/user/:id">
-        {/* страница пользователя - какого-то, не нашего. Нашего должна вести на /account */}
+        <User />
       </Route>
       <Route path="/">
 				{/* Неавторизованный - на лендинг. Авторизованный - на ленту */}
