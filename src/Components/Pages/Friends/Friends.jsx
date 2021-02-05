@@ -1,9 +1,11 @@
+import firebase from 'firebase/app'
+import 'firebase/database'
+// import admin from 'firebase-admin'
+const auth = firebase.auth()
+
 const Friends = () => {
-	return (
-		<div>
-			This is Friends
-		</div>
-	)
+  console.log(auth())
+  return <div>This is Friends</div>
 }
 
-export default Friends;
+export default Friends

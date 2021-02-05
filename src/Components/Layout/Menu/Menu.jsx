@@ -43,7 +43,15 @@ const Menu = () => {
 									<NavLink to='/friends'>Друзья</NavLink>
 								</h2>
 							</div>
-							<div className="link">
+
+              <div className="link">
+								<img src="./images/upcoming.png" alt="" />
+								<h2>
+									<NavLink to='/chat'>Чат</NavLink>
+								</h2>
+							</div>
+							
+              <div className="link">
 								<img src="./images/library.png" alt="" />
 								<button onClick={() => signOut()}>Выйти</button>
 							</div>

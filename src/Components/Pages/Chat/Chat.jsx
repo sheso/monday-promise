@@ -6,7 +6,6 @@ import 'firebase/analytics'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import ChatMessage from './ChatMessage'
 
-
 const auth = firebase.auth()
 const firestore = firebase.firestore()
 
@@ -25,6 +24,8 @@ const Chat = () => {
     const { uid, photoURL, displayName } = auth.currentUser
     console.log(auth.currentUser)
     await messagesRef.add({
+      newField: 'asdffasdfasdf',
+      chatRoom: 
       displayName,
       text: formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
