@@ -1,7 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 import Register from "../../Pages/Register/Register";
 import Login from "../../Pages/Login/Login";
-import Main from "../../Layout/Main/Main";
+import Feed from '../../Pages/Feed/Feed';
 
 const AppSwitch = () => {
   return (
@@ -32,7 +32,7 @@ const AppSwitch = () => {
       </Route>
       <Route path="/">
 				{/* Неавторизованный - на лендинг. Авторизованный - на ленту */}
-        <Main />
+        <Feed />
       </Route>
     </Switch>
   );
