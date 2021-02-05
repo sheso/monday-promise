@@ -1,11 +1,10 @@
-<<<<<<< HEAD
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 import "firebase/auth";
-import Login from "./Components/Login/Login";
-import Main from "./Components/Main/Main";
-import Navbar from "./Components/Navbar/Navbar";
-import Register from "./Components/Register/Register";
+import Login from "./Components/Pages/Login/Login";
+import Main from "./Components/Layout/Main/Main";
+import Navbar from "./Components/Layout/Navbar/Navbar";
+import Register from "./Components/Pages/Register/Register";
 import { AuthProvider } from "./Context/AuthContext";
 import { InputsProvider } from "./Context/InputsContext";
 
@@ -31,20 +30,6 @@ function App() {
         </div>
       </InputsProvider>
     </AuthProvider>
-=======
-import { BrowserRouter as Router } from "react-router-dom";
-import AppSwitch from "./Components/Utilities/AppSwitch";
-import Navbar from "./Components/Navbar/Navbar";
-
-function App() {
-  return (
-    <div className="container">
-      <Router>
-        <Navbar />
-        <AppSwitch />
-      </Router>
-    </div>
->>>>>>> 9710b8f3df3f94d54c0c4e7d3b35b8c730734e59
   );
 }
 

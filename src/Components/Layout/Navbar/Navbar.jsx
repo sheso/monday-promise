@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import fire from "../../Auth/Fire";
-import { AuthContext } from "../../Context/AuthContext";
+import fire from "../../../Auth/Fire";
+import { AuthContext } from "../../../Context/AuthContext";
 import "./Navbar.css";
 
 const Navbar = () => {

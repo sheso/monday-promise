@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import fire from "../../Auth/Fire";
-import { InputsContext } from "../../Context/InputsContext";
+import fire from "../../../Auth/Fire";
+import { InputsContext } from "../../../Context/InputsContext";
 import "./Login.css";
 
 const Login = () => {
