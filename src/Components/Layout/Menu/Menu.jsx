@@ -1,11 +1,10 @@
 import { useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import fire from "../../../Auth/Fire";
 import { AuthContext } from "../../../Context/AuthContext";
 import "./Menu.css";
 const Menu = () => {
   const { userPhoto, currentUser } = useContext(AuthContext);
-  const history = useHistory();
   const signOut = () => {
     fire.auth().signOut();
   };
@@ -13,37 +12,45 @@ const Menu = () => {
   return (
     <div>
       <div className="dashboard">
-        <div className="user">
-          <img
-            src={userPhoto}
-            alt="userPhoto"
-            style={{ borderRadius: "10px" }}
-          />
-          <h3>{currentUser}</h3>
-        </div>
         {currentUser ? (
-          <div className="links">
-            <div className="link">
-              <img src="" alt="" />
-              <h2>Друзья</h2>
+          <>
+            <div className="user">
+              <img
+                src={userPhoto}
+                alt="userPhoto"
+                style={{ borderRadius: "10px" }}
+              />
+              <h3>
+                <NavLink to="/account">{currentUser}</NavLink>
+              </h3>
             </div>
-            <div className="link">
-              <img src="" alt="" />
-              <h2>Сообщения</h2>
+            <div className="links">
+              <div className="link">
+                <img src="./images/upcoming.png" alt="" />
+                <h2>
+                  <NavLink to="/promise/new">Новое обещание</NavLink>
+                </h2>
+              </div>
+              <div className="link">
+                <img src="./images/upcoming.png" alt="" />
+                <h2>
+                  <NavLink exact to="/">
+                    Лента
+                  </NavLink>
+                </h2>
+              </div>
+              <div className="link">
+                <img src="./images/upcoming.png" alt="" />
+                <h2>
+                  <NavLink to="/friends">Друзья</NavLink>
+                </h2>
+              </div>
+              <div className="link">
+                <img src="./images/library.png" alt="" />
+                <button onClick={() => signOut()}>Выйти</button>
+              </div>
             </div>
-            <div className="link">
-              <img src="" alt="" />
-              <h2>Лента</h2>
-            </div>
-            <div className="link">
-              <img src="" alt="" />
-              <h2>Обещания</h2>
-            </div>
-            <div className="link">
-              <img src="" alt="" />
-              <button onClick={() => signOut()}>Выйти</button>
-            </div>
-          </div>
+          </>
         ) : (
           <div className="links">
             <div className="link">
@@ -55,13 +62,13 @@ const Menu = () => {
             <div className="link">
               <img src="" alt="" />
               <h2>
-                <Link to="/register">Регистрация</Link>
+                <NavLink to="/register">Регистрация</NavLink>
               </h2>
             </div>
             <div className="link">
               <img src="" alt="" />
               <h2>
-                <Link to="/login">Войти</Link>
+                <NavLink to="/login">Войти</NavLink>
               </h2>
             </div>
           </div>
