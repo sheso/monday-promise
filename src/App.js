@@ -14,7 +14,6 @@ function App() {
       <InputsProvider>
         <Router>
           <div className="container d-flex align-items-center justify-content-around">
-            {/* <Navbar /> */}
             <Menu />
             <Main />
           </div>

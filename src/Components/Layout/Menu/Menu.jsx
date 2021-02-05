@@ -24,24 +24,42 @@ const Menu = () => {
         {currentUser ? (
           <div className="links">
             <div className="link">
-              <img src="./images/upcoming.png" alt="" />
+              <img src="" alt="" />
               <h2>Друзья</h2>
             </div>
             <div className="link">
-              <img src="./images/library.png" alt="" />
+              <img src="" alt="" />
+              <h2>Сообщения</h2>
+            </div>
+            <div className="link">
+              <img src="" alt="" />
+              <h2>Лента</h2>
+            </div>
+            <div className="link">
+              <img src="" alt="" />
+              <h2>Обещания</h2>
+            </div>
+            <div className="link">
+              <img src="" alt="" />
               <button onClick={() => signOut()}>Выйти</button>
             </div>
           </div>
         ) : (
           <div className="links">
             <div className="link">
-              <img src="./images/twitch.png" alt="" />
+              <img src="" alt="" />
+              <h2>
+                <Link to="/main">Главная</Link>
+              </h2>
+            </div>
+            <div className="link">
+              <img src="" alt="" />
               <h2>
                 <Link to="/register">Регистрация</Link>
               </h2>
             </div>
             <div className="link">
-              <img src="./images/steam.png" alt="" />
+              <img src="" alt="" />
               <h2>
                 <Link to="/login">Войти</Link>
               </h2>
