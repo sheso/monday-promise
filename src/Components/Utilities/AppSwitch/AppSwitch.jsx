@@ -6,7 +6,7 @@ import Profile from '../../Pages/Profile/Profile';
 import PromiseForm from '../../Pages/PromiseForm/PromiseForm';
 import Friends from '../../Pages/Friends/Friends';
 import Promise from '../../Pages/Promise/Promise';
-// import Chat from '../../Pages/Chat/Chat';
+import Chat from '../../Pages/Chat/Chat';
 import User from '../../Pages/User/User';
 
 
