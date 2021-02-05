@@ -29,39 +29,34 @@ const Register = () => {
   };
 
   return (
-    <main>
-      <section
-        className="glass my-5 flex-column align-items-center justify-content-evenly"
-        style={{ width: "30vw" }}
-      >
-        <h3>Регистрация</h3>
-        <input
-          type="text"
-          name="name"
-          className="form-control"
-          placeholder="Введите имя"
-          onChange={changeRegisterHandler}
-        />
-        <input
-          type="email"
-          name="email"
-          className="form-control"
-          placeholder="Введите e-mail"
-          onChange={changeRegisterHandler}
-        />
-        <input
-          type="password"
-          name="password"
-          className="form-control"
-          placeholder="Введите пароль"
-          onChange={changeRegisterHandler}
-        />
+    <section className="glass" style={{ width: "30vw" }}>
+      <h3>Регистрация</h3>
+      <input
+        type="text"
+        name="name"
+        className="form-control"
+        placeholder="Введите имя"
+        onChange={changeRegisterHandler}
+      />
+      <input
+        type="email"
+        name="email"
+        className="form-control"
+        placeholder="Введите e-mail"
+        onChange={changeRegisterHandler}
+      />
+      <input
+        type="password"
+        name="password"
+        className="form-control"
+        placeholder="Введите пароль"
+        onChange={changeRegisterHandler}
+      />
 
-        <button className="btn btn-primary" onClick={() => SignUp(inputs)}>
-          Регистрация
-        </button>
-      </section>
-    </main>
+      <button className="btn btn-primary" onClick={() => SignUp(inputs)}>
+        Регистрация
+      </button>
+    </section>
   );
 };
 

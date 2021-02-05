@@ -1,10 +1,11 @@
-import AppSwitch from '../../Utilities/AppSwitch/AppSwitch';
+import AppSwitch from "../../Utilities/AppSwitch/AppSwitch";
 import "./Main.css";
 
 const Main = () => {
-  return (<>
-    <AppSwitch />
-     {/* <div className="cards d-flex flex-column align-items-center mx-5">
+  return (
+    <div className="main">
+      <AppSwitch />
+      {/* <div className="cards d-flex flex-column align-items-center mx-5">
         <div className="card">
           <img src="./images/assassins.png" alt="" />
           <div className="card-info">
@@ -34,7 +35,7 @@ const Main = () => {
         </div>
       </div>
 		*/}
-	</>
+    </div>
   );
 };
 

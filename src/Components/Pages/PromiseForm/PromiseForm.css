@@ -1,0 +1,42 @@
+.promise-form-container {
+  font-family: "Poppins", sans-serif;
+  color: #426696;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 5px;
+}
+
+.form-item input,
+textarea {
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.3)
+  );
+  border: none;
+  padding: 0.7rem;
+  border-radius: 2rem;
+  outline: none;
+  width: 40vw;
+}
+
+#promise-difficulty {
+  background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+  border-radius: 1rem;
+}
+
+.promise-form-button {
+  background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+  color: white;
+  border-radius: 1rem;
+  padding: 0.7rem 4rem;
+  border: none;
+  margin: 5px;
+}

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lemonada&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -11,7 +13,7 @@ body {
 .dashboard {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
   flex-direction: column;
   text-align: center;
   background: linear-gradient(
@@ -21,4 +23,17 @@ body {
   );
   border-radius: 2rem;
   width: 450px;
+  height: 95vh;
+}
+
+.exit {
+  background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+  color: white;
+  border-radius: 1rem;
+  padding: 0.5rem 2rem;
+  border: none;
+}
+
+.logoText {
+  font-family: "Lemonada", cursive;
 }
