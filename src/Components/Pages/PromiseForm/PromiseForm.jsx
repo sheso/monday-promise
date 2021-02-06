@@ -5,9 +5,9 @@ import "./PromiseForm.css";
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
+import {database} from "../../../Auth/Fire";
 
 const auth = firebase.auth()
-const firestore = firebase.firestore()
 
 // const LEFT = 'left';
 // const RIGHT = 'right';
@@ -28,7 +28,7 @@ const PromiseForm = () => {
 	const [err, setError] = useState('');
 	const [buttonDisabled, setButtonDisabled] = useState(false);
 
-	const promisesRef = firestore.collection("promise");
+	const promisesRef = database.promise;
 
   // const handleButtonClick = (side) => {
   // 	if (side === LEFT && buttonActive === RIGHT) {
@@ -55,6 +55,7 @@ const PromiseForm = () => {
 			title,
 			why,
 			author: auth.currentUser.uid,
+			done: false,
 		}).then(() => {
 			setInputs(initInputs);
 			history.push('/');

@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
-import firebase from 'firebase/app'
+import { database } from '../../../Auth/Fire';
+import firebase from "firebase/app";
 import 'firebase/firestore'
 import 'firebase/auth'
 import 'firebase/analytics'
@@ -8,11 +9,10 @@ import ChatMessage from './ChatMessage'
 
 
 const auth = firebase.auth()
-const firestore = firebase.firestore()
 
 const Chat = () => {
   const scroll = useRef()
-  const messagesRef = firestore.collection('messages') //нужно создать коллекцию
+  const messagesRef = database.messages //нужно создать коллекцию
   const query = messagesRef.orderBy('createdAt').limit(25) //сортировка по параметру(дате создания) - лимит это ограничение по кол-во файлов
 
   const [messages] = useCollectionData(query, { idField: 'id' }) //запрос по айдишникам к самой базе данных??
@@ -25,7 +25,7 @@ const Chat = () => {
     const { uid, photoURL } = auth.currentUser
     await messagesRef.add({
       text: formValue,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      createdAt: database.getCreatedAt(),
       uid,
       photoURL,
     })

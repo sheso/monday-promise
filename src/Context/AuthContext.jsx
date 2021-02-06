@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import fire from "../Auth/Fire";
+import {fire} from "../Auth/Fire";
 
 export const AuthContext = createContext();
 

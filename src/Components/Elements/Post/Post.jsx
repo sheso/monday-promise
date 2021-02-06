@@ -1,7 +1,10 @@
-const Post = () => {
+const Post = ({data}) => {
 	return (
-		<div>
-			This is Post
+		<div className="post-container">
+			<p>{data.title}</p>
+			<p>{data.description}</p>
+			<p>{data.deadline}</p>
+			<p>{data.done}</p>
 		</div>
 	)
 }

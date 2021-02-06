@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import fire from "../../../Auth/Fire";
+import {fire} from "../../../Auth/Fire";
 import { AuthContext } from "../../../Context/AuthContext";
 import { InputsContext } from "../../../Context/InputsContext";
 import "./Register.css";

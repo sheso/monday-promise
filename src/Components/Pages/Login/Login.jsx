@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import fire from "../../../Auth/Fire";
+import { fire } from "../../../Auth/Fire";
 import firebase from "firebase";
 import { InputsContext } from "../../../Context/InputsContext";
 import "./Login.css";

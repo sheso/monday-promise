@@ -1,0 +1,8 @@
+.feed-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.feed-container * {
+  margin: 20px;
+}
