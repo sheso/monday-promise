@@ -22,10 +22,8 @@ const Chat = () => {
   const sendMessage = async (event) => {
     event.preventDefault()
     // const { } =  здесь мы забираем данные юзера (фото, айди(имя - так как шифр) ) const { uid, photoURL } = auth.currentUser;
-    const { uid, photoURL, displayName } = auth.currentUser
-    console.log(auth.currentUser)
+    const { uid, photoURL } = auth.currentUser
     await messagesRef.add({
-      displayName,
       text: formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       uid,

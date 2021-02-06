@@ -1,19 +1,34 @@
 import { useState } from "react";
+import { useHistory } from 'react-router-dom';
 import "./PromiseForm.css";
+
+import firebase from 'firebase/app'
+import 'firebase/firestore'
+import 'firebase/auth'
+
+const auth = firebase.auth()
+const firestore = firebase.firestore()
 
 // const LEFT = 'left';
 // const RIGHT = 'right';
 
 const PromiseForm = () => {
   // const [buttonActive, setButtonActive] = useState('right');
-  const [inputs, setInputs] = useState({
+	const history = useHistory();
+	const initInputs = {
     deadline: Date.now(),
     description: "",
     difficulty: 5,
     startdate: Date.now(),
     title: "",
     why: "",
-  });
+  }
+
+  const [inputs, setInputs] = useState(initInputs);
+	const [err, setError] = useState('');
+	const [buttonDisabled, setButtonDisabled] = useState(false);
+
+	const promisesRef = firestore.collection("promise");
 
   // const handleButtonClick = (side) => {
   // 	if (side === LEFT && buttonActive === RIGHT) {
@@ -29,7 +44,22 @@ const PromiseForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+		setButtonDisabled(true);
     console.log(inputs);
+		const { deadline, description, difficulty, startdate, title, why } = inputs;
+		promisesRef.add({
+			deadline,
+			description,
+			difficulty,
+			startdate,
+			title,
+			why,
+			author: auth.currentUser.uid,
+		}).then(() => {
+			setInputs(initInputs);
+			history.push('/');
+		})
+		.catch(err => setError(err));
   };
 
   return (
@@ -133,11 +163,12 @@ const PromiseForm = () => {
             onChange={handleInput}
             value={inputs.difficulty}
           />
-          <button type="submit" className="promise-form-button">
+          <button disabled={buttonDisabled} type="submit" className="promise-form-button">
             Даю обещание!
           </button>
         </div>
       </form>
+			{err ? <p>{err}</p> : null}
     </div>
   );
 };
