@@ -28,7 +28,7 @@ const PromiseForm = () => {
 	const [err, setError] = useState('');
 	const [buttonDisabled, setButtonDisabled] = useState(false);
 
-	const promisesRef = database.promise;
+	const promisesRef = database.promises;
 
   // const handleButtonClick = (side) => {
   // 	if (side === LEFT && buttonActive === RIGHT) {
@@ -54,7 +54,7 @@ const PromiseForm = () => {
 			startdate,
 			title,
 			why,
-			author: auth.currentUser.uid,
+			author: database.users.doc(auth.currentUser.uid),
 			done: false,
 		}).then(() => {
 			setInputs(initInputs);

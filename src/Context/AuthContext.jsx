@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import {fire} from "../Auth/Fire";
+import {fire, database} from "../Auth/Fire";
 
 export const AuthContext = createContext();
 
@@ -21,6 +21,19 @@ export const AuthProvider = ({ children }) => {
       }
     });
   }, []);
+
+	// Add user to Users collection
+	useEffect(() => {
+		fire.auth().onAuthStateChanged((currentUser) => {
+			console.log('I am writing to users');
+			if (currentUser) {
+				database.users.doc(currentUser.uid).set({
+					name: currentUser.displayName,
+					email: currentUser.email,
+				});
+			}
+		});
+	}, []);
 
   return (
     <AuthContext.Provider
