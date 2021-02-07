@@ -3,9 +3,9 @@ import Register from "../../Pages/Register/Register";
 import Login from "../../Pages/Login/Login";
 import Feed from '../../Pages/Feed/Feed';
 import Profile from '../../Pages/Profile/Profile';
-import PromiseForm from '../../Pages/PromiseForm/PromiseForm';
+import ContractForm from '../../Pages/ContractForm/ContractForm';
 import Friends from '../../Pages/Friends/Friends';
-import Promise from '../../Pages/Promise/Promise';
+import Contract from '../../Pages/Contract/Contract';
 import Chat from '../../Pages/Chat/Chat';
 import User from '../../Pages/User/User';
 
@@ -22,8 +22,8 @@ const AppSwitch = () => {
 			<Route path="/account">
 				<Profile />
       </Route>
-			<Route path="/promise/new">
-        <PromiseForm />
+			<Route path="/contract/new">
+        <ContractForm />
       </Route>
 			<Route path="/friends">
         <Friends />
@@ -34,8 +34,8 @@ const AppSwitch = () => {
       <Route path="/login">
         <Login />
       </Route>
-			<Route path="/promise/:id">
-        <Promise />
+			<Route path="/contract/:id">
+        <Contract />
       </Route>
 			<Route path="/chat/:id">
         {/* <Chat /> */}

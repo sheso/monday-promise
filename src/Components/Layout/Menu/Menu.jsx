@@ -35,7 +35,7 @@ const Menu = () => {
               <div className="link py-1">
                 <img src="" alt="" />
                 <h2>
-                  <NavLink to="/promise/new" className="navlink">
+                  <NavLink to="/contract/new" className="navlink">
                     Новое обещание
                   </NavLink>
                 </h2>

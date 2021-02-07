@@ -4,7 +4,7 @@ import {fire, database} from '../../../Auth/Fire';
 import './Feed.css';
 
 const Feed = () => {
-	const [promiseList, setPromiseList] = useState([]);
+	const [contractsList, setContractsList] = useState([]);
 
 	useEffect(() => {
 		
@@ -14,7 +14,7 @@ const Feed = () => {
 			const authorRefs = (await subscriptions).docs.map(doc => doc.data().dest);
 			if (!authorRefs.length) return;
 			console.log(authorRefs);
-			const posts = await database.promises.where('author', 'in', authorRefs).get();
+			const posts = await database.contracts.where('author', 'in', authorRefs).get();
 
 			const feed = [];
 			for (let post of posts.docs) {
@@ -25,17 +25,17 @@ const Feed = () => {
 					post: post.data(),
 				});
 			}
-			setPromiseList(feed);
+			setContractsList(feed);
 		}
 
 		fetchFeedData();
 	}, []);
 
-	console.log(promiseList);
+	console.log(contractsList);
 	return (
 		<div className="feed-container">
-		{promiseList.length ? promiseList.map(promise => (
-			<Post key={promise.id} data={promise} />
+		{contractsList.length ? contractsList.map(contract => (
+			<Post key={contract.id} data={contract} />
 		)) : 'No posts'}
 		</div>
 	);

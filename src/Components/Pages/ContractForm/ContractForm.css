@@ -1,4 +1,4 @@
-.promise-form-container {
+.contract-form-container {
   font-family: "Poppins", sans-serif;
   color: #426696;
   font-weight: 600;
@@ -27,12 +27,12 @@ textarea {
   width: 40vw;
 }
 
-#promise-difficulty {
+#contract-difficulty {
   background: linear-gradient(to right top, #65dfc9, #6cdbeb);
   border-radius: 1rem;
 }
 
-.promise-form-button {
+.contract-form-button {
   background: linear-gradient(to right top, #65dfc9, #6cdbeb);
   color: white;
   border-radius: 1rem;

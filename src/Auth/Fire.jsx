@@ -16,7 +16,7 @@ console.log('This is FIREEE');
 const fire = firebase.initializeApp(firebaseConfig);
 const firestore = firebase.firestore();
 const database = {
-	promises: firestore.collection('promise'),
+	contracts: firestore.collection('contracts'),
 	users: firestore.collection('users'),
 	messages: firestore.collection('messages'),
 	chats: firestore.collection('chats'),
