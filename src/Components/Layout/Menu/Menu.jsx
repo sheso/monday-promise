@@ -1,11 +1,17 @@
 import { useContext } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useHistory } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthContext";
 import "./Menu.css";
 
 const Menu = () => {
+	const history = useHistory();
   const { currentUser, signout } = useContext(AuthContext);
 	console.log('current user in menu', currentUser);
+
+	const signoutUser = () => {
+		signout();
+		history.push('/')
+	}
 
   return (
     <div>
@@ -59,7 +65,7 @@ const Menu = () => {
               </div>
               <div className="link">
                 <img src="" alt="" />
-                <button onClick={() => signout()} className="exit my-1">
+                <button onClick={() => signoutUser()} className="exit my-1">
                   <h3>Выйти</h3>
                 </button>
               </div>

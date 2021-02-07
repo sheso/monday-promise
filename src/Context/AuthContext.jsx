@@ -6,10 +6,13 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState(null);
+	const [authInitialized, setAuthInitialized] = useState(false);
 	
 	useEffect(() => {
 		fire.auth().onAuthStateChanged((current) => {
 			setCurrentUser(current);
+			setAuthInitialized(true);
+			console.log('listener onAuthStateChange', !!current);
 			if (current) {
 				database.users.doc(current.uid).set({
 					name: current.displayName,
@@ -43,15 +46,12 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-	const googleLogin = () => {
+	const googleLogin = async () => {
     const googleProvider = new firebase.auth.GoogleAuthProvider();
     try {
-      fire
+      await fire
         .auth()
-        .signInWithPopup(googleProvider)
-        .then((result) => {
-          console.log('success', result);
-				});
+        .signInWithPopup(googleProvider);
     } catch (err) {
       alert(err);
     }
@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }) => {
     <AuthContext.Provider
       value={{ currentUser, login, signup, googleLogin, signout }}
     >
-      {children}
+      {authInitialized && children}
     </AuthContext.Provider>
   );
 };
