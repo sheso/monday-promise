@@ -44,7 +44,7 @@ const Menu = () => {
               <div className="link py-1">
                 <img src="" alt="" />
                 <h2>
-                  <NavLink exact to="/" className="navlink">
+                  <NavLink exact to="/feed" className="navlink">
                     Лента
                   </NavLink>
                 </h2>
@@ -70,7 +70,7 @@ const Menu = () => {
             <div className="link">
               <img src="" alt="" />
               <h2>
-                <Link to="/main" className="navlink">
+                <Link to="/" className="navlink">
                   Главная
                 </Link>
               </h2>

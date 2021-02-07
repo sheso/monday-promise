@@ -12,8 +12,8 @@ const Login = () => {
 
   const loginUser = async (loginData) => {
     try {
-      login(loginData);
-      history.push("/");
+      await login(loginData);
+      history.push("/feed");
     } catch (error) {
       alert(error);
     }
@@ -22,7 +22,7 @@ const Login = () => {
   const googleLoginUser = async () => {
     try {
 			await googleLogin();
-			history.push('/');
+			history.push('/feed');
     } catch (err) {
       alert(err);
     }

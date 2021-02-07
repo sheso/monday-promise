@@ -12,7 +12,7 @@ const Register = () => {
 
   const SignUp = (inputs) => {
     signup(inputs);
-		history.push('/');
+		history.push('/feed');
   };
 
   return (
