@@ -1,16 +1,14 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useContext } from 'react'
+import { AuthContext } from '../../../Context/AuthContext';
 import { database } from '../../../Auth/Fire';
-import firebase from "firebase/app";
 import 'firebase/firestore'
 import 'firebase/auth'
 import 'firebase/analytics'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import ChatMessage from './ChatMessage'
 
-
-const auth = firebase.auth()
-
 const Chat = () => {
+	const { currentUser } = useContext(AuthContext);
   const scroll = useRef()
   const messagesRef = database.messages //нужно создать коллекцию
   const query = messagesRef.orderBy('createdAt').limit(25) //сортировка по параметру(дате создания) - лимит это ограничение по кол-во файлов
@@ -21,8 +19,8 @@ const Chat = () => {
 
   const sendMessage = async (event) => {
     event.preventDefault()
-    // const { } =  здесь мы забираем данные юзера (фото, айди(имя - так как шифр) ) const { uid, photoURL } = auth.currentUser;
-    const { uid, photoURL } = auth.currentUser
+    // const { } =  здесь мы забираем данные юзера (фото, айди(имя - так как шифр) ) const { uid, photoURL } = currentUser;
+    const { uid, photoURL } = currentUser
     await messagesRef.add({
       text: formValue,
       createdAt: database.getCreatedAt(),

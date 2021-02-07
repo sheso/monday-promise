@@ -3,6 +3,6 @@
   flex-direction: column;
 }
 
-.feed-container * {
+.feed-container > * {
   margin: 20px;
 }

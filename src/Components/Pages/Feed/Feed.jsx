@@ -9,7 +9,7 @@ const Feed = () => {
 	const { currentUser } = useContext(AuthContext);
 
 	useEffect(() => {
-		
+	
 		const fetchFeedData = async () => {
 			const subscriptions = database.subscriptions
 				.where('src', '==', database.users.doc(currentUser.uid)).get();
@@ -20,12 +20,15 @@ const Feed = () => {
 
 			const feed = [];
 			for (let post of posts.docs) {
+				const likes = await database.likes.where('post', '==', post.ref).get();
 				const authorSnapshot = await post.data().author.get();
 				const authorData = authorSnapshot.data();
 				feed.push({
 					author: authorData,
 					post: post.data(),
 					id: post.id,
+					likes: likes.docs.length,
+					userLiked: likes.docs.some(doc => doc.data().user.id === currentUser.uid),
 				});
 			}
 			setContractsList(feed);
@@ -34,11 +37,26 @@ const Feed = () => {
 		fetchFeedData();
 	}, [currentUser.uid]);
 
+
+	const like = async (postId) => {
+		const likeId = [currentUser.uid, postId].join(':');
+		await database.likes.doc(likeId).set({
+			user: database.users.doc(currentUser.uid),
+			post: database.contracts.doc(postId),
+		});
+	};
+
+	const unlike = async (postId) => {
+		const likeId = [currentUser.uid, postId].join(':');
+		await database.likes.doc(likeId).delete();
+	};
+
+
 	console.log('my feed posts:', contractsList);
 	return (
 		<div className="feed-container">
 		{contractsList.length ? contractsList.map(contract => (
-			<Post key={contract.id} data={contract} />
+			<Post key={contract.id} data={contract} like={like} unlike={unlike} />
 		)) : 'No posts'}
 		</div>
 	);

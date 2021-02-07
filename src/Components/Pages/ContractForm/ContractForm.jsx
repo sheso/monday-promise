@@ -1,19 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useHistory } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthContext';
 import "./ContractForm.css";
 
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/auth'
 import {database} from "../../../Auth/Fire";
-
-const auth = firebase.auth()
 
 // const LEFT = 'left';
 // const RIGHT = 'right';
 
 const ContractForm = () => {
   // const [buttonActive, setButtonActive] = useState('right');
+	const { currentUser } = useContext(AuthContext);
 	const history = useHistory();
 	const initInputs = {
     deadline: Date.now(),
@@ -54,7 +51,7 @@ const ContractForm = () => {
 			startdate,
 			title,
 			why,
-			author: database.users.doc(auth.currentUser.uid),
+			author: database.users.doc(currentUser.uid),
 			done: false,
 		}).then(() => {
 			setInputs(initInputs);

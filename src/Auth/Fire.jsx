@@ -11,8 +11,6 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 
-console.log('This is FIREEE');
-
 const fire = firebase.initializeApp(firebaseConfig);
 const firestore = firebase.firestore();
 const database = {
@@ -21,7 +19,8 @@ const database = {
 	messages: firestore.collection('messages'),
 	chats: firestore.collection('chats'),
 	subscriptions: firestore.collection('subscriptions'),
+	likes: firestore.collection('likes'),
 	getCreatedAt: firebase.firestore.FieldValue.serverTimestamp
 };
 
-export {fire, database};
+export { fire, database };
