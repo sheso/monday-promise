@@ -1,18 +1,21 @@
-import {useEffect, useState} from 'react';
-import {fire, database} from '../../../Auth/Fire';
+import { useEffect, useState, useContext } from 'react';
+import { database } from '../../../Auth/Fire';
+import { AuthContext } from '../../../Context/AuthContext';
 import './Friends.css';
 
 const Friends = () => {
 	const [peopleList, setPeopleList] = useState([]);
+	const { currentUser } = useContext(AuthContext);
 	
 	// This demands adding REDUX & THUNK
 	const [boo, setBoo] = useState(false);
+	const currentUserUid = currentUser.uid;
 
 	useEffect(() => {
 		const getPeople = database.users.get();
 
 		const getSubscriptions = database.subscriptions
-			.where('src', '==', database.users.doc(fire.auth().currentUser.uid)).get();
+			.where('src', '==', database.users.doc(currentUserUid)).get();
 
 		const handlePromises = async () => {
 			const [people, subscriptions] = await Promise.all([getPeople, getSubscriptions]);
@@ -26,30 +29,28 @@ const Friends = () => {
 		}
 
 		handlePromises();
-	}, [boo]);
-
-	const currentUserUid = fire.auth().currentUser.uid
+	}, [boo, currentUserUid]);
 
 	const subscribe = async (userId) => {
 		const subId = [currentUserUid, userId].join(':');
 		await database.subscriptions.doc(subId).set({
-			src: database.users.doc(fire.auth().currentUser.uid),
+			src: database.users.doc(currentUser.uid),
 			dest: database.users.doc(userId),
 		});
 		setBoo(pre => !pre);
-	}
+	};
 
 	const unsubscribe = async (userId) => {
 		const subId = [currentUserUid, userId].join(':');
 		await database.subscriptions.doc(subId).delete();
 		setBoo(pre => !pre);
-	}
+	};
 
 	return (
 		<div>
 			{
 				peopleList.map(man => (
-					<div>
+					<div key={man.uid}>
 						<span>{man.doc.name}</span>
 						{
 							man.currentUserIsSubscribed ?
@@ -67,7 +68,7 @@ const Friends = () => {
 				))
 			}
 		</div>
-	)
-}
+	);
+};
 
 export default Friends;

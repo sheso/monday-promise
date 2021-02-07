@@ -5,7 +5,7 @@ export const InputsContext = createContext();
 export const InputsProvider = ({ children }) => {
   const [inputs, setInputs] = useState({ name: "", email: "", password: "" });
 
-  const [login, setLogin] = useState({ email: "", password: "" });
+  const [loginData, setLoginData] = useState({ email: "", password: "" });
 
   const changeRegisterHandler = (e) => {
     console.log(inputs);
@@ -13,8 +13,8 @@ export const InputsProvider = ({ children }) => {
   };
 
   const changeLoginHandler = (e) => {
-    console.log(login);
-    setLogin({ ...login, [e.target.name]: e.target.value });
+    console.log(loginData);
+    setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
   return (
@@ -23,7 +23,7 @@ export const InputsProvider = ({ children }) => {
         inputs,
         changeRegisterHandler,
         changeLoginHandler,
-        login,
+        loginData,
       }}
     >
       {children}

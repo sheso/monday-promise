@@ -1,16 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Post from '../../Elements/Post/Post';
-import {fire, database} from '../../../Auth/Fire';
+import { database} from '../../../Auth/Fire';
+import { AuthContext } from '../../../Context/AuthContext';
 import './Feed.css';
 
 const Feed = () => {
 	const [contractsList, setContractsList] = useState([]);
+	const { currentUser } = useContext(AuthContext);
 
 	useEffect(() => {
 		
 		const fetchFeedData = async () => {
 			const subscriptions = database.subscriptions
-				.where('src', '==', database.users.doc(fire.auth().currentUser.uid)).get();
+				.where('src', '==', database.users.doc(currentUser.uid)).get();
 			const authorRefs = (await subscriptions).docs.map(doc => doc.data().dest);
 			if (!authorRefs.length) return;
 			console.log(authorRefs);
@@ -23,15 +25,16 @@ const Feed = () => {
 				feed.push({
 					author: authorData,
 					post: post.data(),
+					id: post.id,
 				});
 			}
 			setContractsList(feed);
 		}
 
 		fetchFeedData();
-	}, []);
+	}, [currentUser.uid]);
 
-	console.log(contractsList);
+	console.log('my feed posts:', contractsList);
 	return (
 		<div className="feed-container">
 		{contractsList.length ? contractsList.map(contract => (
