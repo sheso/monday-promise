@@ -8,17 +8,6 @@ const Feed = () => {
   const [contractsList, setContractsList] = useState([]);
   const { currentUser } = useContext(AuthContext);
 
-<<<<<<< HEAD
-	useEffect(() => {
-	
-		const fetchFeedData = async () => {
-			const subscriptions = database.subscriptions
-				.where('src', '==', database.users.doc(currentUser.uid)).get();
-			const authorRefs = (await subscriptions).docs.map(doc => doc.data().dest);
-			if (!authorRefs.length) return;
-			console.log(authorRefs);
-			const posts = await database.contracts.where('author', 'in', authorRefs).orderBy('createdAt').get();
-=======
   useEffect(() => {
     const fetchFeedData = async () => {
       const subscriptions = database.subscriptions
@@ -32,7 +21,6 @@ const Feed = () => {
       const posts = await database.contracts
         .where("author", "in", authorRefs)
         .get();
->>>>>>> Verstka
 
       const feed = [];
       for (let post of posts.docs) {
