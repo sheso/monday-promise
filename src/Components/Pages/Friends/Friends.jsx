@@ -28,11 +28,13 @@ const Friends = () => {
       );
 
       setPeopleList(
-        people.docs.map((doc) => ({
-          uid: doc.id,
-          doc: doc.data(),
-          currentUserIsSubscribed: subscriptionSet.has(doc.id),
-        })).sort(el => el.currentUserIsSubscribed ? -1 : 1)
+        people.docs
+          .map((doc) => ({
+            uid: doc.id,
+            doc: doc.data(),
+            currentUserIsSubscribed: subscriptionSet.has(doc.id),
+          }))
+          .sort((el) => (el.currentUserIsSubscribed ? -1 : 1))
       );
     };
 
@@ -59,6 +61,10 @@ const Friends = () => {
       {peopleList.map((man) => (
         <div key={man.uid} className="firiendCard my-1">
           <span>{man.doc.name}</span>
+          <img
+            src="http://pm1.narvii.com/6679/56c3426ed18147d4a02c1c34200959087612982e_00.jpg"
+            width="40%"
+          />
           {man.currentUserIsSubscribed ? (
             <button
               className="unsubscribe-button"
@@ -80,4 +86,4 @@ const Friends = () => {
   );
 };
 
-export default Friends
+export default Friends;

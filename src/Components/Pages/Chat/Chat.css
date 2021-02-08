@@ -6,16 +6,22 @@
   flex-direction: column;
 }
 
-.mesDes {
-  border-radius: 20px;
-  border: 2px solid #65dfc9;
-}
-
 .message-sent {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  flex-direction: row-reverse;
+
   text-align: center;
+  border-radius: 10px;
+  /* border: 2px solid #9bbcf0; */
+}
+
+.message-received {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  text-align: center;
+  border-radius: 10px;
+  /* border: 2px solid #21b29a; */
 }
 
 .chat input {
@@ -46,4 +52,10 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+
+.textMes {
+  background-color: #d7fffe;
+  width: 100%;
+  border-radius: 20px;
 }

@@ -40,15 +40,17 @@
 }
 
 .firiendCard {
-  width: 400px;
-  height: 200px;
   border-radius: 10px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   border: 2px solid #65dfc9;
   font-family: "Poppins", sans-serif;
   color: #426696;
   font-weight: 600;
+}
+
+.firiendCard img {
+  border-radius: 10px;
 }
