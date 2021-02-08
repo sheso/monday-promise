@@ -2,7 +2,7 @@ import "./Post.css";
 import { useState } from "react";
 
 const Post = ({ data, makeBet, currentUser }) => {
-  const [betMade, setBetMade] = useState(false);
+	const [betMade, setBetMade] = useState(data.userMadeBet);
 
   const makeUserBet = (post, user, bet) => {
     if (betMade) {

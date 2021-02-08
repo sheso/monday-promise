@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { NavLink, Link, useHistory } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthContext";
+import { fire } from '../../../Auth/Fire';
 import "./Menu.css";
 
 const Menu = () => {
@@ -20,7 +21,7 @@ const Menu = () => {
           <img src="../../../images/pinky-promise.svg" alt="" width="15%" />
           <p className="logoText">Monday Promise</p>
         </div>
-        {currentUser ? (
+        {fire.auth().currentUser ? (
           <>
             <div className="user">
 							{
@@ -34,7 +35,7 @@ const Menu = () => {
 							}
               <h3>
                 <NavLink to="/account" className="navlink">
-                  {currentUser.displayName}
+                  {fire.auth().currentUser.displayName}
                 </NavLink>
               </h3>
             </div>
