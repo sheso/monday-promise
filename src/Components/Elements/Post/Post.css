@@ -29,3 +29,7 @@ p {
   border: none;
   margin: 5px;
 }
+
+.bet-active {
+  background-color: crimson;
+}

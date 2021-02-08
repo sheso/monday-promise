@@ -20,6 +20,7 @@ const database = {
 	chats: firestore.collection('chats'),
 	subscriptions: firestore.collection('subscriptions'),
 	likes: firestore.collection('likes'),
+	bets: firestore.collection('bets'),
 	getCreatedAt: firebase.firestore.FieldValue.serverTimestamp
 };
 
