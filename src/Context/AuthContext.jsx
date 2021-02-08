@@ -5,8 +5,23 @@ import { fire, database } from '../Auth/Fire'
 export const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null)
-  const [authInitialized, setAuthInitialized] = useState(false)
+	const [currentUser, setCurrentUser] = useState(null);
+	const [authInitialized, setAuthInitialized] = useState(false);
+	
+	useEffect(() => {
+		fire.auth().onAuthStateChanged((current) => {
+			setCurrentUser(current);
+			setAuthInitialized(true);
+			console.log('listener onAuthStateChange', !!current);
+			if (current) {
+				database.users.doc(current.uid).set({
+					name: current.displayName,
+					email: current.email,
+					photoURL: current.photoURL,
+				});
+			}
+		});
+	}, []);
 
   useEffect(() => {
     fire.auth().onAuthStateChanged((current) => {

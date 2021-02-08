@@ -53,6 +53,7 @@ const ContractForm = () => {
 			why,
 			author: database.users.doc(currentUser.uid),
 			done: false,
+			createdAt: database.getCreatedAt(),
 		}).then(() => {
 			setInputs(initInputs);
 			history.push('/');
