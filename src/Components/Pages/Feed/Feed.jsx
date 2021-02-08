@@ -66,7 +66,7 @@ const Feed = () => {
       ) : (
         <img
           src="../../../images/11210f3927a5c230f28ec52b609192-unscreen.gif"
-          width="50%"
+          width="10%"
           style={{ margin: "0 auto" }}
         />
       )}

@@ -1,8 +1,11 @@
 .feed-container {
   display: flex;
   flex-direction: column;
-}
-
-.feed-container > * {
-  margin: 20px;
+  height: 98%;
+  width: 98%;
+  overflow-y: scroll;
+  font-family: "Poppins", sans-serif;
+  color: #426696;
+  font-weight: 600;
+  font-size: 18px;
 }
