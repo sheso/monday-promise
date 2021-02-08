@@ -16,7 +16,7 @@ const Feed = () => {
 			const authorRefs = (await subscriptions).docs.map(doc => doc.data().dest);
 			if (!authorRefs.length) return;
 			console.log(authorRefs);
-			const posts = await database.contracts.where('author', 'in', authorRefs).get();
+			const posts = await database.contracts.where('author', 'in', authorRefs).orderBy('createdAt').get();
 
 			const feed = [];
 			for (let post of posts.docs) {
