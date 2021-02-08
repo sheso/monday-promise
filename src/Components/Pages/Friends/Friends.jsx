@@ -25,7 +25,7 @@ const Friends = () => {
 				uid: doc.id,
 				doc: doc.data(),
 				currentUserIsSubscribed: subscriptionSet.has(doc.id),
-			})));
+			})).sort(el => el.currentUserIsSubscribed ? -1 : 1));
 		}
 
 		handlePromises();
