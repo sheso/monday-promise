@@ -1,32 +1,69 @@
-import { createContext, useEffect, useState } from "react";
-import fire from "../Auth/Fire";
+import { createContext, useEffect, useState } from 'react'
+import firebase from 'firebase'
+import { fire, database } from '../Auth/Fire'
 
-export const AuthContext = createContext();
+export const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState("");
-  const [userPhoto, setUserPhoto] = useState("");
-  console.log(currentUser);
+  const [currentUser, setCurrentUser] = useState(null)
+  const [authInitialized, setAuthInitialized] = useState(false)
 
   useEffect(() => {
-    fire.auth().onAuthStateChanged((currentUser) => {
-      console.log(currentUser);
-      if (currentUser) {
-        console.log(currentUser);
-        setCurrentUser(currentUser.displayName);
-        setUserPhoto(currentUser.photoURL);
-      } else {
-        setCurrentUser(null);
-        setUserPhoto("http://penoksal.ru/images/imgcont16.png");
+    fire.auth().onAuthStateChanged((current) => {
+      setCurrentUser(current)
+      setAuthInitialized(true)
+      console.log('listener onAuthStateChange', !!current)
+      if (current) {
+        database.users.doc(current.uid).set({
+          name: current.displayName,
+          email: current.email,
+        })
       }
-    });
-  }, []);
+    })
+  }, [])
+
+  const login = async (login) => {
+    try {
+      await fire.auth().signInWithEmailAndPassword(login.email, login.password)
+    } catch (error) {
+      alert(error)
+    }
+  }
+
+  const signup = (inputs) => {
+    try {
+      fire
+        .auth()
+        .createUserWithEmailAndPassword(inputs.email, inputs.password)
+        .then(() => {
+          let user = fire.auth().currentUser
+          user.updateProfile({
+            displayName: inputs.name,
+          })
+        })
+    } catch (error) {
+      alert(error) // TODO: handle errors
+    }
+  }
+
+  const googleLogin = async () => {
+    const googleProvider = new firebase.auth.GoogleAuthProvider()
+    try {
+      await fire.auth().signInWithPopup(googleProvider)
+    } catch (err) {
+      alert(err)
+    }
+  }
+
+  const signout = () => {
+    fire.auth().signOut()
+  }
 
   return (
     <AuthContext.Provider
-      value={{ currentUser, setCurrentUser, userPhoto, setUserPhoto }}
+      value={{ currentUser, login, signup, googleLogin, signout }}
     >
-      {children}
+      {authInitialized && children}
     </AuthContext.Provider>
-  );
-};
+  )
+}

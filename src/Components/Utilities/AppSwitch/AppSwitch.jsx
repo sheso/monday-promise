@@ -1,54 +1,53 @@
 import { Route, Switch } from "react-router-dom";
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import Register from "../../Pages/Register/Register";
 import Login from "../../Pages/Login/Login";
 import Feed from '../../Pages/Feed/Feed';
 import Profile from '../../Pages/Profile/Profile';
-import PromiseForm from '../../Pages/PromiseForm/PromiseForm';
+import ContractForm from '../../Pages/ContractForm/ContractForm';
 import Friends from '../../Pages/Friends/Friends';
-import Promise from '../../Pages/Promise/Promise';
+import Contract from '../../Pages/Contract/Contract';
 import Chat from '../../Pages/Chat/Chat';
 import User from '../../Pages/User/User';
-
+import Landing from '../../Pages/Landing/Landing';
 
 const AppSwitch = () => {
   return (
     <Switch>
-
-<Route path="/chat">
-				{/* Неавторизованный - на лендинг. Авторизованный - на ленту */}
+			<PrivateRoute path="/chat">
         <Chat />
-      </Route>
-
-			<Route path="/account">
+      </PrivateRoute>
+			<PrivateRoute path="/account">
 				<Profile />
-      </Route>
-			<Route path="/promise/new">
-        <PromiseForm />
-      </Route>
-			<Route path="/friends">
+      </PrivateRoute>
+			<PrivateRoute path="/contract/new">
+        <ContractForm />
+      </PrivateRoute>
+			<PrivateRoute path="/friends">
         <Friends />
-      </Route>
+      </PrivateRoute>
       <Route path="/register">
         <Register />
       </Route>
       <Route path="/login">
         <Login />
       </Route>
-			<Route path="/promise/:id">
-        <Promise />
-      </Route>
-			<Route path="/chat/:id">
+			<PrivateRoute path="/contract/:id">
+        <Contract />
+      </PrivateRoute>
+			<PrivateRoute path="/chat/:id">
         {/* <Chat /> */}
-      </Route>
-			<Route path="/user/:id">
+      </PrivateRoute>
+			<PrivateRoute path="/user/:id">
         <User />
-      </Route>
-      <Route path="/">
+      </PrivateRoute>
+      <PrivateRoute path="/feed">
 				{/* Неавторизованный - на лендинг. Авторизованный - на ленту */}
         <Feed />
-      </Route>
-
-      
+      </PrivateRoute>
+			<Route path="/">
+        <Landing />
+      </Route>      
     </Switch>
   );
 };

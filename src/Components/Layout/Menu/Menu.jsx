@@ -1,13 +1,17 @@
 import { useContext } from "react";
-import { NavLink, Link } from "react-router-dom";
-import fire from "../../../Auth/Fire";
+import { NavLink, Link, useHistory } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthContext";
 import "./Menu.css";
+
 const Menu = () => {
-  const { userPhoto, currentUser } = useContext(AuthContext);
-  const signOut = () => {
-    fire.auth().signOut();
-  };
+	const history = useHistory();
+  const { currentUser, signout } = useContext(AuthContext);
+	console.log('current user in menu', currentUser);
+
+	const signoutUser = () => {
+		signout();
+		history.push('/')
+	}
 
   return (
     <div>
@@ -19,15 +23,18 @@ const Menu = () => {
         {currentUser ? (
           <>
             <div className="user">
-              <img
-                src={userPhoto}
-                alt="userPhoto"
-                style={{ borderRadius: "10px" }}
-                className="my-3"
-              />
+							{
+							currentUser.photoURL &&
+								<img
+									src={currentUser.photoURL}
+									alt={currentUser.displayName}
+									style={{ borderRadius: "10px" }}
+									className="my-3"
+								/>
+							}
               <h3>
                 <NavLink to="/account" className="navlink">
-                  {currentUser}
+                  {currentUser.displayName}
                 </NavLink>
               </h3>
             </div>
@@ -35,7 +42,7 @@ const Menu = () => {
               <div className="link py-1">
                 <img src="" alt="" />
                 <h2>
-                  <NavLink to="/promise/new" className="navlink">
+                  <NavLink to="/contract/new" className="navlink">
                     Новое обещание
                   </NavLink>
                 </h2>
@@ -43,7 +50,7 @@ const Menu = () => {
               <div className="link py-1">
                 <img src="" alt="" />
                 <h2>
-                  <NavLink exact to="/" className="navlink">
+                  <NavLink exact to="/feed" className="navlink">
                     Лента
                   </NavLink>
                 </h2>
@@ -56,9 +63,17 @@ const Menu = () => {
                   </NavLink>
                 </h2>
               </div>
+              <div className="link py-3">
+                <img src="" alt="" />
+                <h2>
+                  <NavLink to="/chat" className="navlink">
+                    Чат
+                  </NavLink>
+                </h2>
+              </div>
               <div className="link">
                 <img src="" alt="" />
-                <button onClick={() => signOut()} className="exit my-1">
+                <button onClick={() => signoutUser()} className="exit my-1">
                   <h3>Выйти</h3>
                 </button>
               </div>
@@ -69,7 +84,7 @@ const Menu = () => {
             <div className="link">
               <img src="" alt="" />
               <h2>
-                <Link to="/main" className="navlink">
+                <Link to="/" className="navlink">
                   Главная
                 </Link>
               </h2>

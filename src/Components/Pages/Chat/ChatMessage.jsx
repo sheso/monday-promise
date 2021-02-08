@@ -1,12 +1,17 @@
-//uid photoUrl - данные о юзере
-import firebase from "firebase/app";
-import "firebase/firestore";
-import "firebase/auth";
-import "firebase/analytics";
-const auth = firebase.auth();
+import 'firebase/firestore'
+import 'firebase/auth'
+import 'firebase/analytics'
+import { useContext, useEffect, useState } from 'react'
+import { AuthContext } from '../../../Context/AuthContext'
+import { database } from '../../../Auth/Fire'
 
 const ChatMessage = ({ text, uid, photoURL, displayName }) => {
-  const messageClass = uid === auth.currentUser.uid ? "sent" : "received";
+
+  const [userName, setUserName] = useState('')
+
+  const { currentUser } = useContext(AuthContext)
+
+  const messageClass = uid === currentUser.uid ? 'sent' : 'received'
 
   return (
     <>
@@ -14,13 +19,16 @@ const ChatMessage = ({ text, uid, photoURL, displayName }) => {
         <img
           src={
             photoURL ||
-            "https://i.pinimg.com/originals/57/7c/eb/577ceb09b2de9557a93ccb625a38c678.jpg"
+            'https://i.pinimg.com/originals/4b/c9/a4/4bc9a425e50ac0551a517a0c41f00f91.jpg'
           }
+          width="40px"
+          height="40px"
+          alt="userpic"
         />
         <p>{displayName}</p>
         <p>{text}</p>
       </div>
     </>
-  );
-};
-export default ChatMessage;
+  )
+}
+export default ChatMessage

@@ -1,34 +1,28 @@
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import fire from "../../../Auth/Fire";
-import firebase from "firebase";
 import { InputsContext } from "../../../Context/InputsContext";
+import { AuthContext } from '../../../Context/AuthContext';
 import "./Login.css";
 
 const Login = () => {
-  const { login, changeLoginHandler } = useContext(InputsContext);
+  const { loginData, changeLoginHandler } = useContext(InputsContext);
   const history = useHistory();
 
-  const loginUser = async (login) => {
+	const { login, googleLogin } = useContext(AuthContext);
+
+  const loginUser = async (loginData) => {
     try {
-      await fire.auth().signInWithEmailAndPassword(login.email, login.password);
-      history.push("/");
+      await login(loginData);
+      history.push("/feed");
     } catch (error) {
       alert(error);
     }
   };
 
-  const googleLogin = () => {
-    const googleProvider = new firebase.auth.GoogleAuthProvider();
+  const googleLoginUser = async () => {
     try {
-      fire
-        .auth()
-        .signInWithPopup(googleProvider)
-        .then((result) => {
-          let googleUser = result.user;
-          let photoUrl = result.photoUrl;
-          history.push("/");
-        });
+			await googleLogin();
+			history.push('/feed');
     } catch (err) {
       alert(err);
     }
@@ -55,7 +49,7 @@ const Login = () => {
         <button
           className="btn btn-primary"
           onClick={() => {
-            loginUser(login);
+            loginUser(loginData);
           }}
         >
           Войти
@@ -66,7 +60,7 @@ const Login = () => {
           width="7%"
           alt="google"
           className="my-2"
-          onClick={() => googleLogin()}
+          onClick={() => googleLoginUser()}
         />
       </section>
     </main>

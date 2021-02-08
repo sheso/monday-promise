@@ -1,19 +1,31 @@
-import { useState } from "react";
-import "./PromiseForm.css";
+import { useState, useContext } from "react";
+import { useHistory } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthContext';
+import "./ContractForm.css";
+
+import {database} from "../../../Auth/Fire";
 
 // const LEFT = 'left';
 // const RIGHT = 'right';
 
-const PromiseForm = () => {
+const ContractForm = () => {
   // const [buttonActive, setButtonActive] = useState('right');
-  const [inputs, setInputs] = useState({
+	const { currentUser } = useContext(AuthContext);
+	const history = useHistory();
+	const initInputs = {
     deadline: Date.now(),
     description: "",
     difficulty: 5,
     startdate: Date.now(),
     title: "",
     why: "",
-  });
+  }
+
+  const [inputs, setInputs] = useState(initInputs);
+	const [err, setError] = useState('');
+	const [buttonDisabled, setButtonDisabled] = useState(false);
+
+	const contractsRef = database.contracts;
 
   // const handleButtonClick = (side) => {
   // 	if (side === LEFT && buttonActive === RIGHT) {
@@ -29,60 +41,76 @@ const PromiseForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+		setButtonDisabled(true);
     console.log(inputs);
+		const { deadline, description, difficulty, startdate, title, why } = inputs;
+		contractsRef.add({
+			deadline,
+			description,
+			difficulty,
+			startdate,
+			title,
+			why,
+			author: database.users.doc(currentUser.uid),
+			done: false,
+		}).then(() => {
+			setInputs(initInputs);
+			history.push('/');
+		})
+		.catch(err => setError(err));
   };
 
   return (
-    <div className="promise-form-container">
+    <div className="contract-form-container">
       <h2>Новое обещание</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-item">
-          <label htmlFor="promise-title">Цель:</label>
+          <label htmlFor="contract-title">Цель:</label>
           <input
             type="text"
             name="title"
-            id="promise-title"
+            id="contract-title"
             onChange={handleInput}
             value={inputs.title}
           />
         </div>
         <div className="form-item">
-          <label htmlFor="promise-description">Описание:</label>
+          <label htmlFor="contract-description">Описание:</label>
           <textarea
             type="text"
             name="description"
-            id="promise-description"
+            id="contract-description"
             onChange={handleInput}
             value={inputs.description}
           ></textarea>
         </div>
         <div className="form-item">
-          <label htmlFor="promise-deadline">Срок:</label>
+          <label htmlFor="contract-deadline">Срок:</label>
           <input
             type="date"
             name="deadline"
-            id="promise-deadline"
+            id="contract-deadline"
             onChange={handleInput}
             value={inputs.deadline}
           />
         </div>
         <div className="form-item">
-          <label htmlFor="promise-startdate">Начало:</label>
+          <label htmlFor="contract-startdate">Начало:</label>
           <input
             type="date"
             name="startdate"
-            id="promise-startdate"
+            id="contract-startdate"
             onChange={handleInput}
             value={inputs.startdate}
           />
         </div>
 
         <div className="form-item">
-          <label htmlFor="promise-why">Зачем?</label>
+          <label htmlFor="contract-why">Зачем?</label>
           <input
             type="text"
             name="why"
-            id="promise-why"
+            id="contract-why"
             onChange={handleInput}
             value={inputs.why}
           />
@@ -108,38 +136,39 @@ const PromiseForm = () => {
 					buttonActive === LEFT && (
 						<>
 							<p>
-								<label htmlFor="promise-why">Зачем?</label>
-								<input type="text" id="promise-why" />
+								<label htmlFor="contract-why">Зачем?</label>
+								<input type="text" id="contract-why" />
 							</p>
 							<p>
-								<label htmlFor="promise-why">Зачем?</label>
-								<input type="text" id="promise-why" />
+								<label htmlFor="contract-why">Зачем?</label>
+								<input type="text" id="contract-why" />
 							</p>
 							<p>
-								<label htmlFor="promise-why">Зачем?</label>
-								<input type="text" id="promise-why" />
+								<label htmlFor="contract-why">Зачем?</label>
+								<input type="text" id="contract-why" />
 							</p>
 						</>
 					)
 				} */}
         <div className="form-item">
-          <label htmlFor="promise-difficulty">Сложность:</label>
+          <label htmlFor="contract-difficulty">Сложность:</label>
           <input
             type="range"
-            id="promise-difficulty"
+            id="contract-difficulty"
             name="difficulty"
             min="1"
             max="10"
             onChange={handleInput}
             value={inputs.difficulty}
           />
-          <button type="submit" className="promise-form-button">
+          <button disabled={buttonDisabled} type="submit" className="contract-form-button">
             Даю обещание!
           </button>
         </div>
       </form>
+			{err ? <p>{err}</p> : null}
     </div>
   );
 };
 
-export default PromiseForm;
+export default ContractForm;
