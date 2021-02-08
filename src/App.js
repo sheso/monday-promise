@@ -13,8 +13,7 @@ function App() {
     <AuthProvider>
       <InputsProvider>
         <Router>
-          <div className="container d-flex align-items-center justify-content-around">
-            {/* <Navbar /> */}
+          <div className="screen d-flex align-items-center justify-content-between mx-3 my-3">
             <Menu />
             <Main />
           </div>

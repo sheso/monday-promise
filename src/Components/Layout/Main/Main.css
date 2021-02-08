@@ -1,13 +1,13 @@
 .main {
-  background: white;
-  min-height: 80vh;
-  width: 100%;
+  width: 1400px;
+  height: 95vh;
   background: linear-gradient(
     to right bottom,
     rgba(255, 255, 255, 0.7),
     rgba(255, 255, 255, 0.3)
   );
   border-radius: 2rem;
-  z-index: 2;
-  backdrop-filter: blur(2rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

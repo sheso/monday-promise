@@ -36,7 +36,7 @@ const Login = () => {
 
   return (
     <main>
-      <section className="glass my-5 flex-column align-items-center justify-content-evenly">
+      <section className="glass">
         <h3>Войти</h3>
         <input
           type="email"
@@ -60,11 +60,12 @@ const Login = () => {
         >
           Войти
         </button>
-        <p>Войти с помощью соц.сетей</p>
+        <p>Войти с помощью Google</p>
         <img
           src="../../../images/google.png"
           width="7%"
           alt="google"
+          className="my-2"
           onClick={() => googleLogin()}
         />
       </section>
