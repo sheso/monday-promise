@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
 				database.users.doc(current.uid).set({
 					name: current.displayName,
 					email: current.email,
+					photoURL: current.photoURL,
 				});
 			}
 		});
