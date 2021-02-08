@@ -1,7 +1,53 @@
 .subscribe-button {
-  background-color: lightseagreen;
+  background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+  color: white;
+  border-radius: 1rem;
+  padding: 0.7rem 4rem;
+  border: none;
+  margin: 10px;
+  outline: none;
+}
+
+.subscribe-button:active,
+.subscribe-button:focus {
+  outline: none;
 }
 
 .unsubscribe-button {
-  background-color: lightsalmon;
+  background: linear-gradient(to right top, #f2709c, #ff9472);
+  color: white;
+  border-radius: 1rem;
+  padding: 0.7rem 4rem;
+  border: none;
+  margin: 10px;
+  outline: none;
+}
+
+.unsubscribe-button:active,
+.unsubscribe-button:focus {
+  outline: none;
+}
+
+.friendsList {
+  width: 98%;
+  height: 98%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.firiendCard {
+  width: 400px;
+  height: 200px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #65dfc9;
+  font-family: "Poppins", sans-serif;
+  color: #426696;
+  font-weight: 600;
 }
