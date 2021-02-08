@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import Post from "../../Elements/Post/Post";
 import { database } from "../../../Auth/Fire";
 import { AuthContext } from "../../../Context/AuthContext";
+import { makeBet } from "../../../databaseHandlers";
 import "./Feed.css";
 
 const Feed = () => {
@@ -24,17 +25,26 @@ const Feed = () => {
 
       const feed = [];
       for (let post of posts.docs) {
-        const likes = await database.likes.where("post", "==", post.ref).get();
+        const bets = await database.bets
+          .where("contract", "==", post.ref)
+          .get();
         const authorSnapshot = await post.data().author.get();
         const authorData = authorSnapshot.data();
         feed.push({
           author: authorData,
           post: post.data(),
           id: post.id,
-          likes: likes.docs.length,
-          userLiked: likes.docs.some(
-            (doc) => doc.data().user.id === currentUser.uid
+          betsFor: bets.docs.reduce(
+            (acc, doc) => (doc.data().bet === true ? (acc += 1) : acc),
+            0
           ),
+          betsAgainst: bets.docs.reduce(
+            (acc, doc) => (doc.data().bet === false ? (acc += 1) : acc),
+            0
+          ),
+          userMadeBet: bets.docs
+            .find((doc) => doc.data().user.id === currentUser.uid)
+            ?.data().bet,
         });
       }
       setContractsList(feed);
@@ -43,30 +53,22 @@ const Feed = () => {
     fetchFeedData();
   }, [currentUser.uid]);
 
-  const like = async (postId) => {
-    const likeId = [currentUser.uid, postId].join(":");
-    await database.likes.doc(likeId).set({
-      user: database.users.doc(currentUser.uid),
-      post: database.contracts.doc(postId),
-    });
-  };
-
-  const unlike = async (postId) => {
-    const likeId = [currentUser.uid, postId].join(":");
-    await database.likes.doc(likeId).delete();
-  };
-
   console.log("my feed posts:", contractsList);
   return (
     <div className="feed-container">
       {contractsList.length ? (
         contractsList.map((contract) => (
-          <Post key={contract.id} data={contract} like={like} unlike={unlike} />
+          <Post
+            key={contract.id}
+            data={contract}
+            makeBet={makeBet}
+            currentUser={currentUser}
+          />
         ))
       ) : (
         <img
           src="../../../images/11210f3927a5c230f28ec52b609192-unscreen.gif"
-          width="10%"
+          width="50%"
           style={{ margin: "0 auto" }}
         />
       )}
