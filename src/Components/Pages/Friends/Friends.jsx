@@ -57,7 +57,7 @@ const Friends = () => {
   return (
     <div className="friendsList">
       {peopleList.map((man) => (
-        <div key={man.uid} className="firiendCard">
+        <div key={man.uid} className="firiendCard my-1">
           <span>{man.doc.name}</span>
           {man.currentUserIsSubscribed ? (
             <button
