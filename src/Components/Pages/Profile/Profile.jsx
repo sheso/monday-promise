@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { database } from '../../../Auth/Fire'
 import { AuthContext } from '../../../Context/AuthContext'
 import Post from '../../Elements/Post/Post'
+import ProfilePost from '../../Elements/ProfilePost/ProfilePost'
 import Feed from '../Feed/Feed'
 
 const Profile = () => {
@@ -44,7 +45,7 @@ const Profile = () => {
     <div className="feed-container">
       {userContracts.length ? (
         userContracts.map((contract) => (
-          <Post key={Math.random()} data={contract} />
+          <ProfilePost key={Math.random()} data={contract} />
         ))
       ) : (
         <img

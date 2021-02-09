@@ -41,27 +41,29 @@ const Friends = () => {
   return (
     <div className="friendsList">
       {peopleList.map((man) => (
-        <div key={man.uid} className="firiendCard my-1">
-          <span>{man.doc.name}</span>
+        <div key={man.uid} className="card firiends my-2">
           <img
             src="http://pm1.narvii.com/6679/56c3426ed18147d4a02c1c34200959087612982e_00.jpg"
-            width="40%"
+            className="card-img-top"
           />
-          {man.currentUserIsSubscribed ? (
-            <button
-              className="unsubscribe-button"
-              onClick={() => unsubscribe(man.uid)}
-            >
-              Отписаться
-            </button>
-          ) : (
-            <button
-              className="subscribe-button"
-              onClick={() => subscribe(man.uid)}
-            >
-              Подписаться
-            </button>
-          )}
+          <div className="card-body">
+            <span className="card-title">{man.doc.name}</span>
+            {man.currentUserIsSubscribed ? (
+              <button
+                className="unsubscribe-button"
+                onClick={() => unsubscribe(man.uid)}
+              >
+                Отписаться
+              </button>
+            ) : (
+              <button
+                className="subscribe-button"
+                onClick={() => subscribe(man.uid)}
+              >
+                Подписаться
+              </button>
+            )}
+          </div>
         </div>
       ))}
     </div>
