@@ -8,6 +8,7 @@ import "./Feed.css";
 const Feed = () => {
   const [contractsList, setContractsList] = useState([]);
   const { currentUser } = useContext(AuthContext);
+	const [forceUpdate, setForceUpdate] = useState(false);
 
   useEffect(() => {
     const fetchFeedData = async () => {
@@ -51,7 +52,12 @@ const Feed = () => {
     };
 
     fetchFeedData();
-  }, [currentUser.uid]);
+  }, [currentUser.uid, forceUpdate]);
+
+	const makeUserBet = async (post, user, bet) => {
+		await makeBet(post, user, bet);
+		setForceUpdate(pre => !pre);
+	}
 
   console.log("my feed posts:", contractsList);
   return (
@@ -61,7 +67,7 @@ const Feed = () => {
           <Post
             key={contract.id}
             data={contract}
-            makeBet={makeBet}
+            makeBet={makeUserBet}
             currentUser={currentUser}
           />
         ))
