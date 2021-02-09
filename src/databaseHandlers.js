@@ -7,11 +7,6 @@ export const makeBet = async (contractId, currentUserId, userBet) => {
     contract: database.contracts.doc(contractId),
     bet: userBet,
   });
-  const res = await database.bets
-    .doc(betId)
-    .get()
-    .then((doc) => ({ data: doc.data(), id: doc.id }));
-  console.log(res);
 };
 
 export const like = async (postId, userId) => {
