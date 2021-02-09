@@ -39,14 +39,14 @@ const Post = ({ data, makeBet, currentUser }) => {
               <p className="card-text">{data.post.description}</p>
               <p className="card-text">{data.post.deadline}</p>
               <p className="card-text">{data.post.done}</p>
-              <div>
+              <div className="commentBox">
                 {data.comments.map((el) => (
-                  <>
-                    <p>{el.createdAt}</p>
+                  <div className="commentOne my-1">
+                    <img src={el.photoURL} alt="photo" width="30%" />
                     <p>{el.displayName}</p>
-                    <img src={el.photoURL} alt="photo" />
                     <p>{el.text}</p>
-                  </>
+                    <p>{el.createdAt}</p>
+                  </div>
                 ))}
               </div>
             </div>

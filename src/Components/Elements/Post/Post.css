@@ -89,7 +89,20 @@ p {
   text-align: left;
 }
 
-.collapse {
+.commentBox {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+}
+
+.commentBox p {
+  font-size: 15px;
+  color: black;
+}
+
+.commentOne {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
 }
