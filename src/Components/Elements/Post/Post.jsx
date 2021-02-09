@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import Comment from "../../Pages/Comment/Comment";
 
 const Post = ({ data, makeBet, currentUser }) => {
-	const [betMade, setBetMade] = useState(data.userMadeBet);
+  const [betMade, setBetMade] = useState(data.userMadeBet);
 
   const makeUserBet = (post, user, bet) => {
     if (betMade) {
@@ -18,17 +18,17 @@ const Post = ({ data, makeBet, currentUser }) => {
     setBetMade(true);
   };
 
-  
-  
-
   return (
     <div className="container-post">
       <div className="card my-2">
         <div className="card-name">{data.post.title}</div>
         <hr style={{ width: "100%" }} />
         <div className="card-title">
-          <div className="card-info px-5">
-            <img src={data.author.photoURL} style={{ borderRadius: "50%" }} />
+          <div className="card-info px-3">
+            <img
+              src={data.author.photoURL}
+              style={{ borderRadius: "50%", marginRight: "15px" }}
+            />
             <div className="card-info-text">
               <p className="card-text">{data.author.name}</p>
               <p className="card-text">{data.post.description}</p>
@@ -54,24 +54,8 @@ const Post = ({ data, makeBet, currentUser }) => {
             <span className="card-title"> {data.betsAgainst}</span>
           </div>
         </div>
-        <a
-          data-bs-toggle="collapse"
-          data-bs-target="#collapseForm"
-          aria-controls="collapseForm"
-          href="#collapseForm"
-          role="button"
-        >
-
-       
-          Открыть комменты
-        </a>
-        <div className="collapse" id="collapseForm">
-        <p><Comment postId={data.id}/></p>
-          {/* <form>
-            <input type="text" placeholder="Введите комментарий" />
-            <button type="submit">Отправить</button>
-          </form> */}
-        </div>
+        <hr style={{ width: "100%" }} />
+        <Comment postId={data.id} />
       </div>
     </div>
   );

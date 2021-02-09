@@ -5,9 +5,14 @@
   padding: 0;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   background: linear-gradient(to right top, #65dfc9, #6cdbeb);
   height: 100vh;
+  overscroll-behavior-y: none;
 }
 
 .dashboard {
