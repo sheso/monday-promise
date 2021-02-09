@@ -20,7 +20,8 @@ const Friends = () => {
 							uid: doc.id,
 							doc: doc.data(),
 							currentUserIsSubscribed: subsSet.size ? subsSet.has(doc.id) : false,
-						})).sort(el => el.currentUserIsSubscribed ? -1 : 1));
+						})).sort(el => el.currentUserIsSubscribed ? -1 : 1)
+            .filter(el => el.uid !== currentUserUid));
 				});	
     });
   }, []);

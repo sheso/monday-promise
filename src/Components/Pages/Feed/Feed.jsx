@@ -20,10 +20,13 @@ const Feed = () => {
       const authorRefs = (await subscriptions).docs.map(
         (doc) => doc.data().dest
       );
-      if (!authorRefs.length) {
-				setLoading(false);
-				return;
-			}
+      authorRefs.push(database.users.doc(currentUser.uid));
+
+      // if (!authorRefs.length) {
+			// 	setLoading(false);
+			// 	return;
+			// }
+
       console.log(authorRefs);
       const posts = await database.contracts
         .where('author', 'in', authorRefs)
