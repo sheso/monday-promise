@@ -34,6 +34,11 @@ p {
   background: linear-gradient(to right top, #f2709c, #ff9472);
 }
 
+.container-post {
+  width: 65%;
+  margin: 0 auto;
+}
+
 .container-post .card {
   display: flex;
   flex-direction: column;
@@ -41,7 +46,7 @@ p {
   justify-content: center;
   text-align: center;
   background: none;
-  border: 1px solid turquoise;
+  border: 1px solid rgba(128, 128, 128, 0.527);
   border-radius: 10px;
 }
 
@@ -71,8 +76,9 @@ p {
 
 .card-info {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .card-info-text {
@@ -81,4 +87,9 @@ p {
   align-items: flex-start;
   width: 400px;
   text-align: left;
+}
+
+.collapse {
+  display: flex;
+  align-items: center;
 }
