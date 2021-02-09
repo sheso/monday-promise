@@ -12,7 +12,7 @@ const Chat = () => {
   const { currentUser } = useContext(AuthContext);
   const scroll = useRef();
   const messagesRef = database.messages; //нужно создать коллекцию
-  const query = messagesRef.orderBy("createdAt").limit(25); //сортировка по параметру(дате создания) - лимит это ограничение по кол-во файлов
+  const query = messagesRef.orderBy("createdAt"); //сортировка по параметру(дате создания) - лимит это ограничение по кол-во файлов
 
   const [messages] = useCollectionData(query, { idField: "id" }); //запрос по айдишникам к самой базе данных??
 
