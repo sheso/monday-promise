@@ -10,8 +10,8 @@ const Register = () => {
 
   const history = useHistory();
 
-  const SignUp = (inputs) => {
-    signup(inputs);
+  const SignUp = async (inputs) => {
+    await signup(inputs);
     history.push("/feed");
   };
 

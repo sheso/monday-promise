@@ -55,8 +55,8 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-	const signout = () => {
-    fire.auth().signOut();
+	const signout = async () => {
+    await fire.auth().signOut();
   };
 
   return (

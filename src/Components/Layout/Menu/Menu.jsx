@@ -8,8 +8,8 @@ const Menu = () => {
   const { currentUser, signout } = useContext(AuthContext);
 	console.log('current user in menu', currentUser);
 
-	const signoutUser = () => {
-		signout();
+	const signoutUser = async () => {
+		await signout();
 		history.push('/')
 	}
 

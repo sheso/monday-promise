@@ -7,18 +7,23 @@ import "./Feed.css";
 
 const Feed = () => {
   const [contractsList, setContractsList] = useState([]);
+	const [loading, setLoading] = useState(false);
   const { currentUser } = useContext(AuthContext);
 	const [forceUpdate, setForceUpdate] = useState(false);
 
   useEffect(() => {
     const fetchFeedData = async () => {
+			setLoading(true);
       const subscriptions = database.subscriptions
         .where("src", "==", database.users.doc(currentUser.uid))
         .get();
       const authorRefs = (await subscriptions).docs.map(
         (doc) => doc.data().dest
       );
-      if (!authorRefs.length) return;
+      if (!authorRefs.length) {
+				setLoading(false);
+				return;
+			}
       console.log(authorRefs);
       const posts = await database.contracts
         .where("author", "in", authorRefs)
@@ -49,6 +54,7 @@ const Feed = () => {
         });
       }
       setContractsList(feed);
+			setLoading(false);
     };
 
     fetchFeedData();
@@ -71,13 +77,14 @@ const Feed = () => {
             currentUser={currentUser}
           />
         ))
-      ) : (
+      ) : loading ? (
         <img
           src="../../../images/11210f3927a5c230f28ec52b609192-unscreen.gif"
           width="50%"
           style={{ margin: "0 auto" }}
         />
-      )}
+      ) : 'У вас пока нет постов. Давайте подпишемся на друзей <3'
+			}
     </div>
   );
 };
