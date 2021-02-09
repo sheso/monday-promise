@@ -1,8 +1,8 @@
-import { createContext, useEffect, useState } from 'react'
-import firebase from 'firebase'
-import { fire, database } from '../Auth/Fire'
+import { createContext, useEffect, useState } from "react";
+import firebase from "firebase";
+import { fire, database } from "../Auth/Fire";
 
-export const AuthContext = createContext()
+export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState(null);
@@ -23,56 +23,44 @@ export const AuthProvider = ({ children }) => {
 		});
 	}, []);
 
-  useEffect(() => {
-    fire.auth().onAuthStateChanged((current) => {
-      setCurrentUser(current)
-      setAuthInitialized(true)
-      console.log('listener onAuthStateChange', !!current)
-      if (current) {
-        database.users.doc(current.uid).set({
-          name: current.displayName,
-          email: current.email,
-        })
-      }
-    })
-  }, [])
-
-  const login = async (login) => {
+	const login = async (login) => {
     try {
-      await fire.auth().signInWithEmailAndPassword(login.email, login.password)
+      await fire.auth().signInWithEmailAndPassword(login.email, login.password);
     } catch (error) {
-      alert(error)
+      alert(error);
     }
-  }
+  };
 
-  const signup = (inputs) => {
+	const signup = (inputs) => {
     try {
       fire
         .auth()
         .createUserWithEmailAndPassword(inputs.email, inputs.password)
         .then(() => {
-          let user = fire.auth().currentUser
+          let user = fire.auth().currentUser;
           user.updateProfile({
             displayName: inputs.name,
-          })
-        })
+          });
+        });
     } catch (error) {
-      alert(error) // TODO: handle errors
+      alert(error); // TODO: handle errors
     }
-  }
+  };
 
-  const googleLogin = async () => {
-    const googleProvider = new firebase.auth.GoogleAuthProvider()
+	const googleLogin = async () => {
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
     try {
-      await fire.auth().signInWithPopup(googleProvider)
+      await fire
+        .auth()
+        .signInWithPopup(googleProvider);
     } catch (err) {
-      alert(err)
+      alert(err);
     }
-  }
+  };
 
-  const signout = () => {
-    fire.auth().signOut()
-  }
+	const signout = () => {
+    fire.auth().signOut();
+  };
 
   return (
     <AuthContext.Provider
@@ -80,5 +68,5 @@ export const AuthProvider = ({ children }) => {
     >
       {authInitialized && children}
     </AuthContext.Provider>
-  )
-}
+  );
+};
