@@ -6,8 +6,10 @@ import { AuthContext } from "../../../Context/AuthContext";
 import { database } from "../../../Auth/Fire";
 import "./Chat.css";
 
-const ChatMessage = ({ text, uid, photoURL, displayName }) => {
+const ChatMessage = ({ text, uid, photoURL, displayName,  createdAt}) => {
   const [userName, setUserName] = useState("");
+  console.log(createdAt, 'kasnmfkanofnanfkanf')
+  const time = createdAt.toDate().toLocaleString('ru-RU')
 
   const { currentUser } = useContext(AuthContext);
 
@@ -26,6 +28,7 @@ const ChatMessage = ({ text, uid, photoURL, displayName }) => {
           alt="userpic"
           style={{ borderRadius: "10px" }}
         />
+        <p>{time}</p>
         <p style={{ color: "#426696", fontWeight: "600" }}>{displayName}</p>
         <p className="textMes">{text}</p>
       </div>
