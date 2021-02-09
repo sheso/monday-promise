@@ -6,6 +6,7 @@ import Chat from "../../Pages/Chat/Chat";
 import ChatMessage from "../../Pages/Chat/ChatMessage";
 import { Link } from "react-router-dom";
 import Comment from "../../Pages/Comment/Comment";
+import Timer from "../Timer/Timer";
 
 const Post = ({ data, makeBet, currentUser }) => {
   const [betMade, setBetMade] = useState(data.userMadeBet);
@@ -56,6 +57,7 @@ const Post = ({ data, makeBet, currentUser }) => {
         </div>
         <hr style={{ width: "100%" }} />
         <Comment postId={data.id} />
+        <Timer />
       </div>
     </div>
   );
