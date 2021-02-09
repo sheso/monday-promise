@@ -52,6 +52,8 @@ const Feed = () => {
 
     fetchFeedData();
   }, [currentUser.uid]);
+  
+
 
   console.log("my feed posts:", contractsList);
   return (
