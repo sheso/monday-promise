@@ -1,0 +1,48 @@
+p {
+  margin: 0;
+  padding: 5px;
+}
+
+.post-container {
+  border: 2px solid #65dfc9;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.unlike {
+  background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+  color: white;
+  border-radius: 1rem;
+  padding: 0.7rem 4rem;
+  border: none;
+  margin: 5px;
+}
+
+.like {
+  background: linear-gradient(to right top, #f2709c, #ff9472);
+  color: white;
+  border-radius: 1rem;
+  padding: 0.7rem 4rem;
+  border: none;
+  margin: 5px;
+}
+
+.bet-active {
+  background-color: crimson;
+}
+
+.buttons button {
+  background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+  color: white;
+  border-radius: 1rem;
+  padding: 0.7rem 4rem;
+  border: none;
+  margin: 10px;
+}
+
+.bet-active {
+  background: linear-gradient(to right top, #f2709c, #ff9472);
+}

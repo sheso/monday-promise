@@ -1,8 +1,14 @@
 import "./Post.css";
-import { useState } from "react";
+import { useContext, useRef, useState } from "react";
+import { AuthContext } from "../../../Context/AuthContext";
+import { database } from "../../../Auth/Fire";
+import Chat from "../../Pages/Chat/Chat";
+import ChatMessage from "../../Pages/Chat/ChatMessage";
+import { Link } from "react-router-dom";
+import Comment from "../../Pages/Comment/Comment";
 
 const Post = ({ data, makeBet, currentUser }) => {
-  const [betMade, setBetMade] = useState(false);
+	const [betMade, setBetMade] = useState(data.userMadeBet);
 
   const makeUserBet = (post, user, bet) => {
     if (betMade) {
@@ -11,6 +17,9 @@ const Post = ({ data, makeBet, currentUser }) => {
     makeBet(post, user, bet);
     setBetMade(true);
   };
+
+  
+  
 
   return (
     <div className="container-post">
@@ -55,13 +64,16 @@ const Post = ({ data, makeBet, currentUser }) => {
           href="#collapseForm"
           role="button"
         >
+
+       
           Открыть комменты
         </a>
         <div className="collapse" id="collapseForm">
-          <form>
+        <p><Comment postId={data.id}/></p>
+          {/* <form>
             <input type="text" placeholder="Введите комментарий" />
             <button type="submit">Отправить</button>
-          </form>
+          </form> */}
         </div>
       </div>
     </div>
