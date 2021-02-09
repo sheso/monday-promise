@@ -1,5 +1,11 @@
 import "./Post.css";
-import { useState } from "react";
+import { useContext, useRef, useState } from "react";
+import { AuthContext } from "../../../Context/AuthContext";
+import { database } from "../../../Auth/Fire";
+import Chat from "../../Pages/Chat/Chat";
+import ChatMessage from "../../Pages/Chat/ChatMessage";
+import { Link } from "react-router-dom";
+import Comment from "../../Pages/Comment/Comment";
 
 const Post = ({ data, makeBet, currentUser }) => {
   const [betMade, setBetMade] = useState(false);
@@ -11,6 +17,9 @@ const Post = ({ data, makeBet, currentUser }) => {
     makeBet(post, user, bet);
     setBetMade(true);
   };
+
+  
+  
 
   return (
     <div className="post-container my-3 mx-3">
@@ -34,6 +43,7 @@ const Post = ({ data, makeBet, currentUser }) => {
           👎
         </button>
         <span>Не сдержит: {data.betsAgainst}</span>
+       <p><Comment postId={data.id}/></p>
       </div>
     </div>
   );
