@@ -3,15 +3,6 @@ p {
   padding: 5px;
 }
 
-.post-container {
-  border: 2px solid #65dfc9;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-}
-
 .unlike {
   background: linear-gradient(to right top, #65dfc9, #6cdbeb);
   color: white;
@@ -30,10 +21,6 @@ p {
   margin: 5px;
 }
 
-.bet-active {
-  background-color: crimson;
-}
-
 .buttons button {
   background: linear-gradient(to right top, #65dfc9, #6cdbeb);
   color: white;
@@ -45,4 +32,53 @@ p {
 
 .bet-active {
   background: linear-gradient(to right top, #f2709c, #ff9472);
+}
+
+.container-post .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: none;
+  border: 1px solid turquoise;
+  border-radius: 10px;
+}
+
+.card form button {
+  background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+  color: white;
+  border-radius: 1rem;
+  padding: 0.7rem 4rem;
+  border: none;
+  margin: 10px;
+}
+
+.card input {
+  border: 1px solid turquoise;
+  outline: none;
+  padding: 1rem;
+  border-radius: 2rem;
+  text-align: center;
+  width: 100%;
+  margin: 10px;
+}
+
+.card-name {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.card-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.card-info-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 400px;
+  text-align: left;
 }
