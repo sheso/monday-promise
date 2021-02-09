@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
 	
 	useEffect(() => {
 		fire.auth().onAuthStateChanged((current) => {
-			setCurrentUser(current);
+			setCurrentUser(current ? {...current} : null);
 			setAuthInitialized(true);
 			console.log('listener onAuthStateChange', !!current);
 			if (current) {
@@ -31,17 +31,14 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-	const signup = (inputs) => {
+	const signup = async (inputs) => {
     try {
-      fire
-        .auth()
-        .createUserWithEmailAndPassword(inputs.email, inputs.password)
-        .then(() => {
-          let user = fire.auth().currentUser;
-          user.updateProfile({
-            displayName: inputs.name,
-          });
-        });
+      await fire.auth().createUserWithEmailAndPassword(inputs.email, inputs.password)
+      let user = fire.auth().currentUser;
+      await user.updateProfile({
+				displayName: inputs.name,
+			});
+			setCurrentUser({...fire.auth().currentUser});
     } catch (error) {
       alert(error); // TODO: handle errors
     }
