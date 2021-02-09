@@ -35,7 +35,7 @@ p {
 }
 
 .container-post {
-  width: 50%;
+  width: 65%;
   margin: 0 auto;
 }
 
@@ -46,7 +46,7 @@ p {
   justify-content: center;
   text-align: center;
   background: none;
-  border: 1px solid turquoise;
+  border: 1px solid rgba(128, 128, 128, 0.527);
   border-radius: 10px;
 }
 
@@ -87,4 +87,9 @@ p {
   align-items: flex-start;
   width: 400px;
   text-align: left;
+}
+
+.collapse {
+  display: flex;
+  align-items: center;
 }

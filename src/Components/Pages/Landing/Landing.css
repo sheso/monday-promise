@@ -1,0 +1,31 @@
+.container {
+  height: 100%;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+.firstblock {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.secondBlock {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.thirdBlock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fourthBlock {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
