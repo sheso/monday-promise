@@ -5,11 +5,8 @@ import "./ContractForm.css";
 
 import {database} from "../../../Auth/Fire";
 
-// const LEFT = 'left';
-// const RIGHT = 'right';
 
 const ContractForm = () => {
-  // const [buttonActive, setButtonActive] = useState('right');
 	const { currentUser } = useContext(AuthContext);
 	const history = useHistory();
 	const initInputs = {
@@ -27,28 +24,22 @@ const ContractForm = () => {
 
 	const contractsRef = database.contracts;
 
-  // const handleButtonClick = (side) => {
-  // 	if (side === LEFT && buttonActive === RIGHT) {
-  // 		setButtonActive(LEFT);
-  // 	} else if (side === RIGHT && buttonActive === LEFT) {
-  // 		setButtonActive(RIGHT);
-  // 	}
-  // }
-
   const handleInput = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
+	const now = new Date();
+	const minDate = now.toISOString().substring(0, 10);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 		setButtonDisabled(true);
-    console.log(inputs);
 		const { deadline, description, difficulty, startdate, title, why } = inputs;
+    
 		contractsRef.add({
-			deadline,
+			deadline: database.Timestamp.fromDate(new Date(deadline)),
 			description,
 			difficulty,
-			startdate,
+			startdate: database.Timestamp.fromDate(new Date(startdate)),
 			title,
 			why,
 			author: database.users.doc(currentUser.uid),
@@ -56,7 +47,7 @@ const ContractForm = () => {
 			createdAt: database.getCreatedAt(),
 		}).then(() => {
 			setInputs(initInputs);
-			history.push('/');
+			history.push('/feed');
 		})
 		.catch(err => setError(err));
   };
@@ -89,6 +80,7 @@ const ContractForm = () => {
           <label htmlFor="contract-deadline">Срок:</label>
           <input
             type="date"
+						min={minDate}
             name="deadline"
             id="contract-deadline"
             onChange={handleInput}
@@ -99,6 +91,7 @@ const ContractForm = () => {
           <label htmlFor="contract-startdate">Начало:</label>
           <input
             type="date"
+						min={minDate}
             name="startdate"
             id="contract-startdate"
             onChange={handleInput}
@@ -117,40 +110,6 @@ const ContractForm = () => {
           />
         </div>
 
-        {/* <p>
-					<span>Шаги: </span>
-					<div>
-						<span>
-							<button className={buttonActive === LEFT ? 'active-button' : ''} onClick={() => handleButtonClick(LEFT)}>
-								Единоразовые
-							</button>
-						</span>
-						<span>
-							<button className={buttonActive === RIGHT ? 'active-button' : ''} onClick={() => handleButtonClick(RIGHT)}>
-								Регулярные
-							</button>
-						</span>
-					</div>
-				</p>
-				{
-					// TODO: add logic to adding extra inputs for steps and regular tasks parameters
-					buttonActive === LEFT && (
-						<>
-							<p>
-								<label htmlFor="contract-why">Зачем?</label>
-								<input type="text" id="contract-why" />
-							</p>
-							<p>
-								<label htmlFor="contract-why">Зачем?</label>
-								<input type="text" id="contract-why" />
-							</p>
-							<p>
-								<label htmlFor="contract-why">Зачем?</label>
-								<input type="text" id="contract-why" />
-							</p>
-						</>
-					)
-				} */}
         <div className="form-item">
           <label htmlFor="contract-difficulty">Сложность:</label>
           <input

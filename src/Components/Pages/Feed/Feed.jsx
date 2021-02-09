@@ -27,28 +27,32 @@ const Feed = () => {
       console.log(authorRefs);
       const posts = await database.contracts
         .where('author', 'in', authorRefs)
-        .get()
+        .get();
 
       const feed = []
       for (let post of posts.docs) {
-        const bets = await database.bets.where('contract', '==', post.ref).get()
-        const authorSnapshot = await post.data().author.get()
-        const authorData = authorSnapshot.data()
+        const bets = await database.bets.where('contract', '==', post.ref).get();
+        const authorSnapshot = await post.data().author.get();
+        const authorData = authorSnapshot.data();
 
         const commentsBase = await database.comments
           .where('contractID', '==', post.id)
-          .get()
+          .get();
         const test = await commentsBase.docs.map((el) => {
           return {
             ...el.data(),
             createdAt: el.data().createdAt.toDate().toLocaleString('ru-RU'),
           }
-        })
-        console.log(test, 'test')
+        });
 
         feed.push({
           author: authorData,
-          post: post.data(),
+          post: {
+						...post.data(),
+						deadline: post.data().deadline?.toDate(),
+						startdate: post.data().startdate?.toDate(),
+					},
+					// post: post.data(),
           id: post.id,
           comments: test,
           betsFor: bets.docs.reduce(
@@ -62,19 +66,19 @@ const Feed = () => {
           userMadeBet: bets.docs
             .find((doc) => doc.data().user.id === currentUser.uid)
             ?.data().bet,
-        })
+        });
       }
       setContractsList(feed);
 			setLoading(false);
     };
 
-    fetchFeedData()
-  }, [currentUser.uid, forceUpdate])
+    fetchFeedData();
+  }, [currentUser.uid, forceUpdate]);
 
   const makeUserBet = async (post, user, bet) => {
     await makeBet(post, user, bet)
     setForceUpdate((pre) => !pre)
-  }
+  };
 
   console.log('my feed posts:', contractsList)
   return (
@@ -97,7 +101,7 @@ const Feed = () => {
       ) : 'У вас пока нет постов. Давайте подпишемся на друзей <3'
 			}
     </div>
-  )
-}
+  );
+};
 
-export default Feed
+export default Feed;

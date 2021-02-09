@@ -10,8 +10,11 @@ import Timer from "../Timer/Timer";
 
 const Post = ({ data, makeBet, currentUser }) => {
   const [betMade, setBetMade] = useState(data.userMadeBet);
-
-  console.log({ data }, "data");
+	
+	const deadline = new Date(data.post.deadline);
+	const deadlineString = deadline.toLocaleDateString('ru-RU');
+	// const startdate = new Date(data.post.startdate);
+	// const startdateString = startdate.toLocaleDateString('ru-RU');
 
   const makeUserBet = (post, user, bet) => {
     if (betMade) {
@@ -20,8 +23,6 @@ const Post = ({ data, makeBet, currentUser }) => {
     makeBet(post, user, bet);
     setBetMade(true);
   };
-
-  console.log(data.comments, "<--------");
 
   return (
     <div className="container-post">
@@ -37,7 +38,7 @@ const Post = ({ data, makeBet, currentUser }) => {
             <div className="card-info-text">
               <p className="card-text">{data.author.name}</p>
               <p className="card-text">{data.post.description}</p>
-              <p className="card-text">{data.post.deadline}</p>
+              <p className="card-text">{deadlineString}</p>
               <p className="card-text">{data.post.done}</p>
               <div className="commentBox">
                 {data.comments.map((el) => (
