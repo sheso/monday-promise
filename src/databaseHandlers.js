@@ -14,23 +14,22 @@ export const makeBet = async (contractId, currentUserId, userBet) => {
 
 export const finishContract = async (contractId, currentUserId) => {
   const contractRef = database.contracts.doc(contractId);
-  const contractAuthor = await contractRef
-    .get()
-    .then((doc) => doc.data().author);
-  const contractAuthorID = await contractAuthor.get().then((doc) => doc.id);
-  const userId = await database.users
-    .doc(currentUserId)
-    .get()
-    .then((doc) => doc.id);
-  const status = await contractRef.get().then((doc) => doc.data().status);
+  const contractData = await contractRef.get().then((doc) => doc.data());
+  console.log("contractData", contractData);
+  const contractAuthorID = contractData.author.id;
 
-  if (status !== CONTRACT_ACTIVE || contractAuthorID !== userId) {
+  console.log("contractAuthorID", contractAuthorID, currentUserId);
+  const status = contractData.status;
+
+  if (status !== CONTRACT_ACTIVE || contractAuthorID !== currentUserId) {
     console.log("contract finish fail");
     return;
   }
   await contractRef.update({
     status: CONTRACT_SUCCESS,
   });
+
+  await contractData.author.ref.update();
   console.log("contract finish success");
 };
 
@@ -66,9 +65,9 @@ export const setTimer = (startTime, currentTime, endTime) => {
 export const failIfExpired = async (contract) => {
   const now = new Date();
   const contractExpires = new Date(contract.data().deadline.toDate());
-  console.log("expiration", now, contractExpires);
+  const authorRef = contract.data().author;
+
   if (now.getTime() > contractExpires.getTime()) {
-    console.log("contract expired", contract);
     await contract.ref.update({
       status: CONTRACT_FAIL,
     });
