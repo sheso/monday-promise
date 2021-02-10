@@ -4,14 +4,14 @@ import { AuthContext } from "../../../Context/AuthContext";
 import "./Menu.css";
 
 const Menu = () => {
-	const history = useHistory();
+  const history = useHistory();
   const { currentUser, signout } = useContext(AuthContext);
-	console.log('current user in menu', currentUser);
+  console.log("current user in menu", currentUser);
 
-	const signoutUser = async () => {
-		await signout();
-		history.push('/')
-	}
+  const signoutUser = async () => {
+    await signout();
+    history.push("/");
+  };
 
   return (
     <div>
@@ -23,15 +23,14 @@ const Menu = () => {
         {currentUser ? (
           <>
             <div className="user">
-							{
-							currentUser.photoURL &&
-								<img
-									src={currentUser.photoURL}
-									alt={currentUser.displayName}
-									style={{ borderRadius: "10px" }}
-									className="my-3"
-								/>
-							}
+              {currentUser.photoURL && (
+                <img
+                  src={currentUser.photoURL}
+                  alt={currentUser.displayName}
+                  style={{ borderRadius: "50%", border: "2px solid white" }}
+                  className="my-3"
+                />
+              )}
               <h3>
                 <NavLink to="/account" className="navlink">
                   {currentUser.displayName}

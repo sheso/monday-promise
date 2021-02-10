@@ -39,17 +39,8 @@ const Post = ({ data, makeBet, currentUser }) => {
               <p className="card-text">{data.post.description}</p>
               <p className="card-text">{data.post.deadline}</p>
               <p className="card-text">{data.post.done}</p>
-              <div className="commentBox">
-                {data.comments.map((el) => (
-                  <div className="commentOne my-1">
-                    <img src={el.photoURL} alt="photo" width="30%" />
-                    <p>{el.displayName}</p>
-                    <p>{el.text}</p>
-                    <p>{el.createdAt}</p>
-                  </div>
-                ))}
-              </div>
             </div>
+            <Timer />
           </div>
 
           <div className="buttons">
@@ -70,8 +61,19 @@ const Post = ({ data, makeBet, currentUser }) => {
           </div>
         </div>
         <hr style={{ width: "100%" }} />
+        <div className="commentBox">
+          {data.comments.map((el) => (
+            <div className="commentOne my-1">
+              <img src={el.photoURL} alt="photo" style={{ width: "13%" }} />
+              <div className="commentLeft">
+                <p>{el.displayName}</p>
+                <p>{el.createdAt}</p>
+              </div>
+              <p>{el.text}</p>
+            </div>
+          ))}
+        </div>
         <Comment postId={data.id} />
-        <Timer />
       </div>
     </div>
   );

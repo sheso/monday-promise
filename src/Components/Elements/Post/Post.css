@@ -5,7 +5,6 @@ p {
 
 .unlike {
   background: linear-gradient(to right top, #65dfc9, #6cdbeb);
-  color: white;
   border-radius: 1rem;
   padding: 0.7rem 4rem;
   border: none;
@@ -14,7 +13,6 @@ p {
 
 .like {
   background: linear-gradient(to right top, #f2709c, #ff9472);
-  color: white;
   border-radius: 1rem;
   padding: 0.7rem 4rem;
   border: none;
@@ -45,14 +43,14 @@ p {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: none;
-  border: 1px solid rgba(128, 128, 128, 0.527);
   border-radius: 10px;
+  background: rgba(255, 255, 255, 0.397);
+  border: none;
 }
 
 .card form button {
   background: linear-gradient(to right top, #65dfc9, #6cdbeb);
-  color: white;
+
   border-radius: 1rem;
   padding: 0.7rem 4rem;
   border: none;
@@ -67,6 +65,11 @@ p {
   text-align: center;
   width: 100%;
   margin: 10px;
+}
+
+.commentLeft {
+  display: flex;
+  flex-direction: column;
 }
 
 .card-name {
@@ -92,8 +95,6 @@ p {
 .commentBox {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .commentBox p {
@@ -104,5 +105,4 @@ p {
 .commentOne {
   display: flex;
   flex-direction: row;
-  text-align: center;
 }

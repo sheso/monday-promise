@@ -1,16 +1,17 @@
-import './ProfilePost.css'
-import { useState } from 'react'
+import "./ProfilePost.css";
+import { useState } from "react";
+import Timer from "../Timer/Timer";
 
 const ProfilePost = ({ data, makeBet, currentUser }) => {
-  const [betMade, setBetMade] = useState(false)
+  const [betMade, setBetMade] = useState(false);
 
   const makeUserBet = (post, user, bet) => {
     if (betMade) {
-      return
+      return;
     }
-    makeBet(post, user, bet)
-    setBetMade(true)
-  }
+    makeBet(post, user, bet);
+    setBetMade(true);
+  };
 
   return (
     <div className="post-container my-3 mx-3">
@@ -19,8 +20,9 @@ const ProfilePost = ({ data, makeBet, currentUser }) => {
       <p>{data.post.description}</p>
       <p>{data.post.deadline}</p>
       <p>{data.post.done}</p>
-      </div>
-  )
-}
+      <Timer />
+    </div>
+  );
+};
 
-export default ProfilePost
+export default ProfilePost;

@@ -5,8 +5,8 @@
 }
 
 .glass h3 {
-  font-family: "Poppins", sans-serif;
-  color: #426696;
+  font-family: "Open Sans", sans-serif;
+  color: #eefbfb;
   font-weight: 600;
   margin: 10px;
 }
@@ -28,7 +28,6 @@
 
 .glass button {
   background: linear-gradient(to right top, #65dfc9, #6cdbeb);
-  color: white;
   border-radius: 1rem;
   padding: 0.7rem 4rem;
   border: none;
