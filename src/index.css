@@ -7,6 +7,12 @@
   padding: 0;
 }
 
+.screen {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
@@ -38,4 +44,33 @@ body {
 
 .logoText {
   font-family: "Lemonada", cursive;
+}
+
+@media screen and (max-width: 600px) {
+  .screen {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .dashboard {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    text-align: center;
+    background-color: #007cc7;
+    width: 100vw;
+    height: 30vh;
+  }
+
+  .exit {
+    padding: 0.1rem 1rem;
+    margin-top: 15px;
+  }
+
+  .exit h3 {
+    font-size: 12px;
+    padding-top: 3px;
+  }
 }

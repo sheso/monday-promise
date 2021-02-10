@@ -36,3 +36,10 @@ textarea {
   border: none;
   margin: 5px;
 }
+
+@media screen and (max-width: 600px) {
+  .form-item input,
+  textarea {
+    width: 90vw;
+  }
+}

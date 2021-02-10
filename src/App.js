@@ -13,7 +13,7 @@ function App() {
     <AuthProvider>
       <InputsProvider>
         <Router>
-          <div className="screen d-flex align-items-center justify-content-evenly ">
+          <div className="screen">
             <Menu />
             <Main />
           </div>
