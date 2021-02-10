@@ -19,6 +19,12 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
   const currentDate = new Date();
 
   data.comments.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+
+
+  console.log(data.post, 'data tut')
+
+  
+
   
   const makeUserBet = (post, user, bet) => {
     if (betMade) {

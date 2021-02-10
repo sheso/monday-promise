@@ -67,6 +67,14 @@ const Menu = () => {
                   </NavLink>
                 </h2>
               </div>
+              <div className="link py-3">
+                <img src="" alt="" />
+                <h2>
+                  <NavLink to="/settings" className="navlink">
+                    Настройки
+                  </NavLink>
+                </h2>
+              </div>
               <div className="link">
                 <img src="" alt="" />
                 <button onClick={() => signoutUser()} className="exit">
