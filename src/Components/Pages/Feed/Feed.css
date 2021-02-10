@@ -9,3 +9,36 @@
   font-weight: 600;
   font-size: 17px;
 }
+
+.button {
+  background-color: #007cc7;
+  color: #eefbfb;
+  border-radius: 20px;
+  padding: 0.4rem 2rem;
+  width: 60%;
+  border: none;
+  margin: 10px;
+  outline: none;
+}
+
+.button > * {
+  color: #eefbfb;
+  text-decoration: none;
+}
+
+.button > *:hover {
+  color: #aedbfb;
+}
+
+.empty-feed-container {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: 20% auto;
+  align-items: center;
+}
+
+.empty-feed-container .block {
+  text-align: center;
+  margin: 40px;
+}
