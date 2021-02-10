@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react'
 import Post from '../../Elements/Post/Post'
 import { database } from '../../../Auth/Fire'
 import { AuthContext } from '../../../Context/AuthContext'
-import { makeBet } from '../../../databaseHandlers'
+import { makeBet, failIfExpired } from '../../../databaseHandlers'
 import { NavLink, Link, useHistory } from 'react-router-dom'
 import './Feed.css'
 
@@ -35,6 +35,11 @@ const Feed = () => {
 
       const feed = []
       for (let post of posts.docs) {
+				const expired = await failIfExpired(post);
+				if (expired) {
+    			setForceUpdate((pre) => !pre);
+					return;
+				}
         const bets = await database.bets.where('contract', '==', post.ref).get()
         const authorSnapshot = await post.data().author.get()
         const authorData = authorSnapshot.data()

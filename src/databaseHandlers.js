@@ -62,3 +62,16 @@ export const setTimer = (startTime, currentTime, endTime) => {
     word,
   };
 };
+
+export const failIfExpired = async (contract) => {
+  const now = new Date();
+  const contractExpires = new Date(contract.data().deadline.toDate());
+  console.log("expiration", now, contractExpires);
+  if (now.getTime() > contractExpires.getTime()) {
+    console.log("contract expired", contract);
+    await contract.ref.update({
+      status: CONTRACT_FAIL,
+    });
+    return true;
+  }
+};
