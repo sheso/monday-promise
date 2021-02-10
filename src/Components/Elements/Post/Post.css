@@ -89,7 +89,6 @@ p {
 .commentOne {
   display: flex;
   flex-direction: row;
-  align-items: ;
 }
 .commentOne img {
   border-radius: 50%;
