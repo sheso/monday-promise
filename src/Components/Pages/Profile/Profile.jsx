@@ -4,6 +4,7 @@ import { AuthContext } from '../../../Context/AuthContext'
 import Post from '../../Elements/Post/Post'
 import ProfilePost from '../../Elements/ProfilePost/ProfilePost'
 import Feed from '../Feed/Feed'
+import { NavLink, Link, useHistory } from "react-router-dom";
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext)
@@ -28,7 +29,7 @@ const Profile = () => {
           post: {
             title: res.title,
             description: res.description,
-            deadline: res.deadline,
+            deadline: res.deadline.toDate(),
             done: res.done,
           },
           id: res.id,
@@ -48,11 +49,17 @@ const Profile = () => {
           <ProfilePost key={Math.random()} data={contract} />
         ))
       ) : (
-        <img
-          src="../../../images/11210f3927a5c230f28ec52b609192-unscreen.gif"
-          width="10%"
-          style={{ margin: '0 auto' }}
-        />
+        // <img
+        //   src="../../../images/11210f3927a5c230f28ec52b609192-unscreen.gif"
+        //   width="10%"
+        //   style={{ margin: '0 auto' }}
+        // />
+        <div>
+          <h5>Вы пока не дали не одного обещания.</h5>
+        <Link to='/contract/new'>Дать обещание</Link>
+          <h5>Вы ещё ни на кого не подписаны</h5>
+          <Link to='/friends'>Найти друзей</Link>
+        </div>
       )}
     </div>
   )
