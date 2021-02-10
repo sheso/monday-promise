@@ -4,7 +4,7 @@ import { database } from "../../../Auth/Fire";
 import { AuthContext } from "../../../Context/AuthContext";
 import CommentMessage from "./CommentMessage";
 
-const Comment = ({ postId }) => {
+const Comment = ({ postId, setForceUpdate }) => {
   const { currentUser } = useContext(AuthContext);
   const scroll = useRef();
   console.log(postId);
@@ -28,15 +28,12 @@ const Comment = ({ postId }) => {
       contractID: postId,
     });
     setFormValue("");
-    scroll.current.scrollIntoView({ behavior: "smooth" });
+    // scroll.current.scrollIntoView({ behavior: "smooth" });
+		setForceUpdate(pre => !pre);
   };
   return (
     <div className="chat">
       <main>
-        {/* {comments &&
-          comments.map((comment) => (
-            <CommentMessage key={comment.id} {...comment} />
-          ))} */}
         <span ref={scroll} />
       </main>
       <form onSubmit={sendMessage} className="chatForm">
