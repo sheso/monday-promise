@@ -7,14 +7,14 @@ p {
   background-color: #007cc7;
   color: #eefbfb;
   border-radius: 20px;
-  padding: 0.2rem 2rem;
+  padding: 0.4rem 2rem;
   border: none;
   margin: 10px;
   outline: none;
 }
 
 .container-post {
-  width: 65%;
+  width: 50vw;
   margin: 0 auto;
 }
 
@@ -33,7 +33,7 @@ p {
   background-color: #007cc7;
   color: #eefbfb;
   border-radius: 20px;
-  padding: 0.7rem 4rem;
+  padding: 0.4rem 2rem;
   border: none;
   margin: 10px;
 }
@@ -47,6 +47,10 @@ p {
 }
 .commentLeft {
   width: 11vw;
+}
+
+.card-title {
+  width: 50vw;
 }
 
 .commentLeft p {
@@ -79,6 +83,7 @@ p {
 .commentBox {
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
 .commentBox p {
