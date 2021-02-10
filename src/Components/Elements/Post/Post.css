@@ -92,3 +92,49 @@ p {
 .lefttextcomm {
   width: 15vw;
 }
+
+@media screen and (max-width: 600px) {
+  .buttons button {
+    padding: 0.2rem 1rem;
+    margin: 5px;
+  }
+
+  .container-post {
+    width: 90vw;
+  }
+  .card form button {
+    padding: 0.2rem 1rem;
+    margin: 5px;
+  }
+  .commentLeft {
+    width: 55vw;
+  }
+
+  .commentOne {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .lefttextcomm {
+    width: 30vw;
+  }
+  .card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70vw;
+  }
+  .card-info-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 80vw;
+  }
+
+  .card .left-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

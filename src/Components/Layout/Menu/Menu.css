@@ -6,3 +6,37 @@
   font-size: 24px;
   opacity: 0.8;
 }
+
+.logo img {
+  width: 65%;
+}
+
+.user img {
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+@media screen and (max-width: 600px) {
+  .navlink {
+    font-size: 14px;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .link {
+    margin-top: -22px;
+  }
+
+  .logo img {
+    width: 15%;
+  }
+
+  .user img {
+    border-radius: 50%;
+    border: 2px solid white;
+    width: 60%;
+  }
+}

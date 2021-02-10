@@ -17,19 +17,14 @@ const Menu = () => {
     <div>
       <div className="dashboard">
         <div className="logo">
-          <img src="../../../images/pinky-promise.svg" alt="" width="15%" />
+          <img src="../../../images/promise.png" alt="" />
           <p className="logoText">Monday Promise</p>
         </div>
         {currentUser ? (
           <>
             <div className="user">
               {currentUser.photoURL && (
-                <img
-                  src={currentUser.photoURL}
-                  alt={currentUser.displayName}
-                  style={{ borderRadius: "50%", border: "2px solid white" }}
-                  className="my-3"
-                />
+                <img src={currentUser.photoURL} alt={currentUser.displayName} />
               )}
               <h3>
                 <NavLink to="/account" className="navlink">
@@ -38,7 +33,7 @@ const Menu = () => {
               </h3>
             </div>
             <div className="links">
-              <div className="link py-1">
+              <div className="link">
                 <img src="" alt="" />
                 <h2>
                   <NavLink to="/contract/new" className="navlink">
@@ -46,7 +41,7 @@ const Menu = () => {
                   </NavLink>
                 </h2>
               </div>
-              <div className="link py-1">
+              <div className="link">
                 <img src="" alt="" />
                 <h2>
                   <NavLink exact to="/feed" className="navlink">
@@ -54,7 +49,7 @@ const Menu = () => {
                   </NavLink>
                 </h2>
               </div>
-              <div className="link py-3">
+              <div className="link ">
                 <img src="" alt="" />
                 <h2>
                   <NavLink to="/friends" className="navlink">
@@ -62,7 +57,7 @@ const Menu = () => {
                   </NavLink>
                 </h2>
               </div>
-              <div className="link py-3">
+              <div className="link">
                 <img src="" alt="" />
                 <h2>
                   <NavLink to="/chat" className="navlink">
@@ -72,7 +67,7 @@ const Menu = () => {
               </div>
               <div className="link">
                 <img src="" alt="" />
-                <button onClick={() => signoutUser()} className="exit my-1">
+                <button onClick={() => signoutUser()} className="exit">
                   <h3>Выйти</h3>
                 </button>
               </div>
