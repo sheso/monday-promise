@@ -15,7 +15,7 @@ const renderTime = ({ remainingTime }) => {
   );
 };
 
-const Timer = ({ duration, initialRemainingTime, remainingDays }) => {
+const Timer = ({ duration, initialRemainingTime, remainingDays, word }) => {
   return (
     <div className="timer">
       <div className="timer-wrapper">
@@ -29,7 +29,7 @@ const Timer = ({ duration, initialRemainingTime, remainingDays }) => {
           <div className="timer">
 						<div className="text">Осталось</div>
 						<div className="value">{remainingDays}</div>
-						<div className="text">дней</div>
+						<div className="text">{word}</div>
 					</div>
         </CountdownCircleTimer>
       </div>

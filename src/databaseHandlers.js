@@ -34,32 +34,31 @@ export const finishContract = async (contractId, currentUserId) => {
   console.log("contract finish success");
 };
 
-export const setTimer = (startTime, currentTime, endTime) => {
-  console.log("times", startTime, currentTime, endTime);
+const correctWordForm = (number) => {
+  const remainder100 = number % 100;
+  const remainder10 = number % 10;
+  if (remainder100 >= 5 && remainder100 <= 20) {
+    return "дней";
+  } else if (remainder10 >= 5 && remainder10 <= 9) {
+    return "дней";
+  } else if (!remainder10) {
+    return "дней";
+  } else if (remainder10 >= 2 && remainder10 <= 4) {
+    return "дня";
+  } else if (remainder10 === 1) {
+    return "день";
+  }
+};
 
+export const setTimer = (startTime, currentTime, endTime) => {
   const duration = Math.floor((endTime - startTime) / 1000);
   const initialRemainingTime = Math.floor((endTime - currentTime) / 1000);
   const remainingDays = Math.floor((endTime - currentTime) / 86400000) + 1;
-  // const forms = ["день", "дня", "дней"];
-  const fullDays = Math.floor((endTime - startTime) / 86400000) + 1;
-
+  const word = correctWordForm(remainingDays);
   return {
     duration,
     initialRemainingTime,
     remainingDays,
-    fullDays,
+    word,
   };
-};
-
-export const like = async (postId, userId) => {
-  const likeId = [userId, postId].join(":");
-  await database.likes.doc(likeId).set({
-    user: database.users.doc(userId),
-    post: database.contracts.doc(postId),
-  });
-};
-
-export const unlike = async (postId, userId) => {
-  const likeId = [userId, postId].join(":");
-  await database.likes.doc(likeId).delete();
 };
