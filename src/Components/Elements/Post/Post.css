@@ -42,11 +42,9 @@ p {
   outline: none;
   padding: 1rem;
   text-align: center;
-  width: 100%;
-  margin: 10px;
 }
 .commentLeft {
-  width: 24vw;
+  width: 18vw;
 }
 
 .card .left-info {
@@ -59,7 +57,7 @@ p {
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  width: 50vw;
+  width: 40vw;
 }
 
 .card-info-text {
@@ -67,6 +65,7 @@ p {
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
+  width: 20vw;
 }
 
 .commentBox {
@@ -83,7 +82,13 @@ p {
 .commentOne {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 .commentOne img {
   border-radius: 50%;
+}
+
+.lefttextcomm {
+  width: 15vw;
 }
