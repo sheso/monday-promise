@@ -65,7 +65,14 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
             >
               Не сдержит: {data.betsAgainst}
             </button>
-          </div>  : null}
+          </div>  : 
+          <div className="buttons">
+              {/* <p>Результаты голосования:</p> */}
+              <p>Сдержит: {data.betsFor}</p>
+              <p>Не сдержит: {data.betsAgainst}</p>
+          </div> 
+          
+          }
         </div>
         <hr style={{ width: "100%", color: "#007cc7" }} />
         <div className="commentBox">

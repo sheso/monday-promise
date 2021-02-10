@@ -4,7 +4,7 @@ import { AuthContext } from '../../../Context/AuthContext'
 import Post from '../../Elements/Post/Post'
 import ProfilePost from '../../Elements/ProfilePost/ProfilePost'
 import Feed from '../Feed/Feed'
-import { NavLink, Link, useHistory } from "react-router-dom";
+import { NavLink, Link, useHistory } from 'react-router-dom'
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext)
@@ -19,7 +19,6 @@ const Profile = () => {
         const data = doc.data()
         return { ...data, id: doc.id }
       })
-      console.log(result, '<----')
 
       const testArr = []
       const author = currentUser.displayName
@@ -30,7 +29,8 @@ const Profile = () => {
             title: res.title,
             description: res.description,
             deadline: res.deadline.toDate(),
-						status: res.status,
+            status: res.status,
+            createdAt: res.createdAt,
           },
           id: res.id,
         })
@@ -46,7 +46,11 @@ const Profile = () => {
     <div className="feed-container">
       {userContracts.length ? (
         userContracts.map((contract) => (
-          <ProfilePost key={Math.random()} data={contract} currentUser={currentUser} />
+          <ProfilePost
+            key={Math.random()}
+            data={contract}
+            currentUser={currentUser}
+          />
         ))
       ) : (
         // <img
@@ -56,7 +60,7 @@ const Profile = () => {
         // />
         <div>
           <h5>Вы пока не дали не одного обещания.</h5>
-        <Link to='/contract/new'>Дать обещание</Link>
+          <Link to="/contract/new">Дать обещание</Link>
         </div>
       )}
     </div>
