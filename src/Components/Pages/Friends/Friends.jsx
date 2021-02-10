@@ -10,20 +10,28 @@ const Friends = () => {
   const currentUserUid = currentUser.uid;
 
   useEffect(() => {
-		database.subscriptions.where("src", "==", database.users.doc(currentUserUid))
-    	.onSnapshot((querySnapshot) => {
-				let subsSet = new Set(querySnapshot.docs.map(el => el.data().dest.id));
+    database.subscriptions
+      .where("src", "==", database.users.doc(currentUserUid))
+      .onSnapshot((querySnapshot) => {
+        let subsSet = new Set(
+          querySnapshot.docs.map((el) => el.data().dest.id)
+        );
 
-				database.users
-					.onSnapshot((querySnapshot) => {
-						setPeopleList(querySnapshot.docs.map((doc) => ({
-							uid: doc.id,
-							doc: doc.data(),
-							currentUserIsSubscribed: subsSet.size ? subsSet.has(doc.id) : false,
-						})).sort(el => el.currentUserIsSubscribed ? -1 : 1)
-            .filter(el => el.uid !== currentUserUid));
-				});	
-    });
+        database.users.onSnapshot((querySnapshot) => {
+          setPeopleList(
+            querySnapshot.docs
+              .map((doc) => ({
+                uid: doc.id,
+                doc: doc.data(),
+                currentUserIsSubscribed: subsSet.size
+                  ? subsSet.has(doc.id)
+                  : false,
+              }))
+              .sort((el) => (el.currentUserIsSubscribed ? -1 : 1))
+              .filter((el) => el.uid !== currentUserUid)
+          );
+        });
+      });
   }, []);
 
   const subscribe = async (userId) => {
@@ -43,10 +51,11 @@ const Friends = () => {
     <div className="friendsList">
       {peopleList.map((man) => (
         <div key={man.uid} className="card firiends my-2">
-          <img
-            src="http://pm1.narvii.com/6679/56c3426ed18147d4a02c1c34200959087612982e_00.jpg"
-            className="card-img-top"
-          />
+          {man.doc.photoURL ? (
+            <img src={man.doc.photoURL} className="card-img-top" />
+          ) : (
+            <img src="https://img.icons8.com/ios/452/promise.png" />
+          )}
           <div className="card-body">
             <span className="card-title">{man.doc.name}</span>
             {man.currentUserIsSubscribed ? (

@@ -39,7 +39,8 @@ const Register = () => {
         placeholder="Введите пароль"
         onChange={changeRegisterHandler}
       />
-
+      <p>Загрузить фото профиля:</p>
+      <input type="file" />
       <button className="btn btn-primary" onClick={() => SignUp(inputs)}>
         Регистрация
       </button>

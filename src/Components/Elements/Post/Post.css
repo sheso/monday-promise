@@ -3,35 +3,14 @@ p {
   padding: 5px;
 }
 
-.unlike {
-  background: linear-gradient(to right top, #65dfc9, #6cdbeb);
-  color: white;
-  border-radius: 1rem;
-  padding: 0.7rem 4rem;
-  border: none;
-  margin: 5px;
-}
-
-.like {
-  background: linear-gradient(to right top, #f2709c, #ff9472);
-  color: white;
-  border-radius: 1rem;
-  padding: 0.7rem 4rem;
-  border: none;
-  margin: 5px;
-}
-
 .buttons button {
-  background: linear-gradient(to right top, #65dfc9, #6cdbeb);
-  color: white;
-  border-radius: 1rem;
+  background-color: #007cc7;
+  color: #eefbfb;
+  border-radius: 20px;
   padding: 0.7rem 4rem;
   border: none;
   margin: 10px;
-}
-
-.bet-active {
-  background: linear-gradient(to right top, #f2709c, #ff9472);
+  outline: none;
 }
 
 .container-post {
@@ -45,28 +24,31 @@ p {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: none;
-  border: 1px solid rgba(128, 128, 128, 0.527);
   border-radius: 10px;
+  background-color: #203647;
+  border: none;
 }
 
 .card form button {
-  background: linear-gradient(to right top, #65dfc9, #6cdbeb);
-  color: white;
-  border-radius: 1rem;
+  background-color: #007cc7;
+  color: #eefbfb;
+  border-radius: 20px;
   padding: 0.7rem 4rem;
   border: none;
   margin: 10px;
 }
 
 .card input {
-  border: 1px solid turquoise;
   outline: none;
   padding: 1rem;
-  border-radius: 2rem;
   text-align: center;
   width: 100%;
   margin: 10px;
+}
+
+.commentLeft {
+  display: flex;
+  flex-direction: column;
 }
 
 .card-name {
@@ -92,8 +74,6 @@ p {
 .commentBox {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .commentBox p {
@@ -104,5 +84,4 @@ p {
 .commentOne {
   display: flex;
   flex-direction: row;
-  text-align: center;
 }

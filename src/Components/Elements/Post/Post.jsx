@@ -10,11 +10,11 @@ import Timer from "../Timer/Timer";
 
 const Post = ({ data, makeBet, currentUser }) => {
   const [betMade, setBetMade] = useState(data.userMadeBet);
-	
-	const deadline = new Date(data.post.deadline);
-	const deadlineString = deadline.toLocaleDateString('ru-RU');
-	// const startdate = new Date(data.post.startdate);
-	// const startdateString = startdate.toLocaleDateString('ru-RU');
+
+  const deadline = new Date(data.post.deadline);
+  const deadlineString = deadline.toLocaleDateString("ru-RU");
+  // const startdate = new Date(data.post.startdate);
+  // const startdateString = startdate.toLocaleDateString('ru-RU');
 
   const makeUserBet = (post, user, bet) => {
     if (betMade) {
@@ -28,7 +28,7 @@ const Post = ({ data, makeBet, currentUser }) => {
     <div className="container-post">
       <div className="card my-2">
         <div className="card-name">{data.post.title}</div>
-        <hr style={{ width: "100%" }} />
+        <hr style={{ width: "100%", color: "#007cc7" }} />
         <div className="card-title">
           <div className="card-info px-3">
             <img
@@ -40,39 +40,45 @@ const Post = ({ data, makeBet, currentUser }) => {
               <p className="card-text">{data.post.description}</p>
               <p className="card-text">{deadlineString}</p>
               <p className="card-text">{data.post.done}</p>
-              <div className="commentBox">
-                {data.comments.map((el) => (
-                  <div className="commentOne my-1">
-                    <img src={el.photoURL} alt="photo" width="30%" />
-                    <p>{el.displayName}</p>
-                    <p>{el.text}</p>
-                    <p>{el.createdAt}</p>
-                  </div>
-                ))}
-              </div>
             </div>
+            <Timer />
           </div>
 
           <div className="buttons">
             <span className="card-title">{data.betsFor}</span>
             <button
               onClick={() => makeUserBet(data.id, currentUser.uid, true)}
-              className={data.userMadeBet === true ? "bet-active" : ""}
+              className={
+                data.userMadeBet === true ? "bet-active" : "postbutton"
+              }
             >
               Сдержит
             </button>
             <button
               onClick={() => makeUserBet(data.id, currentUser.uid, false)}
-              className={data.userMadeBet === false ? "bet-active" : ""}
+              className={
+                data.userMadeBet === false ? "bet-active" : "postbutton"
+              }
             >
               Не сдержит
             </button>
             <span className="card-title"> {data.betsAgainst}</span>
           </div>
         </div>
-        <hr style={{ width: "100%" }} />
+        <hr style={{ width: "100%", color: "#007cc7" }} />
+        <div className="commentBox">
+          {data.comments.map((el) => (
+            <div className="commentOne my-1">
+              <img src={el.photoURL} alt="photo" style={{ width: "13%" }} />
+              <div className="commentLeft">
+                <p>{el.displayName}</p>
+                <p>{el.createdAt}</p>
+              </div>
+              <p>{el.text}</p>
+            </div>
+          ))}
+        </div>
         <Comment postId={data.id} />
-        <Timer />
       </div>
     </div>
   );

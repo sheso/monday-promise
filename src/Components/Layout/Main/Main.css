@@ -1,12 +1,7 @@
 .main {
   width: 1440px;
-  height: 95vh;
-  background: linear-gradient(
-    to right bottom,
-    rgba(255, 255, 255, 0.7),
-    rgba(255, 255, 255, 0.3)
-  );
-  border-radius: 2rem;
+  height: 100vh;
+  background-color: #12232e;
   display: flex;
   align-items: center;
   justify-content: center;

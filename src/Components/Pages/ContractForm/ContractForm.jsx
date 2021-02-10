@@ -1,55 +1,56 @@
 import { useState, useContext } from "react";
-import { useHistory } from 'react-router-dom';
-import { AuthContext } from '../../../Context/AuthContext';
+import { useHistory } from "react-router-dom";
+import { AuthContext } from "../../../Context/AuthContext";
 import "./ContractForm.css";
 
-import {database} from "../../../Auth/Fire";
-
+import { database } from "../../../Auth/Fire";
 
 const ContractForm = () => {
-	const { currentUser } = useContext(AuthContext);
-	const history = useHistory();
-	const initInputs = {
+  const { currentUser } = useContext(AuthContext);
+  const history = useHistory();
+  const initInputs = {
     deadline: Date.now(),
     description: "",
     difficulty: 5,
     startdate: Date.now(),
     title: "",
     why: "",
-  }
+  };
 
   const [inputs, setInputs] = useState(initInputs);
-	const [err, setError] = useState('');
-	const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [err, setError] = useState("");
+  const [buttonDisabled, setButtonDisabled] = useState(false);
 
-	const contractsRef = database.contracts;
+  const contractsRef = database.contracts;
 
   const handleInput = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
-	const now = new Date();
-	const minDate = now.toISOString().substring(0, 10);
+  const now = new Date();
+  const minDate = now.toISOString().substring(0, 10);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-		setButtonDisabled(true);
-		const { deadline, description, difficulty, startdate, title, why } = inputs;
-    
-		contractsRef.add({
-			deadline: database.Timestamp.fromDate(new Date(deadline)),
-			description,
-			difficulty,
-			startdate: database.Timestamp.fromDate(new Date(startdate)),
-			title,
-			why,
-			author: database.users.doc(currentUser.uid),
-			done: false,
-			createdAt: database.getCreatedAt(),
-		}).then(() => {
-			setInputs(initInputs);
-			history.push('/feed');
-		})
-		.catch(err => setError(err));
+    setButtonDisabled(true);
+    const { deadline, description, difficulty, startdate, title, why } = inputs;
+
+    contractsRef
+      .add({
+        deadline: database.Timestamp.fromDate(new Date(deadline)),
+        description,
+        difficulty,
+        startdate: database.Timestamp.fromDate(new Date(startdate)),
+        title,
+        why,
+        author: database.users.doc(currentUser.uid),
+        done: false,
+        createdAt: database.getCreatedAt(),
+      })
+      .then(() => {
+        setInputs(initInputs);
+        history.push("/feed");
+      })
+      .catch((err) => setError(err));
   };
 
   return (
@@ -82,7 +83,7 @@ const ContractForm = () => {
           <label htmlFor="contract-deadline">Срок:</label>
           <input
             type="date"
-						min={minDate}
+            min={minDate}
             name="deadline"
             id="contract-deadline"
             onChange={handleInput}
@@ -93,7 +94,7 @@ const ContractForm = () => {
           <label htmlFor="contract-startdate">Начало:</label>
           <input
             type="date"
-						min={minDate}
+            min={minDate}
             name="startdate"
             id="contract-startdate"
             onChange={handleInput}
@@ -124,12 +125,16 @@ const ContractForm = () => {
             onChange={handleInput}
             value={inputs.difficulty}
           />
-          <button disabled={buttonDisabled} type="submit" className="contract-form-button">
+          <button
+            disabled={buttonDisabled}
+            type="submit"
+            className="contract-form-button"
+          >
             Даю обещание!
           </button>
         </div>
       </form>
-			{err ? <p>{err}</p> : null}
+      {err ? <p>{err}</p> : null}
     </div>
   );
 };

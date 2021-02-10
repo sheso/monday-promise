@@ -6,7 +6,7 @@ import { AuthContext } from "../../../Context/AuthContext";
 import { database } from "../../../Auth/Fire";
 import "./Chat.css";
 
-const ChatMessage = ({ text, uid, photoURL, displayName,  createdAt}) => {
+const ChatMessage = ({ text, uid, photoURL, displayName, createdAt }) => {
   const [userName, setUserName] = useState("");
   // console.log(createdAt, 'kasnmfkanofnanfkanf')
   // const time = createdAt.toDate().toLocaleString('ru-RU')

@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lemonada&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
 
 * {
   margin: 0;
@@ -21,21 +23,16 @@ body {
   justify-content: space-around;
   flex-direction: column;
   text-align: center;
-  background: linear-gradient(
-    to right bottom,
-    rgba(255, 255, 255, 0.7),
-    rgba(255, 255, 255, 0.3)
-  );
-  border-radius: 2rem;
-  width: 450px;
-  height: 95vh;
+  background-color: #007cc7;
+  width: 500px;
+  height: 100vh;
 }
 
 .exit {
-  background: linear-gradient(to right top, #65dfc9, #6cdbeb);
-  color: white;
-  border-radius: 1rem;
+  background-color: #eefbfb83;
+  color: #eefbfb;
   padding: 0.5rem 2rem;
+  border-radius: 30px;
   border: none;
 }
 

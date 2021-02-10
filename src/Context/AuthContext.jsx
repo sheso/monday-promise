@@ -5,25 +5,25 @@ import { fire, database } from "../Auth/Fire";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-	const [currentUser, setCurrentUser] = useState(null);
-	const [authInitialized, setAuthInitialized] = useState(false);
-	
-	useEffect(() => {
-		fire.auth().onAuthStateChanged((current) => {
-			setCurrentUser(current ? {...current} : null);
-			setAuthInitialized(true);
-			console.log('listener onAuthStateChange', !!current);
-			if (current) {
-				database.users.doc(current.uid).set({
-					name: current.displayName,
-					email: current.email,
-					photoURL: current.photoURL,
-				});
-			}
-		});
-	}, []);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [authInitialized, setAuthInitialized] = useState(false);
 
-	const login = async (login) => {
+  useEffect(() => {
+    fire.auth().onAuthStateChanged((current) => {
+      setCurrentUser(current ? { ...current } : null);
+      setAuthInitialized(true);
+      console.log("listener onAuthStateChange", !!current);
+      if (current) {
+        database.users.doc(current.uid).set({
+          name: current.displayName,
+          email: current.email,
+          photoURL: current.photoURL,
+        });
+      }
+    });
+  }, []);
+
+  const login = async (login) => {
     try {
       await fire.auth().signInWithEmailAndPassword(login.email, login.password);
     } catch (error) {
@@ -31,31 +31,32 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-	const signup = async (inputs) => {
+  const signup = async (inputs) => {
+    console.log("inputs register", inputs);
     try {
-      await fire.auth().createUserWithEmailAndPassword(inputs.email, inputs.password)
+      await fire
+        .auth()
+        .createUserWithEmailAndPassword(inputs.email, inputs.password);
       let user = fire.auth().currentUser;
       await user.updateProfile({
-				displayName: inputs.name,
-			});
-			setCurrentUser({...fire.auth().currentUser});
+        displayName: inputs.name,
+      });
+      setCurrentUser({ ...fire.auth().currentUser });
     } catch (error) {
       alert(error); // TODO: handle errors
     }
   };
 
-	const googleLogin = async () => {
+  const googleLogin = async () => {
     const googleProvider = new firebase.auth.GoogleAuthProvider();
     try {
-      await fire
-        .auth()
-        .signInWithPopup(googleProvider);
+      await fire.auth().signInWithPopup(googleProvider);
     } catch (err) {
       alert(err);
     }
   };
 
-	const signout = async () => {
+  const signout = async () => {
     await fire.auth().signOut();
   };
 
