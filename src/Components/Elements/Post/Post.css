@@ -7,14 +7,14 @@ p {
   background-color: #007cc7;
   color: #eefbfb;
   border-radius: 20px;
-  padding: 0.7rem 4rem;
+  padding: 0.4rem 2rem;
   border: none;
   margin: 10px;
   outline: none;
 }
 
 .container-post {
-  width: 65%;
+  width: 50vw;
   margin: 0 auto;
 }
 
@@ -33,7 +33,7 @@ p {
   background-color: #007cc7;
   color: #eefbfb;
   border-radius: 20px;
-  padding: 0.7rem 4rem;
+  padding: 0.4rem 2rem;
   border: none;
   margin: 10px;
 }
@@ -45,10 +45,19 @@ p {
   width: 100%;
   margin: 10px;
 }
-
 .commentLeft {
+  width: 11vw;
+}
+
+.card-title {
+  width: 50vw;
+}
+
+.commentLeft p {
   display: flex;
   flex-direction: column;
+
+  color: #eefbfb;
 }
 
 .card-name {
@@ -60,28 +69,32 @@ p {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .card-info-text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 400px;
   text-align: left;
+  margin-right: 70px;
 }
 
 .commentBox {
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
 .commentBox p {
   font-size: 15px;
-  color: black;
+  color: #eefbfb;
 }
 
 .commentOne {
   display: flex;
   flex-direction: row;
+}
+.commentOne img {
+  border-radius: 50%;
 }

@@ -28,15 +28,17 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
   return (
     <div className="container-post">
       <div className="card my-2">
-        <div className="card-name">{data.post.title}</div>
+        <div className="card-name">
+          <h3 style={{ fontWeight: "600" }}>{data.post.title}</h3>
+        </div>
         <hr style={{ width: "100%", color: "#007cc7" }} />
         <div className="card-title">
-          <div className="card-info px-3">
+          <div className="card-info px-2 py-2">
             <img
               src={data.author.photoURL}
               style={{ borderRadius: "50%", marginRight: "15px" }}
             />
-            <div className="card-info-text">
+            <div className="card-info-text ">
               <p className="card-text">{data.author.name}</p>
               <p className="card-text">{data.post.description}</p>
               <p className="card-text">{deadlineString}</p>
@@ -69,7 +71,11 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
         <div className="commentBox">
           {data.comments.map((el) => (
             <div className="commentOne my-1">
-              <img src={el.photoURL} alt="photo" style={{ width: "13%" }} />
+              <img
+                src={el.photoURL}
+                alt="photo"
+                style={{ width: "70px", height: "70px" }}
+              />
               <div className="commentLeft">
                 <p>{el.displayName}</p>
                 <p>{el.createdAt}</p>

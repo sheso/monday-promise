@@ -12,25 +12,23 @@
 }
 
 .glass input {
-  background: linear-gradient(
-    to right bottom,
-    rgba(255, 255, 255, 0.7),
-    rgba(255, 255, 255, 0.3)
-  );
+  background-color: #eefbfb;
   border: none;
   padding: 1rem;
   border-radius: 2rem;
   outline: none;
   text-align: center;
-  width: 40vw;
+  width: 20vw;
   margin: 10px;
 }
 
 .glass button {
-  background: linear-gradient(to right top, #65dfc9, #6cdbeb);
-  border-radius: 1rem;
+  background-color: #007cc7;
+  color: #eefbfb;
+  border-radius: 20px;
   padding: 0.7rem 4rem;
   border: none;
   margin: 10px;
-  width: 40vw;
+  margin-top: 50px;
+  width: 20vw;
 }
