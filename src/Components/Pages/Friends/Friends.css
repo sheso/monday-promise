@@ -65,3 +65,19 @@
   align-items: center;
   justify-content: space-between;
 }
+
+@media screen and (max-width: 600px) {
+  .subscribe-button {
+    background-color: #007cc7;
+    color: #eefbfb;
+    border-radius: 20px;
+    padding: 0.2rem 1rem;
+    margin: 5px;
+    outline: none;
+    font-family: "Open Sans", sans-serif;
+  }
+  .friendsList {
+    width: 100vw;
+    height: 100%;
+  }
+}

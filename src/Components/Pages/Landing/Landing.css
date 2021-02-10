@@ -36,3 +36,17 @@
   flex-direction: row-reverse;
   justify-content: center;
 }
+
+@media screen and (max-width: 600px) {
+  .container img {
+    width: 200px;
+    height: 200px;
+  }
+  .container {
+    font-size: 12px;
+  }
+
+  .container h3 {
+    font-size: 16px;
+  }
+}
