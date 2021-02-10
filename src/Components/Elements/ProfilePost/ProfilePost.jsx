@@ -5,11 +5,8 @@ import { CONTRACT_ACTIVE } from "../../../databaseHandlers";
 
 const ProfilePost = ({ data, currentUser }) => {
   const [forceUpdate, setForceUpdate] = useState(false);
-<<<<<<< HEAD
   console.log(data.post.createdAt, 'hello form profile');
 
-=======
->>>>>>> 79b7c6785f27eefbe131b60c2fcb89597ed97abb
 
   const deadline = new Date(data.post.deadline);
   const deadlineString = deadline.toLocaleDateString("ru-RU");
