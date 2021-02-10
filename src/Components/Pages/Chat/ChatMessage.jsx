@@ -8,8 +8,10 @@ import "./Chat.css";
 
 const ChatMessage = ({ text, uid, photoURL, displayName,  createdAt}) => {
   const [userName, setUserName] = useState("");
-  console.log(createdAt, 'kasnmfkanofnanfkanf')
-  const time = createdAt.toDate().toLocaleString('ru-RU')
+  // console.log(createdAt, 'kasnmfkanofnanfkanf')
+  // const time = createdAt.toDate().toLocaleString('ru-RU')
+  // console.log(time, 'time')
+
 
   const { currentUser } = useContext(AuthContext);
 
@@ -28,7 +30,6 @@ const ChatMessage = ({ text, uid, photoURL, displayName,  createdAt}) => {
           alt="userpic"
           style={{ borderRadius: "10px" }}
         />
-        <p>{time}</p>
         <p style={{ color: "#426696", fontWeight: "600" }}>{displayName}</p>
         <p className="textMes">{text}</p>
       </div>

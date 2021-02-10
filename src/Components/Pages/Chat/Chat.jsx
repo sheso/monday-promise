@@ -38,7 +38,7 @@ const Chat = () => {
       <main>
         {messages &&
           messages.map((message) => (
-            <ChatMessage key={message.id} {...message} />
+            <ChatMessage key={message.id} {...message}/>
           ))}
         <span ref={scroll} />
       </main>

@@ -10,7 +10,7 @@ const Comment = ({ postId }) => {
   console.log(postId);
 
   const commentsRef = database.comments;
-  const qurey = commentsRef.orderBy("createdAT");
+  const qurey = commentsRef.orderBy("createdAt").limit(1);
 
   const [comments] = useCollectionData(qurey, { idField: "id" });
 
@@ -33,10 +33,10 @@ const Comment = ({ postId }) => {
   return (
     <div className="chat">
       <main>
-        {comments &&
+        {/* {comments &&
           comments.map((comment) => (
             <CommentMessage key={comment.id} {...comment} />
-          ))}
+          ))} */}
         <span ref={scroll} />
       </main>
       <form onSubmit={sendMessage} className="chatForm">
