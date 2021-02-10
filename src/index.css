@@ -12,19 +12,18 @@
 }
 
 body {
-  background: linear-gradient(to right top, #65dfc9, #6cdbeb);
-  height: 100vh;
   overscroll-behavior-y: none;
+  height: 100vh;
 }
 
 .dashboard {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-direction: column;
   text-align: center;
   background-color: #007cc7;
-  width: 500px;
+  width: 25vw;
   height: 100vh;
 }
 

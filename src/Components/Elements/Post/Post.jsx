@@ -27,7 +27,9 @@ const Post = ({ data, makeBet, currentUser }) => {
   return (
     <div className="container-post">
       <div className="card my-2">
-        <div className="card-name">{data.post.title}</div>
+        <div className="card-name">
+          <h3 style={{ fontWeight: "600" }}>{data.post.title}</h3>
+        </div>
         <hr style={{ width: "100%", color: "#007cc7" }} />
         <div className="card-title">
           <div className="card-info px-3">
@@ -69,7 +71,11 @@ const Post = ({ data, makeBet, currentUser }) => {
         <div className="commentBox">
           {data.comments.map((el) => (
             <div className="commentOne my-1">
-              <img src={el.photoURL} alt="photo" style={{ width: "13%" }} />
+              <img
+                src={el.photoURL}
+                alt="photo"
+                style={{ width: "70px", height: "70px" }}
+              />
               <div className="commentLeft">
                 <p>{el.displayName}</p>
                 <p>{el.createdAt}</p>
