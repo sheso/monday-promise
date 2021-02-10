@@ -29,7 +29,7 @@ const Profile = () => {
             title: res.title,
             description: res.description,
             deadline: res.deadline.toDate(),
-            done: res.done,
+						status: res.status,
           },
           id: res.id,
         })
@@ -45,7 +45,7 @@ const Profile = () => {
     <div className="feed-container">
       {userContracts.length ? (
         userContracts.map((contract) => (
-          <ProfilePost key={Math.random()} data={contract} />
+          <ProfilePost key={Math.random()} data={contract} currentUser={currentUser} />
         ))
       ) : (
         <img

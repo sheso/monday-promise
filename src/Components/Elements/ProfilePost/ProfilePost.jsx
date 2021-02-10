@@ -1,20 +1,18 @@
-import "./ProfilePost.css";
-import { useState } from "react";
-import Timer from "../Timer/Timer";
+import './ProfilePost.css'
+import { useState } from 'react'
+import { finishContract } from '../../../databaseHandlers';
+import { CONTRACT_ACTIVE } from '../../../databaseHandlers';
 
-const ProfilePost = ({ data, makeBet, currentUser }) => {
-  const [betMade, setBetMade] = useState(false);
+const ProfilePost = ({ data, currentUser }) => {
+	const [forceUpdate, setForceUpdate] = useState(false);
 
   const deadline = new Date(data.post.deadline);
   const deadlineString = deadline.toLocaleDateString("ru-RU");
 
-  const makeUserBet = (post, user, bet) => {
-    if (betMade) {
-      return;
-    }
-    makeBet(post, user, bet);
-    setBetMade(true);
-  };
+	const userFinishContract = () => {
+		finishContract(data.id, currentUser.uid);
+		setForceUpdate(pre => !pre);
+	}
 
   return (
     <div className="post-container my-3 mx-3">
@@ -22,10 +20,9 @@ const ProfilePost = ({ data, makeBet, currentUser }) => {
       <p>{data.author.name}</p>
       <p>{data.post.description}</p>
       <p>{deadlineString}</p>
-      <p>{data.post.done}</p>
-      <Timer />
-    </div>
-  );
-};
+      {data.post.status === CONTRACT_ACTIVE && <button onClick={userFinishContract}>Выполнить обещание</button>}
+      </div>
+  )
+}
 
 export default ProfilePost;
