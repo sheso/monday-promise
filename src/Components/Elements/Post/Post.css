@@ -7,7 +7,7 @@ p {
   background-color: #007cc7;
   color: #eefbfb;
   border-radius: 20px;
-  padding: 0.7rem 4rem;
+  padding: 0.2rem 2rem;
   border: none;
   margin: 10px;
   outline: none;
@@ -45,10 +45,15 @@ p {
   width: 100%;
   margin: 10px;
 }
-
 .commentLeft {
+  width: 11vw;
+}
+
+.commentLeft p {
   display: flex;
   flex-direction: column;
+
+  color: #eefbfb;
 }
 
 .card-name {
@@ -78,10 +83,14 @@ p {
 
 .commentBox p {
   font-size: 15px;
-  color: black;
+  color: #eefbfb;
 }
 
 .commentOne {
   display: flex;
   flex-direction: row;
+  align-items: ;
+}
+.commentOne img {
+  border-radius: 50%;
 }
