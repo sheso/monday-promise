@@ -17,8 +17,10 @@ const Menu = () => {
     <div>
       <div className="dashboard">
         <div className="logo">
-          <img src="../../../images/promise.png" alt="" />
-          <p className="logoText">Monday Promise</p>
+					<Link to='/'>
+						<img src="../../../images/pinky-promise.svg" alt="" width="15%" />
+					</Link>
+					<p className="logoText">Monday Promise</p>
         </div>
         {currentUser ? (
           <>
