@@ -39,6 +39,7 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
     "timerdata",
     setTimer(startdate.getTime(), currentDate.getTime(), deadline.getTime())
   );
+  console.log(data);
 
   return (
     <div className="container-post">
@@ -59,6 +60,7 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
               <div className="card-info-text ">
                 <p className="card-text">{data.author.name}</p>
                 <p className="card-text">{data.post.description}</p>
+                <p className="card-text">{data.post.why}</p>
                 <p className="card-text">{deadlineString}</p>
                 <p className="card-text">{data.post.done}</p>
               </div>
