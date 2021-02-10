@@ -12,6 +12,11 @@ const ChatMessage = ({ text, uid, photoURL, displayName, createdAt }) => {
   // const time = createdAt.toDate().toLocaleString('ru-RU')
   // console.log(time, 'time')
 
+  
+  // console.log(createdAt, '<-------')
+  // const test = new Date(createdAt)
+  // const newTest = test.toLocaleDateString("ru-RU")
+  // console.log(newTest, 'sozdanno')
 
   const { currentUser } = useContext(AuthContext);
 

@@ -10,7 +10,7 @@ const Comment = ({ postId, setForceUpdate }) => {
   console.log(postId);
 
   const commentsRef = database.comments;
-  const qurey = commentsRef.orderBy("createdAt").limit(1);
+  const qurey = commentsRef.orderBy("createdAt");
 
   const [comments] = useCollectionData(qurey, { idField: "id" });
 
