@@ -58,6 +58,7 @@ const ContractForm = () => {
         <div className="form-item">
           <label htmlFor="contract-title">Цель:</label>
           <input
+						required
             type="text"
             name="title"
             id="contract-title"
@@ -70,6 +71,7 @@ const ContractForm = () => {
         <div className="form-item">
           <label htmlFor="contract-description">Описание:</label>
           <textarea
+						required
             type="text"
             name="description"
             id="contract-description"
@@ -82,6 +84,7 @@ const ContractForm = () => {
         <div className="form-item">
           <label htmlFor="contract-deadline">Срок:</label>
           <input
+						required
             type="date"
             min={minDate}
             name="deadline"
@@ -94,6 +97,7 @@ const ContractForm = () => {
         <div className="form-item">
           <label htmlFor="contract-why">Зачем?</label>
           <input
+						required
             type="text"
             name="why"
             id="contract-why"
@@ -106,6 +110,7 @@ const ContractForm = () => {
         <div className="form-item">
           <label htmlFor="contract-difficulty">Сложность:</label>
           <input
+						required
             type="range"
             id="contract-difficulty"
             name="difficulty"

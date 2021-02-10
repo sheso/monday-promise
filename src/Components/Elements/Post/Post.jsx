@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import Comment from "../../Pages/Comment/Comment";
 import Timer from "../Timer/Timer";
 
-const Post = ({ data, makeBet, currentUser }) => {
+const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
   const [betMade, setBetMade] = useState(data.userMadeBet);
 
   const deadline = new Date(data.post.deadline);
@@ -78,7 +78,7 @@ const Post = ({ data, makeBet, currentUser }) => {
             </div>
           ))}
         </div>
-        <Comment postId={data.id} />
+        <Comment postId={data.id} setForceUpdate={setForceUpdate} />
       </div>
     </div>
   );

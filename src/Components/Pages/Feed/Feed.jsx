@@ -93,6 +93,7 @@ const Feed = () => {
             data={contract}
             makeBet={makeUserBet}
             currentUser={currentUser}
+						setForceUpdate={setForceUpdate}
           />
         ))
       ) : loading ? (
