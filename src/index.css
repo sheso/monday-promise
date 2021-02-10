@@ -29,7 +29,8 @@ body {
 }
 
 .exit {
-  background-color: #eefbfbbb;
+  background-color: #eefbfb83;
+  color: #eefbfb;
   padding: 0.5rem 2rem;
   border-radius: 30px;
   border: none;

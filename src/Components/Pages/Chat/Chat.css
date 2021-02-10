@@ -9,10 +9,7 @@
 .message-sent {
   display: flex;
   flex-direction: row-reverse;
-
   text-align: center;
-  border-radius: 10px;
-  /* border: 2px solid #9bbcf0; */
 }
 
 .message-received {
@@ -20,28 +17,23 @@
   flex-direction: row;
   justify-content: flex-start;
   text-align: center;
-  border-radius: 10px;
   /* border: 2px solid #21b29a; */
 }
 
 .chat input {
-  background: linear-gradient(
-    to right bottom,
-    rgba(255, 255, 255, 0.7),
-    rgba(255, 255, 255, 0.3)
-  );
+  background-color: #eefbfb;
   border: none;
-  padding: 1rem;
-  border-radius: 2rem;
+  padding: 0.8rem;
+  border-radius: 50px;
   outline: none;
   text-align: center;
-  width: 60vw;
+  width: 50vw;
 }
 
 .chat button {
-  background: linear-gradient(to right top, #65dfc9, #6cdbeb);
-  color: white;
-  border-radius: 1rem;
+  background-color: #007cc7;
+  color: #eefbfb;
+  border-radius: 20px;
   padding: 0.7rem 4rem;
   border: none;
   margin: 10px;
@@ -55,7 +47,7 @@
 }
 
 .textMes {
-  background-color: #d7fffe;
+  background-color: #eefbfb;
   width: 100%;
-  border-radius: 20px;
+  border-radius: 30px;
 }

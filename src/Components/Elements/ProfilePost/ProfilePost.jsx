@@ -5,6 +5,9 @@ import Timer from "../Timer/Timer";
 const ProfilePost = ({ data, makeBet, currentUser }) => {
   const [betMade, setBetMade] = useState(false);
 
+  const deadline = new Date(data.post.deadline);
+  const deadlineString = deadline.toLocaleDateString("ru-RU");
+
   const makeUserBet = (post, user, bet) => {
     if (betMade) {
       return;
@@ -18,7 +21,7 @@ const ProfilePost = ({ data, makeBet, currentUser }) => {
       <p>{data.post.title}</p>
       <p>{data.author.name}</p>
       <p>{data.post.description}</p>
-      <p>{data.post.deadline}</p>
+      <p>{deadlineString}</p>
       <p>{data.post.done}</p>
       <Timer />
     </div>

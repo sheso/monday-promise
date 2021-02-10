@@ -28,6 +28,7 @@ const Friends = () => {
                   : false,
               }))
               .sort((el) => (el.currentUserIsSubscribed ? -1 : 1))
+              .filter((el) => el.uid !== currentUserUid)
           );
         });
       });

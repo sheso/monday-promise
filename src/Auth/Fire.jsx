@@ -22,7 +22,8 @@ const database = {
 	subscriptions: firestore.collection('subscriptions'),
 	likes: firestore.collection('likes'),
 	bets: firestore.collection('bets'),
-	getCreatedAt: firebase.firestore.FieldValue.serverTimestamp
+	getCreatedAt: firebase.firestore.FieldValue.serverTimestamp,
+	Timestamp: firebase.firestore.Timestamp,
 };
 
 export { fire, database };

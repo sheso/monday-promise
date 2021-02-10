@@ -28,7 +28,7 @@ const Profile = () => {
           post: {
             title: res.title,
             description: res.description,
-            deadline: res.deadline,
+            deadline: res.deadline.toDate(),
             done: res.done,
           },
           id: res.id,

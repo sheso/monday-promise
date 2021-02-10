@@ -1,6 +1,6 @@
 .contract-form-container {
   font-family: "Open Sans", sans-serif;
-  color: #426696;
+  color: #eefbfb;
   font-weight: 600;
   display: flex;
   flex-direction: column;
@@ -15,11 +15,7 @@
 
 .form-item input,
 textarea {
-  background: linear-gradient(
-    to right bottom,
-    rgba(255, 255, 255, 0.7),
-    rgba(255, 255, 255, 0.3)
-  );
+  background-color: #eefbfbd5;
   border: none;
   padding: 0.7rem;
   border-radius: 2rem;
@@ -28,13 +24,13 @@ textarea {
 }
 
 #contract-difficulty {
-  background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+  background-color: #007cc7;
   border-radius: 1rem;
 }
 
 .contract-form-button {
-  background: linear-gradient(to right top, #65dfc9, #6cdbeb);
-  color: white;
+  background-color: #007cc7;
+  color: #eefbfb;
   border-radius: 1rem;
   padding: 0.7rem 4rem;
   border: none;
