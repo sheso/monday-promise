@@ -23,7 +23,7 @@ export const finishContract = async (contractId, currentUserId) => {
     .get()
     .then((doc) => doc.id);
   const status = await contractRef.get().then((doc) => doc.data().status);
-  
+
   if (status !== CONTRACT_ACTIVE || contractAuthorID !== userId) {
     console.log("contract finish fail");
     return;
@@ -32,6 +32,23 @@ export const finishContract = async (contractId, currentUserId) => {
     status: CONTRACT_SUCCESS,
   });
   console.log("contract finish success");
+};
+
+export const setTimer = (startTime, currentTime, endTime) => {
+  console.log("times", startTime, currentTime, endTime);
+
+  const duration = Math.floor((endTime - startTime) / 1000);
+  const initialRemainingTime = Math.floor((endTime - currentTime) / 1000);
+  const remainingDays = Math.floor((endTime - currentTime) / 86400000) + 1;
+  // const forms = ["день", "дня", "дней"];
+  const fullDays = Math.floor((endTime - startTime) / 86400000) + 1;
+
+  return {
+    duration,
+    initialRemainingTime,
+    remainingDays,
+    fullDays,
+  };
 };
 
 export const like = async (postId, userId) => {

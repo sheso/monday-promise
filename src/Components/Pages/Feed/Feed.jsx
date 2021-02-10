@@ -55,6 +55,7 @@ const Feed = () => {
 						...post.data(),
 						deadline: post.data().deadline?.toDate(),
 						startdate: post.data().startdate?.toDate(),
+						createdAt: post.data().createdAt?.toDate(),
 					},
 					// post: post.data(),
           id: post.id,

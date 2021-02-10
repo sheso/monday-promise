@@ -8,14 +8,15 @@ import { Link } from "react-router-dom";
 import Comment from "../../Pages/Comment/Comment";
 import Timer from "../Timer/Timer";
 import {CONTRACT_ACTIVE} from '../../../databaseHandlers'
+import { setTimer } from '../../../databaseHandlers';
 
 const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
   const [betMade, setBetMade] = useState(data.userMadeBet);
 
   const deadline = new Date(data.post.deadline);
   const deadlineString = deadline.toLocaleDateString("ru-RU");
-  // const startdate = new Date(data.post.startdate);
-  // const startdateString = startdate.toLocaleDateString('ru-RU');
+  const startdate = new Date(data.post.createdAt);
+	const currentDate = new Date();
 
   const makeUserBet = (post, user, bet) => {
     if (betMade) {
@@ -24,6 +25,11 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
     makeBet(post, user, bet);
     setBetMade(true);
   };
+
+	const timerData = setTimer(startdate.getTime(), currentDate.getTime(), deadline.getTime());
+	
+	console.log('dates', startdate, currentDate, deadline);
+	console.log('timerdata', setTimer(startdate.getTime(), currentDate.getTime(), deadline.getTime()));
 
   return (
     <div className="container-post">
@@ -44,7 +50,7 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
               <p className="card-text">{deadlineString}</p>
               <p className="card-text">{data.post.done}</p>
             </div>
-            <Timer />
+            <Timer { ...timerData } />
           </div>
           
           {data.post.status === CONTRACT_ACTIVE ? 
