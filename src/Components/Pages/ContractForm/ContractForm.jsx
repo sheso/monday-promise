@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthContext";
 import "./ContractForm.css";
+import { CONTRACT_ACTIVE } from '../../../databaseHandlers';
 
 import { database } from "../../../Auth/Fire";
 
@@ -31,26 +32,23 @@ const ContractForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setButtonDisabled(true);
-    const { deadline, description, difficulty, startdate, title, why } = inputs;
-
-    contractsRef
-      .add({
-        deadline: database.Timestamp.fromDate(new Date(deadline)),
-        description,
-        difficulty,
-        startdate: database.Timestamp.fromDate(new Date(startdate)),
-        title,
-        why,
-        author: database.users.doc(currentUser.uid),
-        done: false,
-        createdAt: database.getCreatedAt(),
-      })
-      .then(() => {
-        setInputs(initInputs);
-        history.push("/feed");
-      })
-      .catch((err) => setError(err));
+		setButtonDisabled(true);
+		const { deadline, description, difficulty, startdate, title, why } = inputs;
+    
+		contractsRef.add({
+			deadline: database.Timestamp.fromDate(new Date(deadline)),
+			description,
+			difficulty,
+			title,
+			why,
+			author: database.users.doc(currentUser.uid),
+			status: CONTRACT_ACTIVE,
+			createdAt: database.getCreatedAt(),
+		}).then(() => {
+			setInputs(initInputs);
+			history.push('/feed');
+		})
+		.catch(err => setError(err));
   };
 
   return (
@@ -68,6 +66,7 @@ const ContractForm = () => {
             placeholder="Что вы хотите пообещать ?"
           />
         </div>
+
         <div className="form-item">
           <label htmlFor="contract-description">Описание:</label>
           <textarea
@@ -79,6 +78,7 @@ const ContractForm = () => {
             placeholder="Опишите, свою цель"
           ></textarea>
         </div>
+
         <div className="form-item">
           <label htmlFor="contract-deadline">Срок:</label>
           <input
@@ -88,17 +88,6 @@ const ContractForm = () => {
             id="contract-deadline"
             onChange={handleInput}
             value={inputs.deadline}
-          />
-        </div>
-        <div className="form-item">
-          <label htmlFor="contract-startdate">Начало:</label>
-          <input
-            type="date"
-            min={minDate}
-            name="startdate"
-            id="contract-startdate"
-            onChange={handleInput}
-            value={inputs.startdate}
           />
         </div>
 
