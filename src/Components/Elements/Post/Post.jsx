@@ -40,38 +40,41 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
         <hr style={{ width: "100%", color: "#007cc7" }} />
         <div className="card-title">
           <div className="card-info px-2 py-2">
-            <img
-              src={data.author.photoURL}
-              style={{ borderRadius: "50%", marginRight: "15px" }}
-            />
-            <div className="card-info-text ">
-              <p className="card-text">{data.author.name}</p>
-              <p className="card-text">{data.post.description}</p>
-              <p className="card-text">{deadlineString}</p>
-              <p className="card-text">{data.post.done}</p>
+            <div className="left-info">
+              <img
+                src={data.author.photoURL}
+                style={{ borderRadius: "50%", marginRight: "15px" }}
+              />
+              <div className="card-info-text ">
+                <p className="card-text">{data.author.name}</p>
+                <p className="card-text">{data.post.description}</p>
+                <p className="card-text">{deadlineString}</p>
+                <p className="card-text">{data.post.done}</p>
+              </div>
             </div>
             <Timer { ...timerData } />
           </div>
-          
-          {data.post.status === CONTRACT_ACTIVE ? 
-          <div className="buttons">
-            <button
-              onClick={() => makeUserBet(data.id, currentUser.uid, true)}
-              className={
-                data.userMadeBet === true ? "bet-active" : "postbutton"
-              }
-            >
-              Сдержит: {data.betsFor}
-            </button>
-            <button
-              onClick={() => makeUserBet(data.id, currentUser.uid, false)}
-              className={
-                data.userMadeBet === false ? "bet-active" : "postbutton"
-              }
-            >
-              Не сдержит: {data.betsAgainst}
-            </button>
-          </div>  : null}
+
+          {data.post.status === CONTRACT_ACTIVE ? (
+            <div className="buttons">
+              <button
+                onClick={() => makeUserBet(data.id, currentUser.uid, true)}
+                className={
+                  data.userMadeBet === true ? "bet-active" : "postbutton"
+                }
+              >
+                Сдержит: {data.betsFor}
+              </button>
+              <button
+                onClick={() => makeUserBet(data.id, currentUser.uid, false)}
+                className={
+                  data.userMadeBet === false ? "bet-active" : "postbutton"
+                }
+              >
+                Не сдержит: {data.betsAgainst}
+              </button>
+            </div>
+          ) : null}
         </div>
         <hr style={{ width: "100%", color: "#007cc7" }} />
         <div className="commentBox">
@@ -91,7 +94,7 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
           ))}
         </div>
         <Comment postId={data.id} setForceUpdate={setForceUpdate} />
-      </div> 
+      </div>
     </div>
   );
 };
