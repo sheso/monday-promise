@@ -15,13 +15,35 @@ const ProfilePost = ({ data, currentUser }) => {
 	}
 
   return (
+    // <div className="post-container my-3 mx-3">
+    //   <p>{data.post.title}</p>
+    //   <p>{data.author.name}</p>
+    //   <p>{data.post.description}</p>
+    //   <p>{deadlineString}</p>
+    //   {data.post.status === CONTRACT_ACTIVE && <button onClick={userFinishContract}>Выполнить обещание</button>}
+    //   </div>
+
     <div className="post-container my-3 mx-3">
-      <p>{data.post.title}</p>
-      <p>{data.author.name}</p>
-      <p>{data.post.description}</p>
-      <p>{deadlineString}</p>
-      {data.post.status === CONTRACT_ACTIVE && <button onClick={userFinishContract}>Выполнить обещание</button>}
-      </div>
+      {data.post.status === CONTRACT_ACTIVE ? 
+        <>
+        <h2>Текущие обещания</h2>
+        <p>{data.post.title}</p>
+          <p>{data.author.name}</p>
+          <p>{data.post.description}</p>
+          <p>{deadlineString}</p>
+          <button onClick={userFinishContract}>Выполнить обещание</button>
+        </>
+       : 
+        <>
+       <h2>Прошлые обещания</h2>
+       <p>{data.post.title}</p>
+       <p>{data.author.name}</p>
+       <p>{data.post.description}</p>
+       <p>{deadlineString}</p>
+       </>
+          } 
+    </div>
+
   )
 }
 

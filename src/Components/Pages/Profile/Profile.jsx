@@ -57,8 +57,6 @@ const Profile = () => {
         <div>
           <h5>Вы пока не дали не одного обещания.</h5>
         <Link to='/contract/new'>Дать обещание</Link>
-          <h5>Вы ещё ни на кого не подписаны</h5>
-          <Link to='/friends'>Найти друзей</Link>
         </div>
       )}
     </div>

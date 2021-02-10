@@ -3,6 +3,7 @@ import Post from '../../Elements/Post/Post'
 import { database } from '../../../Auth/Fire'
 import { AuthContext } from '../../../Context/AuthContext'
 import { makeBet } from '../../../databaseHandlers'
+import { NavLink, Link, useHistory } from "react-router-dom";
 import './Feed.css'
 
 const Feed = () => {
@@ -101,7 +102,7 @@ const Feed = () => {
           width="20%"
           style={{ margin: '0 auto' }}
         />
-      ) : 'У вас пока нет постов. Давайте подпишемся на друзей <3'
+      ) : <Link to='/friends'>{`У вас пока нет постов, давайте подпишемся на друзей, может быть у них есть что-нибудь интересное <3`}</Link> 
 			}
     </div>
   );
