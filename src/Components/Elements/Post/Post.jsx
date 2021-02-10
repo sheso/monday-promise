@@ -45,14 +45,13 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
           </div>
 
           <div className="buttons">
-            <span className="card-title">{data.betsFor}</span>
             <button
               onClick={() => makeUserBet(data.id, currentUser.uid, true)}
               className={
                 data.userMadeBet === true ? "bet-active" : "postbutton"
               }
             >
-              Сдержит
+              Сдержит: {data.betsFor}
             </button>
             <button
               onClick={() => makeUserBet(data.id, currentUser.uid, false)}
@@ -60,9 +59,8 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
                 data.userMadeBet === false ? "bet-active" : "postbutton"
               }
             >
-              Не сдержит
+              Не сдержит: {data.betsAgainst}
             </button>
-            <span className="card-title"> {data.betsAgainst}</span>
           </div>
         </div>
         <hr style={{ width: "100%", color: "#007cc7" }} />
