@@ -30,8 +30,9 @@ body {
 .exit {
   background-color: #eefbfb83;
   color: #eefbfb;
-  padding: 0.5rem 2rem;
+  padding: 0.4rem 1.5rem;
   border-radius: 30px;
+
   border: none;
 }
 
