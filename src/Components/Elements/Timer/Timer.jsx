@@ -15,17 +15,22 @@ const renderTime = ({ remainingTime }) => {
   );
 };
 
-const Timer = () => {
+const Timer = ({ duration, initialRemainingTime, remainingDays }) => {
   return (
     <div className="timer">
       <div className="timer-wrapper">
         <CountdownCircleTimer
           isPlaying
-          duration={20}
+          duration={duration}
+					initialRemainingTime={initialRemainingTime}
           colors={[["#008000", 0.33], ["#ffff00", 0.33], ["#ff0000"]]}
           onComplete={() => [true, 1000]}
         >
-          {renderTime}
+          <div className="timer">
+						<div className="text">Осталось</div>
+						<div className="value">{remainingDays}</div>
+						<div className="text">дней</div>
+					</div>
         </CountdownCircleTimer>
       </div>
     </div>

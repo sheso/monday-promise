@@ -3,6 +3,7 @@
   width: 35vw;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
 }
 
 .message-sent {
@@ -16,7 +17,6 @@
   flex-direction: row;
   justify-content: flex-start;
   text-align: center;
-  /* border: 2px solid #21b29a; */
 }
 
 .chat input {
@@ -26,7 +26,7 @@
   border-radius: 50px;
   outline: none;
   text-align: center;
-  width: 50vw;
+  width: 100%;
 }
 
 .chat button {

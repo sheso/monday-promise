@@ -8,14 +8,15 @@ import { Link } from "react-router-dom";
 import Comment from "../../Pages/Comment/Comment";
 import Timer from "../Timer/Timer";
 import { CONTRACT_ACTIVE } from "../../../databaseHandlers";
+import { setTimer } from "../../../databaseHandlers";
 
 const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
   const [betMade, setBetMade] = useState(data.userMadeBet);
 
   const deadline = new Date(data.post.deadline);
   const deadlineString = deadline.toLocaleDateString("ru-RU");
-  // const startdate = new Date(data.post.startdate);
-  // const startdateString = startdate.toLocaleDateString('ru-RU');
+  const startdate = new Date(data.post.createdAt);
+  const currentDate = new Date();
 
   data.comments.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
   
@@ -27,11 +28,25 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
     setBetMade(true);
   };
 
+  const timerData = setTimer(
+    startdate.getTime(),
+    currentDate.getTime(),
+    deadline.getTime()
+  );
+
+  console.log("dates", startdate, currentDate, deadline);
+  console.log(
+    "timerdata",
+    setTimer(startdate.getTime(), currentDate.getTime(), deadline.getTime())
+  );
+
   return (
     <div className="container-post">
       <div className="card my-2">
         <div className="card-name">
-          <h3 style={{ fontWeight: "600" }}>{data.post.title}</h3>
+          <h3 className="my-4" style={{ fontWeight: "600" }}>
+            {data.post.title}
+          </h3>
         </div>
         <hr style={{ width: "100%", color: "#007cc7" }} />
         <div className="card-title">
@@ -48,7 +63,7 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
                 <p className="card-text">{data.post.done}</p>
               </div>
             </div>
-            <Timer />
+            <Timer {...timerData} />
           </div>
 
           {data.post.status === CONTRACT_ACTIVE ? (
@@ -85,7 +100,7 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
                 <p>{el.displayName}</p>
                 <p>{el.createdAt}</p>
               </div>
-              <p>{el.text}</p>
+              <p className="lefttextcomm">{el.text}</p>
             </div>
           ))}
         </div>

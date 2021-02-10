@@ -55,6 +55,7 @@ const Feed = () => {
 						...post.data(),
 						deadline: post.data().deadline?.toDate(),
 						startdate: post.data().startdate?.toDate(),
+						createdAt: post.data().createdAt?.toDate(),
 					},
 					// post: post.data(),
           id: post.id,
@@ -103,8 +104,24 @@ const Feed = () => {
           width="20%"
           style={{ margin: '0 auto' }}
         />
-      ) : <Link to='/friends'>{`У вас пока нет постов, давайте подпишемся на друзей, может быть у них есть что-нибудь интересное <3`}</Link> 
-			}
+      ) : (
+				<div className="empty-feed-container">
+					<div className="block">
+						<h3>Похоже, вы еще не добавили ни одного обещания.</h3>
+						<p>Начнем понедельник сегодня? </p>
+						<button className="button">
+							<Link to='/contract/new'>Добавить новую цель</Link>
+						</button>
+					</div>
+					<div className="block">
+						<h3>В вашей ленте так одиноко...</h3> 
+						<p>Давайте добавим кого-нибудь интересного!</p>
+						<button className="button">
+							<Link to='/friends'>Найти друзей</Link>
+						</button>
+					</div>
+				</div>
+			)}
     </div>
   );
 };
