@@ -14,13 +14,13 @@ export const AuthProvider = ({ children }) => {
     fire.auth().onAuthStateChanged((current) => {
       setCurrentUser(current ? { ...current } : null);
       setAuthInitialized(true);
-      console.log("listener onAuthStateChange", !!current);
+      console.log("listener onAuthStateChange", !!current, current);
       if (current) {
-        database.users.doc(current.uid).update({
+        database.users.doc(current.uid).set({
           name: current.displayName,
           email: current.email,
           photoURL: current.photoURL,
-        });
+        }, { merge: true });
       }
     });
   }, []);
