@@ -23,6 +23,7 @@ const Friends = () => {
               .map((doc) => ({
                 uid: doc.id,
                 doc: doc.data(),
+								points: doc.data().points ?? 0,
                 currentUserIsSubscribed: subsSet.size
                   ? subsSet.has(doc.id)
                   : false,
@@ -52,48 +53,60 @@ const Friends = () => {
 			<h2 className="mt-5 mb-5">Друзья</h2>	
 			{
 				peopleList.filter(user => user.currentUserIsSubscribed).length ? 
-				peopleList.filter(user => user.currentUserIsSubscribed).map(man => (
-					<div key={man.uid} className="card firiends my-2">
-						{man.doc.photoURL ? (
-							<img src={man.doc.photoURL} className="card-img-top" alt="userpic" />
-						) : (
-							<img src="https://img.icons8.com/ios/452/promise.png" alt="userpic" />
-						)}
-						<div className="card-body">
-							<span className="card-title">{man.doc.name}</span>
-							<button
-								className="unsubscribe-button"
-								onClick={() => unsubscribe(man.uid)}
-							>
-								Отписаться
-							</button>							
+				peopleList.filter(user => user.currentUserIsSubscribed)
+					.sort((userA, userB) => userB.points - userA.points)
+					.map(man => (
+						<div key={man.uid} className="card firiends my-2">
+							{man.doc.photoURL ? (
+								<img src={man.doc.photoURL} className="card-img-top" alt="userpic" />
+							) : (
+								<img src='../../../images/promise-ava.png' alt="userpic" />
+							)}
+							<div className="card-body">
+								<span className="card-title">{man.doc.name}</span>
+								<div className="card-end">
+									<div className="points">
+										<span>{man.points}</span>
+										<img className="coin-img mx-2"
+												src="https://img.icons8.com/cotton/2x/dollar-coin.png"
+											/>
+									</div>
+									<button
+										className="unsubscribe-button"
+										onClick={() => unsubscribe(man.uid)}
+									>
+										Отписаться
+									</button>
+								</div>								
+							</div>
 						</div>
-					</div>
-				)) : (
-					<p className="mt-2">Вы пока ни на кого не подписаны</p>
-				)
+					)) : (
+						<p className="mt-2">Вы пока ни на кого не подписаны</p>
+					)
 			}
 			<hr/>
 			<h4 className="mt-5 mb-5">Другие пользователи</h4>
 			{
-				peopleList.filter(user => !user.currentUserIsSubscribed).map(man => (
-					<div key={man.uid} className="card firiends my-2">
-						{man.doc.photoURL ? (
-							<img src={man.doc.photoURL} className="card-img-top" alt="userpic" />
-						) : (
-							<img src="https://img.icons8.com/ios/452/promise.png" alt="userpic" />
-						)}
-						<div className="card-body">
-							<span className="card-title">{man.doc.name}</span>							
-							<button
-								className="subscribe-button"
-								onClick={() => subscribe(man.uid)}
-							>
-								Подписаться
-							</button>							
+				peopleList.filter(user => !user.currentUserIsSubscribed)
+					.sort((userA, userB) => userB.points - userA.points)
+					.map(man => (
+						<div key={man.uid} className="card firiends my-2">
+							{man.doc.photoURL ? (
+								<img src={man.doc.photoURL} className="card-img-top" alt="userpic" />
+							) : (
+								<img src="https://img.icons8.com/ios/452/promise.png" alt="userpic" />
+							)}
+							<div className="card-body">
+								<span className="card-title">{man.doc.name}</span>							
+								<button
+									className="subscribe-button"
+									onClick={() => subscribe(man.uid)}
+								>
+									Подписаться
+								</button>							
+							</div>
 						</div>
-					</div>
-				))
+					))
 			}
     </div>
   );

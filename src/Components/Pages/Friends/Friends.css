@@ -44,7 +44,7 @@
   color: #eefbfb;
 }
 
-.friendsList .card img {
+.friendsList .card > img {
   height: 100px;
   width: 100px;
   border-radius: 50%;
@@ -64,6 +64,16 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+}
+
+.card-end {
+  display: flex;
+  flex-direction: row;
+}
+
+.coin-img {
+  width: 40px;
+  height: 40px;
 }
 
 @media screen and (max-width: 600px) {

@@ -54,14 +54,10 @@ const Profile = () => {
         .doc(currentUser.uid)
         .get()
         .then((doc) => doc.data());
-      setPoints(author.points);
+      setPoints(author.points ?? 0);
     };
     getPoints();
   }, []);
-
-	const contractsActive = userContracts.filter(el => el.post.status === CONTRACT_ACTIVE);
-	const contractsDone = userContracts.filter(el => el.post.status !== CONTRACT_ACTIVE);
-	console.log('contracts active and done', contractsActive, contractsDone);
 
   return (
     <div className="profile-container mt-5">
@@ -78,13 +74,13 @@ const Profile = () => {
             />
           </>
         ) : (
-          <h3 style={{ color: "white" }}>Учи уроки дебил!</h3>
+          <h3 style={{ color: "white" }}>0 очков</h3>
         )}
       </div>
       <div className="porfile-container-lk ">
 				<h2 className="mt-4">Текущие цели</h2>
 					{
-						userContracts.filter(el => el.post.status === CONTRACT_ACTIVE) ? 
+						userContracts.filter(el => el.post.status === CONTRACT_ACTIVE).length ? 
 						userContracts.filter(el => el.post.status === CONTRACT_ACTIVE).map(contract => 
 							<ProfilePost
 								key={Math.random()}
@@ -96,7 +92,7 @@ const Profile = () => {
 					}
 					<h2 className="mt-5">Завершенные цели</h2>
 					{
-						userContracts.filter(el => el.post.status !== CONTRACT_ACTIVE) ? 
+						userContracts.filter(el => el.post.status !== CONTRACT_ACTIVE).length ? 
 						userContracts.filter(el => el.post.status !== CONTRACT_ACTIVE).map(contract => 
 							<ProfilePost
 								key={Math.random()}
