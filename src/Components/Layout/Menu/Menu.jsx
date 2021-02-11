@@ -18,9 +18,9 @@ const Menu = () => {
       <div className="dashboard">
         <div className="logo">
           <Link to="/">
-            <img src="../../../images/pinky-promise.svg" />
+            <img src="../../../images/pinky-promise-small.png" alt="Monday Promise" />
           </Link>
-          <p className="logoText">Monday Promise</p>
+          <p className="logoText mt-2">Monday Promise</p>
         </div>
         {currentUser ? (
           <>
