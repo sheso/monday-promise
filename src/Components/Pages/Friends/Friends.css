@@ -80,4 +80,8 @@
     width: 100vw;
     height: 100%;
   }
+
+  .unsubscribe-button {
+    padding: 0.2rem 1rem;
+  }
 }

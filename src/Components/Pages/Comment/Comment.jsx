@@ -29,10 +29,10 @@ const Comment = ({ postId, setForceUpdate }) => {
     });
     setFormValue("");
     // scroll.current.scrollIntoView({ behavior: "smooth" });
-		setForceUpdate(pre => !pre);
+    setForceUpdate((pre) => !pre);
   };
   return (
-    <div className="chat">
+    <div className="commentChat">
       <main>
         <span ref={scroll} />
       </main>

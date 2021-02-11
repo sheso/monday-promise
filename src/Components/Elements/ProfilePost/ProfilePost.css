@@ -22,3 +22,13 @@ p {
   margin-top: 50px;
   width: 20vw;
 }
+
+@media screen and (max-width: 600px) {
+  .lkbutton {
+    padding: 0.2rem 1rem;
+    width: 40vw;
+  }
+  .post-container {
+    text-align: center;
+  }
+}
