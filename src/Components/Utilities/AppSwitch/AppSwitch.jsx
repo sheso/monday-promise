@@ -10,7 +10,6 @@ import Contract from '../../Pages/Contract/Contract';
 import Chat from '../../Pages/Chat/Chat';
 import User from '../../Pages/User/User';
 import Landing from '../../Pages/Landing/Landing';
-import Settings from "../../Pages/Settings/Settings";
 
 const AppSwitch = () => {
   return (
@@ -26,9 +25,6 @@ const AppSwitch = () => {
       </PrivateRoute>
 			<PrivateRoute path="/friends">
         <Friends />
-      </PrivateRoute>
-      <PrivateRoute path="/settings">
-        <Settings />
       </PrivateRoute>
       <Route path="/register">
         <Register />
