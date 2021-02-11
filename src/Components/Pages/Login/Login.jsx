@@ -1,38 +1,41 @@
-import { useContext } from "react";
-import { useHistory } from "react-router-dom";
-import { InputsContext } from "../../../Context/InputsContext";
-import { AuthContext } from '../../../Context/AuthContext';
-import "./Login.css";
+import { useContext } from 'react'
+import { useHistory } from 'react-router-dom'
+import { InputsContext } from '../../../Context/InputsContext'
+import { AuthContext } from '../../../Context/AuthContext'
+import './Login.css'
 
 const Login = () => {
-  const { loginData, changeLoginHandler } = useContext(InputsContext);
-  const history = useHistory();
+  const { loginData, changeLoginHandler } = useContext(InputsContext)
+  const history = useHistory()
 
-	const { login, googleLogin } = useContext(AuthContext);
+  const { login, googleLogin } = useContext(AuthContext)
 
   const loginUser = async (loginData) => {
     try {
-      await login(loginData);
-      history.push("/feed");
+      await login(loginData)
+      history.push('/feed')
     } catch (error) {
-      alert(error);
+      alert(error)
+      history.push('/login')
     }
-  };
+  }
 
   const googleLoginUser = async () => {
     try {
-			await googleLogin();
-			history.push('/feed');
+      await googleLogin()
+      history.push('/feed')
     } catch (err) {
-      alert(err);
+      alert(err)
+      history.push('/login')
     }
-  };
+  }
 
   return (
     <main>
       <section className="glass">
         <h3>Войти</h3>
         <input
+          required
           type="email"
           name="email"
           className="form-control"
@@ -40,6 +43,7 @@ const Login = () => {
           onChange={changeLoginHandler}
         />
         <input
+          required
           type="password"
           name="password"
           className="form-control"
@@ -49,7 +53,7 @@ const Login = () => {
         <button
           className="btn btn-primary"
           onClick={() => {
-            loginUser(loginData);
+            loginUser(loginData)
           }}
         >
           Войти
@@ -64,7 +68,7 @@ const Login = () => {
         />
       </section>
     </main>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

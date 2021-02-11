@@ -11,8 +11,12 @@ const Register = () => {
   const history = useHistory();
 
   const SignUp = async (inputs) => {
-    await signup(inputs);
-    history.push("/feed");
+    try {
+      await signup(inputs);
+      history.push("/feed");
+    } catch (error) {
+      history.push("/register");
+    }
   };
 
   return (

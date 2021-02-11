@@ -3,8 +3,16 @@
   font-family: "Open Sans", sans-serif;
   color: #eefbfb;
   font-weight: 600;
-  font-size: 24px;
+  font-size: 30px;
   opacity: 0.8;
+}
+
+.link h2 {
+  padding-top: 17px;
+}
+
+.link h2:hover {
+  text-decoration: underline;
 }
 
 .logo img {
