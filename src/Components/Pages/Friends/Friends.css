@@ -70,10 +70,6 @@
   flex-direction: row;
 }
 
-.card {
-  font-size: 10px;
-}
-
 .coin-img {
   width: 40px;
   height: 40px;
@@ -96,5 +92,9 @@
 
   .unsubscribe-button {
     padding: 0.2rem 1rem;
+  }
+
+  .card {
+    font-size: 10px;
   }
 }

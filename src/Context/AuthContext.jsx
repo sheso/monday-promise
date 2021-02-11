@@ -16,11 +16,14 @@ export const AuthProvider = ({ children }) => {
       setAuthInitialized(true);
       console.log("listener onAuthStateChange", !!current, current);
       if (current) {
-        database.users.doc(current.uid).set({
-          name: current.displayName,
-          email: current.email,
-          photoURL: current.photoURL,
-        }, { merge: true });
+        database.users.doc(current.uid).set(
+          {
+            name: current.displayName,
+            email: current.email,
+            photoURL: current.photoURL,
+          },
+          { merge: true }
+        );
       }
     });
   }, []);
@@ -43,6 +46,8 @@ export const AuthProvider = ({ children }) => {
       let user = fire.auth().currentUser;
       await user.updateProfile({
         displayName: inputs.name,
+        photoURL:
+          "https://i.pinimg.com/originals/7f/2a/50/7f2a500aee5a59ea8722fcaf43d8ba09.png",
       });
       setCurrentUser({ ...fire.auth().currentUser });
     } catch (error) {
