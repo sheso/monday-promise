@@ -43,7 +43,6 @@ const Menu = () => {
                 </h2>
               </div>
               <div className="link">
-                <img src="" alt="" />
                 <h2>
                   <NavLink exact to="/feed" className="navlink">
                     Лента
@@ -74,7 +73,6 @@ const Menu = () => {
         ) : (
           <div className="links">
             <div className="link">
-              <img src="" alt="" />
               <h2>
                 <Link to="/" className="navlink">
                   Главная
@@ -82,7 +80,6 @@ const Menu = () => {
               </h2>
             </div>
             <div className="link">
-              <img src="" alt="" />
               <h2>
                 <NavLink to="/register" className="navlink">
                   Регистрация
@@ -90,7 +87,6 @@ const Menu = () => {
               </h2>
             </div>
             <div className="link">
-              <img src="" alt="" />
               <h2>
                 <NavLink to="/login" className="navlink">
                   Войти

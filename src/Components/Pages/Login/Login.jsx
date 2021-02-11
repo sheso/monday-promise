@@ -1,14 +1,14 @@
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { InputsContext } from "../../../Context/InputsContext";
-import { AuthContext } from '../../../Context/AuthContext';
+import { AuthContext } from "../../../Context/AuthContext";
 import "./Login.css";
 
 const Login = () => {
   const { loginData, changeLoginHandler } = useContext(InputsContext);
   const history = useHistory();
 
-	const { login, googleLogin } = useContext(AuthContext);
+  const { login, googleLogin } = useContext(AuthContext);
 
   const loginUser = async (loginData) => {
     try {
@@ -16,15 +16,17 @@ const Login = () => {
       history.push("/feed");
     } catch (error) {
       alert(error);
+      history.push("/login");
     }
   };
 
   const googleLoginUser = async () => {
     try {
-			await googleLogin();
-			history.push('/feed');
+      await googleLogin();
+      history.push("/feed");
     } catch (err) {
       alert(err);
+      history.push("/login");
     }
   };
 
