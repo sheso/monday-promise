@@ -8,7 +8,11 @@
 }
 
 .logo img {
-  width: 65%;
+  width: 15%;
+}
+
+.logoText {
+  font-size: 12px;
 }
 
 .user img {
@@ -27,11 +31,15 @@
   }
 
   .link {
-    margin-top: -22px;
+    margin-top: -6px;
+  }
+
+  .logo {
+    width: 25vw;
   }
 
   .logo img {
-    width: 15%;
+    width: 45%;
   }
 
   .user img {
