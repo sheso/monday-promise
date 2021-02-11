@@ -54,11 +54,11 @@ a.navlink:hover {
   }
 
   .link {
-    margin-top: -5px;
+    margin-top: -15px;
   }
 
   .logo {
-    width: 25vw;
+    width: 40vw;
   }
 
   .logo img {
@@ -68,6 +68,11 @@ a.navlink:hover {
   .user img {
     border-radius: 50%;
     border: 2px solid white;
-    width: 60%;
+    width: 70%;
+  }
+
+  .logoText {
+    font-family: "Staatliches", sans-serif;
+    font-size: 20px;
   }
 }

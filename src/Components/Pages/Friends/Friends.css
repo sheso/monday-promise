@@ -15,8 +15,7 @@
 }
 
 .unsubscribe-button {
-  background-color: #eefbfbb6;
-
+  background-color: #eefbfb7c;
   color: #eefbfb;
   border-radius: 20px;
   padding: 0.7rem 2rem;
@@ -69,6 +68,10 @@
 .card-end {
   display: flex;
   flex-direction: row;
+}
+
+.card {
+  font-size: 10px;
 }
 
 .coin-img {

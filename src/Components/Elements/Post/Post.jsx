@@ -72,10 +72,21 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
         <div className="card-title">
           <div className="card-info px-2 py-2">
             <div className="left-info">
-              <img
-                src={data.author.photoURL}
-                style={{ borderRadius: "50%", marginRight: "15px" }}
-              />
+              {data.author.photoURL ? (
+                <img
+                  src={data.author.photoURL}
+                  style={{ borderRadius: "50%", marginRight: "15px" }}
+                />
+              ) : (
+                <img
+                  src="../../../images/pinky-promise-small.png"
+                  style={{
+                    borderRadius: "50%",
+                    marginRight: "15px",
+                    width: "20%",
+                  }}
+                />
+              )}
               <div className="card-info-text ">
                 <p className="card-text">{data.author.name}</p>
                 <p className="card-text">{data.post.description}</p>

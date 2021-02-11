@@ -106,6 +106,7 @@ p {
 }
 
 .active {
+  background-color: #007cc7;
   width: 100%;
 }
 .card-text {

@@ -39,7 +39,7 @@ body {
   color: #eefbfb;
   padding: 0.4rem 1.5rem;
   border-radius: 30px;
-  margin-top: 15px;
+  margin-top: 70px;
   border: none;
 }
 
@@ -63,22 +63,11 @@ body {
 
   .exit {
     padding: 0.1rem 1rem;
+    margin-top: 15px;
   }
 
   .exit h3 {
     font-size: 12px;
     padding-top: 5px;
-  }
-
-  .dashboard .logo {
-    width: 50vw;
-  }
-
-  .dashboard .logoText {
-    font-size: 20px;
-  }
-
-  .dashboard .user {
-    width: 50vw;
   }
 }
