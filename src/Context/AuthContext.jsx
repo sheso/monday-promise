@@ -11,22 +11,26 @@ export const AuthProvider = ({ children }) => {
   const history = useHistory();
 
   useEffect(() => {
-    fire.auth().onAuthStateChanged((current) => {
+    fire.auth().onAuthStateChanged(async (current) => {
       setCurrentUser(current ? { ...current } : null);
       setAuthInitialized(true);
       console.log("listener onAuthStateChange", !!current, current);
       if (current) {
-        database.users.doc(current.uid).set(
-          {
-            name: current.displayName,
-            email: current.email,
-            photoURL: current.photoURL,
-          },
-          { merge: true }
-        );
+        await updateDbUser(current);
       }
     });
   }, []);
+
+  const updateDbUser = async (sdkUser) => {
+    await database.users.doc(sdkUser.uid).set(
+      {
+        name: sdkUser.displayName,
+        email: sdkUser.email,
+        photoURL: sdkUser.photoURL,
+      },
+      { merge: true }
+    );
+  };
 
   const login = async (login) => {
     try {
@@ -49,7 +53,9 @@ export const AuthProvider = ({ children }) => {
         photoURL:
           "https://i.pinimg.com/originals/7f/2a/50/7f2a500aee5a59ea8722fcaf43d8ba09.png",
       });
-      setCurrentUser({ ...fire.auth().currentUser });
+      console.log('after-update-profile', user === fire.auth().currentUser);
+      await updateDbUser(user);
+      setCurrentUser({ ...user });
     } catch (error) {
       alert(error);
       history.push("/register"); // TODO: handle errors

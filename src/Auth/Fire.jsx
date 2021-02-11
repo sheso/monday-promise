@@ -12,7 +12,7 @@ var firebaseConfig = {
 // Initialize Firebase
 
 const fire = firebase.initializeApp(firebaseConfig);
-const firestore = firebase.firestore();
+export const firestore = firebase.firestore();
 const database = {
 	contracts: firestore.collection('contracts'),
 	users: firestore.collection('users'),
@@ -25,6 +25,7 @@ const database = {
 	getCreatedAt: firebase.firestore.FieldValue.serverTimestamp,
   increment: firebase.firestore.FieldValue.increment,
 	Timestamp: firebase.firestore.Timestamp,
+  batch: firestore.batch,
 };
 
 export { fire, database };
