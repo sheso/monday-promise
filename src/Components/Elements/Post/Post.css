@@ -109,6 +109,9 @@ p {
   background-color: #007cc7;
   width: 100%;
 }
+.card-text {
+  width: 20vw;
+}
 
 @media screen and (max-width: 600px) {
   .buttons button {
