@@ -19,6 +19,7 @@ const Register = () => {
     <section className="glass" style={{ width: "30vw" }}>
       <h3>Регистрация</h3>
       <input
+        required
         type="text"
         name="name"
         className="form-control"
@@ -26,6 +27,7 @@ const Register = () => {
         onChange={changeRegisterHandler}
       />
       <input
+        required
         type="email"
         name="email"
         className="form-control"
@@ -33,6 +35,7 @@ const Register = () => {
         onChange={changeRegisterHandler}
       />
       <input
+        required
         type="password"
         name="password"
         className="form-control"
