@@ -5,8 +5,7 @@ import { CONTRACT_ACTIVE } from "../../../databaseHandlers";
 
 const ProfilePost = ({ data, currentUser }) => {
   const [forceUpdate, setForceUpdate] = useState(false);
-  console.log(data.post.createdAt, 'hello form profile');
-
+  console.log(data.post.createdAt, "hello form profile");
 
   const deadline = new Date(data.post.deadline);
   const deadlineString = deadline.toLocaleDateString("ru-RU");
@@ -24,7 +23,6 @@ const ProfilePost = ({ data, currentUser }) => {
     //   <p>{deadlineString}</p>
     //   {data.post.status === CONTRACT_ACTIVE && <button onClick={userFinishContract}>Выполнить обещание</button>}
     //   </div>
-
     <div className="post-container my-3 mx-3">
       {data.post.status === CONTRACT_ACTIVE ? (
         <>
