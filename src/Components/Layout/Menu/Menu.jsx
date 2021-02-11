@@ -17,10 +17,10 @@ const Menu = () => {
     <div>
       <div className="dashboard">
         <div className="logo">
-					<Link to='/'>
-						<img src="../../../images/pinky-promise.svg" alt="" width="15%" />
-					</Link>
-					<p className="logoText">Monday Promise</p>
+          <Link to="/">
+            <img src="../../../images/pinky-promise.svg" />
+          </Link>
+          <p className="logoText">Monday Promise</p>
         </div>
         {currentUser ? (
           <>
@@ -36,7 +36,6 @@ const Menu = () => {
             </div>
             <div className="links">
               <div className="link">
-                <img src="" alt="" />
                 <h2>
                   <NavLink to="/contract/new" className="navlink">
                     Новое обещание
@@ -52,7 +51,6 @@ const Menu = () => {
                 </h2>
               </div>
               <div className="link ">
-                <img src="" alt="" />
                 <h2>
                   <NavLink to="/friends" className="navlink">
                     Друзья
@@ -60,15 +58,13 @@ const Menu = () => {
                 </h2>
               </div>
               <div className="link">
-                <img src="" alt="" />
                 <h2>
                   <NavLink to="/chat" className="navlink">
                     Чат
                   </NavLink>
                 </h2>
               </div>
-              <div className="link py-3">
-                <img src="" alt="" />
+              <div className="link">
                 <h2>
                   <NavLink to="/settings" className="navlink">
                     Настройки
@@ -76,7 +72,6 @@ const Menu = () => {
                 </h2>
               </div>
               <div className="link">
-                <img src="" alt="" />
                 <button onClick={() => signoutUser()} className="exit">
                   <h3>Выйти</h3>
                 </button>
