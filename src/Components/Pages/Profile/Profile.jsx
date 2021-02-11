@@ -70,7 +70,7 @@ const Profile = () => {
             />
           </>
         ) : (
-          <h3 style={{ color: "white" }}>Учи уроки дебил!</h3>
+          <h3 style={{ color: "white" }}>У тебя 0</h3>
         )}
       </div>
       <div className="porfile-container-lk ">
