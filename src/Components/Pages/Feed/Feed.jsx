@@ -23,12 +23,6 @@ const Feed = () => {
       );
       authorRefs.push(database.users.doc(currentUser.uid));
 
-      // if (!authorRefs.length) {
-      // 	setLoading(false);
-      // 	return;
-      // }
-
-      // console.log(authorRefs)
       const posts = await database.contracts
         .where("author", "in", authorRefs)
         .get();
@@ -62,10 +56,8 @@ const Feed = () => {
           post: {
             ...post.data(),
             deadline: post.data().deadline?.toDate(),
-            startdate: post.data().startdate?.toDate(),
             createdAt: post.data().createdAt?.toDate(),
           },
-          // post: post.data(),
           id: post.id,
           comments: test,
           betsFor: bets.docs.reduce(
@@ -81,9 +73,10 @@ const Feed = () => {
             ?.data().bet,
         });
       }
-      setContractsList(feed);
-      setLoading(false);
-    };
+			feed.sort((docA, docB) => docB.post.createdAt.getTime() - docA.post.createdAt.getTime());
+      setContractsList(feed)
+      setLoading(false)
+    }
 
     fetchFeedData();
   }, [currentUser.uid, forceUpdate]);
@@ -96,6 +89,7 @@ const Feed = () => {
   console.log("my feed posts:", contractsList);
   return (
     <div className="feed-container">
+			<h1 className="mt-5">Лента обещаний</h1>
       {contractsList.length ? (
         contractsList.map((contract) => (
           <Post
