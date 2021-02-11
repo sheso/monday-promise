@@ -82,49 +82,13 @@ const Profile = () => {
             />
           </>
         ) : (
-<<<<<<< HEAD
           <h3 style={{ color: "white" }}>0 очков</h3>
         )}
       </div>
       <div className="porfile-container-lk ">
-				<h2 className="mt-4">Текущие цели</h2>
-					{
-						userContracts.filter(el => el.post.status === CONTRACT_ACTIVE).length ? 
-						userContracts.filter(el => el.post.status === CONTRACT_ACTIVE).map(contract => 
-							<ProfilePost
-								key={Math.random()}
-								data={contract}
-								currentUser={currentUser}
-								setForceUpdate={setForceUpdate}
-            />
-						) : <p>Нет текущих обещаний</p>
-					}
-					<h2 className="mt-5">Завершенные цели</h2>
-					{
-						userContracts.filter(el => el.post.status !== CONTRACT_ACTIVE).length ? 
-						userContracts.filter(el => el.post.status !== CONTRACT_ACTIVE).map(contract => 
-							<ProfilePost
-								key={Math.random()}
-								data={contract}
-								currentUser={currentUser}
-								setForceUpdate={setForceUpdate}
-            />
-						) : null
-					}
-
-=======
-          <>
-            <h3 style={{ color: "white" }}>У тебя 0</h3>
-            <img
-              src="https://img.icons8.com/cotton/2x/dollar-coin.png"
-              width="30vw"
-            />
-          </>
-        )}
-      </div>
-      <div className="porfile-container-lk ">
         <h2 className="mt-4">Текущие цели</h2>
-        {userContracts.filter((el) => el.post.status === CONTRACT_ACTIVE) ? (
+        {userContracts.filter((el) => el.post.status === CONTRACT_ACTIVE)
+          .length ? (
           userContracts
             .filter((el) => el.post.status === CONTRACT_ACTIVE)
             .map((contract) => (
@@ -139,7 +103,7 @@ const Profile = () => {
           <p>Нет текущих обещаний</p>
         )}
         <h2 className="mt-5">Завершенные цели</h2>
-        {userContracts.filter((el) => el.post.status !== CONTRACT_ACTIVE)
+        {userContracts.filter((el) => el.post.status !== CONTRACT_ACTIVE).length
           ? userContracts
               .filter((el) => el.post.status !== CONTRACT_ACTIVE)
               .map((contract) => (
@@ -151,7 +115,6 @@ const Profile = () => {
                 />
               ))
           : null}
->>>>>>> e898cc56ddc5faee9a9516ea8f5716c9a9cae438
 
         {/* {userContracts.length ? (
           userContracts.map((contract) => (
