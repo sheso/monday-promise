@@ -32,7 +32,7 @@ const Friends = () => {
           );
         });
       });
-  }, []);
+  }, [currentUserUid]);
 
   const subscribe = async (userId) => {
     const subId = [currentUserUid, userId].join(":");
@@ -48,34 +48,53 @@ const Friends = () => {
   };
 
   return (
-    <div className="friendsList">
-      {peopleList.map((man) => (
-        <div key={man.uid} className="card firiends my-2">
-          {man.doc.photoURL ? (
-            <img src={man.doc.photoURL} className="card-img-top" />
-          ) : (
-            <img src="https://img.icons8.com/ios/452/promise.png" />
-          )}
-          <div className="card-body">
-            <span className="card-title">{man.doc.name}</span>
-            {man.currentUserIsSubscribed ? (
-              <button
-                className="unsubscribe-button"
-                onClick={() => unsubscribe(man.uid)}
-              >
-                Отписаться
-              </button>
-            ) : (
-              <button
-                className="subscribe-button"
-                onClick={() => subscribe(man.uid)}
-              >
-                Подписаться
-              </button>
-            )}
-          </div>
-        </div>
-      ))}
+    <div className="friendsList mt-5">
+			<h2 className="mt-5 mb-5">Друзья</h2>	
+			{
+				peopleList.filter(user => user.currentUserIsSubscribed).length ? 
+				peopleList.filter(user => user.currentUserIsSubscribed).map(man => (
+					<div key={man.uid} className="card firiends my-2">
+						{man.doc.photoURL ? (
+							<img src={man.doc.photoURL} className="card-img-top" alt="userpic" />
+						) : (
+							<img src="https://img.icons8.com/ios/452/promise.png" alt="userpic" />
+						)}
+						<div className="card-body">
+							<span className="card-title">{man.doc.name}</span>
+							<button
+								className="unsubscribe-button"
+								onClick={() => unsubscribe(man.uid)}
+							>
+								Отписаться
+							</button>							
+						</div>
+					</div>
+				)) : (
+					<p className="mt-2">Вы пока ни на кого не подписаны</p>
+				)
+			}
+			<hr/>
+			<h4 className="mt-5 mb-5">Другие пользователи</h4>
+			{
+				peopleList.filter(user => !user.currentUserIsSubscribed).map(man => (
+					<div key={man.uid} className="card firiends my-2">
+						{man.doc.photoURL ? (
+							<img src={man.doc.photoURL} className="card-img-top" alt="userpic" />
+						) : (
+							<img src="https://img.icons8.com/ios/452/promise.png" alt="userpic" />
+						)}
+						<div className="card-body">
+							<span className="card-title">{man.doc.name}</span>							
+							<button
+								className="subscribe-button"
+								onClick={() => subscribe(man.uid)}
+							>
+								Подписаться
+							</button>							
+						</div>
+					</div>
+				))
+			}
     </div>
   );
 };
