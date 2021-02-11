@@ -12,7 +12,7 @@ const ProfilePost = ({ data, currentUser }) => {
   const deadlineString = deadline.toLocaleDateString("ru-RU");
 
   const userFinishContract = () => {
-    finishContract(data.id, currentUser.uid);
+    finishContract(data.id);
     setForceUpdate((pre) => !pre);
   };
 

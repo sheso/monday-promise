@@ -33,6 +33,14 @@ const Feed = () => {
         .where('author', 'in', authorRefs)
         .get()
 
+      // const postsRefs = posts.docs.map(doc => doc.ref);
+
+      // const allBets = await database.bets.where('contract', 'in', postsRefs).get();
+      // const betsMap = allBets.docs.reduce((acc, doc) => {
+      //   // lodash - _.groupBy(allBets.docs, (el) => el.data().contract.id)
+      //   // _.countBy - превратить массив в мапу с результатами за и против
+      // }, {});
+
       const feed = []
       for (let post of posts.docs) {
 				const expired = await failIfExpired(post);

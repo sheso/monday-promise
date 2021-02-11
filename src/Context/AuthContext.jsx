@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
       setAuthInitialized(true);
       console.log("listener onAuthStateChange", !!current);
       if (current) {
-        database.users.doc(current.uid).set({
+        database.users.doc(current.uid).update({
           name: current.displayName,
           email: current.email,
           photoURL: current.photoURL,

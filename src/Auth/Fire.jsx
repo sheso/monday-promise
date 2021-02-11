@@ -23,6 +23,7 @@ const database = {
 	likes: firestore.collection('likes'),
 	bets: firestore.collection('bets'),
 	getCreatedAt: firebase.firestore.FieldValue.serverTimestamp,
+  increment: firebase.firestore.FieldValue.increment,
 	Timestamp: firebase.firestore.Timestamp,
 };
 
