@@ -59,8 +59,6 @@ const Profile = () => {
     getPoints();
   }, []);
 
-<<<<<<< HEAD
-=======
   const contractsActive = userContracts.filter(
     (el) => el.post.status === CONTRACT_ACTIVE
   );
@@ -69,7 +67,6 @@ const Profile = () => {
   );
   console.log("contracts active and done", contractsActive, contractsDone);
 
->>>>>>> e898cc56ddc5faee9a9516ea8f5716c9a9cae438
   return (
     <div className="profile-container py-5">
       <h2 style={{ color: "white", textAlign: "center" }}>
