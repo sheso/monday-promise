@@ -1,3 +1,7 @@
+.links {
+  width: 100%;
+}
+
 .navlink {
   text-decoration: none;
   font-family: "Open Sans", sans-serif;
@@ -8,11 +12,20 @@
 }
 
 .link h2 {
-  padding-top: 10px;
+  padding: 10px;
 }
 
-.link h2:hover {
-  text-decoration: underline;
+a.navlink:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.link:hover {
+  background-color: rgba(18, 35, 46, 0.3);
+}
+
+.link:active {
+  background-color: rgba(18, 35, 46, 0.4);
 }
 
 .logo img {
