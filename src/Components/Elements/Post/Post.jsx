@@ -7,7 +7,7 @@ import ChatMessage from "../../Pages/Chat/ChatMessage";
 import { Link } from "react-router-dom";
 import Comment from "../../Pages/Comment/Comment";
 import Timer from "../Timer/Timer";
-import { CONTRACT_ACTIVE } from "../../../databaseHandlers";
+import { CONTRACT_ACTIVE, CONTRACT_FAIL } from "../../../databaseHandlers";
 import { setTimer } from "../../../databaseHandlers";
 
 const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
@@ -20,12 +20,8 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
 
   data.comments.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
+  console.log(data.post, "data tut");
 
-  console.log(data.post, 'data tut')
-
-  
-
-  
   const makeUserBet = (post, user, bet) => {
     if (betMade) {
       return;
@@ -71,7 +67,16 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
                 <p className="card-text">{data.post.done}</p>
               </div>
             </div>
-            <Timer {...timerData} />
+            {data.post.status === CONTRACT_ACTIVE ? (
+              <Timer {...timerData} />
+            ) : data.post.status === CONTRACT_FAIL ? (
+              <img
+                width="30%"
+                src="../../../../images/141-1416726_wasted-transparent-gta-wasted-transparent.png"
+              />
+            ) : (
+              <img width="22%" src="../../../../images/medal-pngrepo-com.png" />
+            )}
           </div>
 
           {data.post.status === CONTRACT_ACTIVE ? (

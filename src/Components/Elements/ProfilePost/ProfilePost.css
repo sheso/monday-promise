@@ -23,6 +23,27 @@ p {
   width: 20vw;
 }
 
+.profile-container .post-container h2,
+p {
+  color: #eefbfb;
+}
+
+.profile-container {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.points {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.points h3 {
+  padding-top: 7px;
+}
+
 @media screen and (max-width: 600px) {
   .lkbutton {
     padding: 0.2rem 1rem;
