@@ -28,7 +28,7 @@ const Feed = () => {
       // 	return;
       // }
 
-      console.log(authorRefs)
+      // console.log(authorRefs)
       const posts = await database.contracts
         .where('author', 'in', authorRefs)
         .get()
@@ -37,6 +37,7 @@ const Feed = () => {
       for (let post of posts.docs) {
 				const expired = await failIfExpired(post);
 				if (expired) {
+					console.log(expired);
     			setForceUpdate((pre) => !pre);
 					return;
 				}

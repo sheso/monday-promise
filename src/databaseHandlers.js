@@ -12,16 +12,13 @@ export const makeBet = async (contractId, currentUserId, userBet) => {
   });
 };
 
-export const finishContract = async (contractId, currentUserId) => {
+export const finishContract = async (contractId) => {
   const contractRef = database.contracts.doc(contractId);
-  const contractData = await contractRef.get().then((doc) => doc.data());
-  console.log("contractData", contractData);
-  const contractAuthorID = contractData.author.id;
+  const contractData = (await contractRef.get()).data();
 
-  console.log("contractAuthorID", contractAuthorID, currentUserId);
   const status = contractData.status;
 
-  if (status !== CONTRACT_ACTIVE || contractAuthorID !== currentUserId) {
+  if (status !== CONTRACT_ACTIVE) {
     console.log("contract finish fail");
     return;
   }
@@ -29,7 +26,9 @@ export const finishContract = async (contractId, currentUserId) => {
     status: CONTRACT_SUCCESS,
   });
 
-  await contractData.author.ref.update();
+  await contractData.author.update({
+    points: database.increment(100),
+  });
   console.log("contract finish success");
 };
 
@@ -51,7 +50,9 @@ const correctWordForm = (number) => {
 
 export const setTimer = (startTime, currentTime, endTime) => {
   const duration = Math.floor((endTime - startTime) / 1000);
-  const initialRemainingTime = Math.floor((endTime - currentTime) / 1000);
+  const initialRemainingTimeNumber = Math.floor((endTime - currentTime) / 1000);
+  const initialRemainingTime =
+    initialRemainingTimeNumber > 1 ? initialRemainingTimeNumber : 1;
   const remainingDays = Math.floor((endTime - currentTime) / 86400000) + 1;
   const word = correctWordForm(remainingDays);
   return {
@@ -67,7 +68,10 @@ export const failIfExpired = async (contract) => {
   const contractExpires = new Date(contract.data().deadline.toDate());
   const authorRef = contract.data().author;
 
-  if (now.getTime() > contractExpires.getTime()) {
+  if (
+    now.getTime() > contractExpires.getTime() &&
+    contract.data().status === CONTRACT_ACTIVE
+  ) {
     await contract.ref.update({
       status: CONTRACT_FAIL,
     });
