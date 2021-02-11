@@ -1,12 +1,14 @@
 import { createContext, useEffect, useState } from "react";
 import firebase from "firebase";
 import { fire, database } from "../Auth/Fire";
+import { useHistory } from "react-router-dom";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [authInitialized, setAuthInitialized] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     fire.auth().onAuthStateChanged((current) => {
@@ -28,6 +30,7 @@ export const AuthProvider = ({ children }) => {
       await fire.auth().signInWithEmailAndPassword(login.email, login.password);
     } catch (error) {
       alert(error);
+      history.push("/login");
     }
   };
 
@@ -43,7 +46,8 @@ export const AuthProvider = ({ children }) => {
       });
       setCurrentUser({ ...fire.auth().currentUser });
     } catch (error) {
-      alert(error); // TODO: handle errors
+      alert(error);
+      history.push("/register"); // TODO: handle errors
     }
   };
 
@@ -53,6 +57,7 @@ export const AuthProvider = ({ children }) => {
       await fire.auth().signInWithPopup(googleProvider);
     } catch (err) {
       alert(err);
+      history.push("/login");
     }
   };
 
@@ -62,7 +67,14 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ currentUser, login, signup, googleLogin, signout, setCurrentUser }}
+      value={{
+        currentUser,
+        login,
+        signup,
+        googleLogin,
+        signout,
+        setCurrentUser,
+      }}
     >
       {authInitialized && children}
     </AuthContext.Provider>
