@@ -15,10 +15,7 @@ const Landing = () => {
             пользователями!
           </p>
         </div>
-        <img
-          src="https://2672686a4cf38e8c2458-2712e00ea34e3076747650c92426bbb5.ssl.cf1.rackcdn.com/2018-04-09-11-28-34.jpeg"
-          width="40%"
-        />
+        <img src="../../images/1.png" />
       </div>
       <h3 style={{ textAlign: "center", textDecoration: "underline" }}>
         Возможности сервиса
@@ -37,10 +34,7 @@ const Landing = () => {
             достижении своих целей, давая советы или просто подбадривая их.
           </p>
         </div>
-        <img
-          src="https://mma.prnewswire.com/media/1220632/MML360_App_Preview.jpg?p=publish"
-          width="40%"
-        />
+        <img src="../../images/5.png" />
       </div>
       <div className="thirdBlock my-4">
         <div className="thirdBlockText">
@@ -50,10 +44,7 @@ const Landing = () => {
             сервиса, чтобы вы могли обсудить все волнующие вас вопросы.
           </p>
         </div>
-        <img
-          src="https://cdn.dribbble.com/users/2176667/screenshots/4675630/ezgif.com-gif-maker.gif"
-          alt=""
-        />
+        <img src="../../images/3.png" />
       </div>
 
       <div className="fourthBlock my-4">
@@ -64,10 +55,7 @@ const Landing = () => {
             сервиса, чтобы вы могли обсудить все волнующие вас вопросы.
           </p>
         </div>
-        <img
-          src="https://raw.githubusercontent.com/codemybrainsout/smart-app-rate/master/preview/preview.png"
-          width="50%"
-        />
+        <img src="../../images/4.png" width="50%" />
       </div>
     </div>
   );
