@@ -51,6 +51,7 @@
 
 .textMes {
   background-color: #eefbfb;
+  color: black;
   width: 100%;
   border-radius: 30px;
 }
@@ -70,5 +71,14 @@
   .chat button {
     padding: 0.2rem 1rem;
     margin: 10px;
+  }
+
+  .commentChat input {
+    width: 50vw;
+    font-size: 12px;
+  }
+
+  .commentChat button {
+    font-size: 14px;
   }
 }
