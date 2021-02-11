@@ -73,10 +73,13 @@ const Feed = () => {
             ?.data().bet,
         });
       }
-			feed.sort((docA, docB) => docB.post.createdAt.getTime() - docA.post.createdAt.getTime());
-      setContractsList(feed)
-      setLoading(false)
-    }
+      feed.sort(
+        (docA, docB) =>
+          docB.post.createdAt.getTime() - docA.post.createdAt.getTime()
+      );
+      setContractsList(feed);
+      setLoading(false);
+    };
 
     fetchFeedData();
   }, [currentUser.uid, forceUpdate]);
@@ -89,7 +92,7 @@ const Feed = () => {
   console.log("my feed posts:", contractsList);
   return (
     <div className="feed-container">
-			<h1 className="mt-5">Лента обещаний</h1>
+      <h1 className="mt-5">Лента обещаний</h1>
       {contractsList.length ? (
         contractsList.map((contract) => (
           <Post
