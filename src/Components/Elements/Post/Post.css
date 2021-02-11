@@ -95,6 +95,21 @@ p {
   width: 15vw;
 }
 
+.fail {
+  background-color: rgba(255, 0, 0, 0.671);
+  width: 100%;
+}
+
+.done {
+  background-color: rgba(38, 185, 38, 0.87);
+  width: 100%;
+}
+
+.active {
+  background-color: #007cc7;
+  width: 100%;
+}
+
 @media screen and (max-width: 600px) {
   .buttons button {
     padding: 0.2rem 1rem;
