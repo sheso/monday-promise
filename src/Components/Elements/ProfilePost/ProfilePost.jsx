@@ -15,6 +15,8 @@ const ProfilePost = ({ data, currentUser }) => {
     setForceUpdate((pre) => !pre);
   };
 
+  console.log(data);
+
   return (
     // <div className="post-container my-3 mx-3">
     //   <p>{data.post.title}</p>
@@ -23,25 +25,22 @@ const ProfilePost = ({ data, currentUser }) => {
     //   <p>{deadlineString}</p>
     //   {data.post.status === CONTRACT_ACTIVE && <button onClick={userFinishContract}>Выполнить обещание</button>}
     //   </div>
-    <div className="post-container my-3 mx-3">
+    <div className="post-container-lk my-3 mx-3">
       {data.post.status === CONTRACT_ACTIVE ? (
         <>
-          <h2>Текущие обещания</h2>
-          <p>{data.post.title}</p>
-          <p>{data.author.name}</p>
-          <p>{data.post.description}</p>
-          <p>{deadlineString}</p>
+          <p>Цель: {data.post.title}</p>
+          <p>Описание: {data.post.description}</p>
+          <p>До: {deadlineString}</p>
+
           <button className="lkbutton" onClick={userFinishContract}>
             Выполнить обещание
           </button>
         </>
       ) : (
         <>
-          <h2>Прошлые обещания</h2>
-          <p>{data.post.title}</p>
-          <p>{data.author.name}</p>
-          <p>{data.post.description}</p>
-          <p>{deadlineString}</p>
+          <p>Цель: {data.post.title}</p>
+          <p>Описание: {data.post.description}</p>
+          <p>До: {deadlineString}</p>
         </>
       )}
     </div>

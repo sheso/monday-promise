@@ -7,7 +7,11 @@ import ChatMessage from "../../Pages/Chat/ChatMessage";
 import { Link } from "react-router-dom";
 import Comment from "../../Pages/Comment/Comment";
 import Timer from "../Timer/Timer";
-import { CONTRACT_ACTIVE, CONTRACT_FAIL } from "../../../databaseHandlers";
+import {
+  CONTRACT_ACTIVE,
+  CONTRACT_FAIL,
+  CONTRACT_SUCCESS,
+} from "../../../databaseHandlers";
 import { setTimer } from "../../../databaseHandlers";
 
 const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
@@ -44,14 +48,27 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
   console.log(data);
 
   return (
-    <div className="container-post">
+    <div className="container-post my-3">
       <div className="card my-2">
-        <div className="card-name">
-          <h3 className="my-4" style={{ fontWeight: "600" }}>
-            {data.post.title}
-          </h3>
-        </div>
-        <hr style={{ width: "100%", color: "#007cc7" }} />
+        {data.post.status === CONTRACT_FAIL ? (
+          <div className="card-name fail">
+            <h3 className="my-4" style={{ fontWeight: "600" }}>
+              {data.post.title}
+            </h3>
+          </div>
+        ) : data.post.status === CONTRACT_SUCCESS ? (
+          <div className="card-name done">
+            <h3 className="my-4" style={{ fontWeight: "600" }}>
+              {data.post.title}
+            </h3>
+          </div>
+        ) : (
+          <div className="card-name active">
+            <h3 className="my-4" style={{ fontWeight: "600" }}>
+              {data.post.title}
+            </h3>
+          </div>
+        )}
         <div className="card-title">
           <div className="card-info px-2 py-2">
             <div className="left-info">
@@ -87,7 +104,7 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
                   data.userMadeBet === true ? "bet-active" : "postbutton"
                 }
               >
-                Сдержит: {data.betsFor}
+                Сдержит 👍 : {data.betsFor}
               </button>
               <button
                 onClick={() => makeUserBet(data.id, currentUser.uid, false)}
@@ -95,7 +112,7 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
                   data.userMadeBet === false ? "bet-active" : "postbutton"
                 }
               >
-                Не сдержит: {data.betsAgainst}
+                Не сдержит 👎 : {data.betsAgainst}
               </button>
             </div>
           ) : null}

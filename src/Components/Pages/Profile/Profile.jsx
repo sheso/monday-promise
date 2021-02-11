@@ -73,26 +73,27 @@ const Profile = () => {
           <h3 style={{ color: "white" }}>Учи уроки дебил!</h3>
         )}
       </div>
-
-      {userContracts.length ? (
-        userContracts.map((contract) => (
-          <ProfilePost
-            key={Math.random()}
-            data={contract}
-            currentUser={currentUser}
-          />
-        ))
-      ) : (
-        // <img
-        //   src="../../../images/11210f3927a5c230f28ec52b609192-unscreen.gif"
-        //   width="10%"
-        //   style={{ margin: '0 auto' }}
-        // />
-        <div>
-          <h5>Вы пока не дали не одного обещания.</h5>
-          <Link to="/contract/new">Дать обещание</Link>
-        </div>
-      )}
+      <div className="porfile-container-lk ">
+        {userContracts.length ? (
+          userContracts.map((contract) => (
+            <ProfilePost
+              key={Math.random()}
+              data={contract}
+              currentUser={currentUser}
+            />
+          ))
+        ) : (
+          // <img
+          //   src="../../../images/11210f3927a5c230f28ec52b609192-unscreen.gif"
+          //   width="10%"
+          //   style={{ margin: '0 auto' }}
+          // />
+          <div>
+            <h5>Вы пока не дали не одного обещания.</h5>
+            <Link to="/contract/new">Дать обещание</Link>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
