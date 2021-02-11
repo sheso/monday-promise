@@ -75,6 +75,9 @@ export const failIfExpired = async (contract) => {
     await contract.ref.update({
       status: CONTRACT_FAIL,
     });
+    await authorRef.update({
+      points: database.increment(-100 * contract.data().difficulty),
+    });
     return true;
   }
 };
