@@ -3,15 +3,14 @@ import { useState } from "react";
 import { finishContract } from "../../../databaseHandlers";
 import { CONTRACT_ACTIVE } from "../../../databaseHandlers";
 
-const ProfilePost = ({ data, currentUser }) => {
-  const [forceUpdate, setForceUpdate] = useState(false);
+const ProfilePost = ({ data, currentUser, setForceUpdate }) => {
   console.log(data.post.createdAt, "hello form profile");
 
   const deadline = new Date(data.post.deadline);
   const deadlineString = deadline.toLocaleDateString("ru-RU");
 
-  const userFinishContract = () => {
-    finishContract(data.id);
+  const userFinishContract = async () => {
+    await finishContract(data.id);
     setForceUpdate((pre) => !pre);
   };
 

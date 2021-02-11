@@ -6,11 +6,15 @@ import ProfilePost from "../../Elements/ProfilePost/ProfilePost";
 import Feed from "../Feed/Feed";
 import { NavLink, Link, useHistory } from "react-router-dom";
 import "../../Elements/ProfilePost/ProfilePost.css";
+import { CONTRACT_ACTIVE } from '../../../databaseHandlers';
+import './Profile.css';
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext);
   const [userContracts, setUserContracts] = useState([]);
   const [points, setPoints] = useState(0);
+	const [forceUpdate, setForceUpdate] = useState(false);
+	console.log('forceUpdate', forceUpdate);
 
   useEffect(() => {
     const userPosts = async () => {
@@ -40,7 +44,7 @@ const Profile = () => {
       setUserContracts(testArr);
     };
     userPosts();
-  }, []);
+  }, [forceUpdate]);
 
   console.log(userContracts, "contracts");
 
@@ -55,8 +59,12 @@ const Profile = () => {
     getPoints();
   }, []);
 
+	const contractsActive = userContracts.filter(el => el.post.status === CONTRACT_ACTIVE);
+	const contractsDone = userContracts.filter(el => el.post.status !== CONTRACT_ACTIVE);
+	console.log('contracts active and done', contractsActive, contractsDone);
+
   return (
-    <div className="profile-container">
+    <div className="profile-container mt-5">
       <h2 style={{ color: "white", textAlign: "center" }}>
         Привет, {currentUser.displayName}!
       </h2>
@@ -74,7 +82,33 @@ const Profile = () => {
         )}
       </div>
       <div className="porfile-container-lk ">
-        {userContracts.length ? (
+				<h2 className="mt-4">Текущие цели</h2>
+					{
+						userContracts.filter(el => el.post.status === CONTRACT_ACTIVE) ? 
+						userContracts.filter(el => el.post.status === CONTRACT_ACTIVE).map(contract => 
+							<ProfilePost
+								key={Math.random()}
+								data={contract}
+								currentUser={currentUser}
+								setForceUpdate={setForceUpdate}
+            />
+						) : <p>Нет текущих обещаний</p>
+					}
+					<h2 className="mt-5">Завершенные цели</h2>
+					{
+						userContracts.filter(el => el.post.status !== CONTRACT_ACTIVE) ? 
+						userContracts.filter(el => el.post.status !== CONTRACT_ACTIVE).map(contract => 
+							<ProfilePost
+								key={Math.random()}
+								data={contract}
+								currentUser={currentUser}
+								setForceUpdate={setForceUpdate}
+            />
+						) : null
+					}
+
+
+        {/* {userContracts.length ? (
           userContracts.map((contract) => (
             <ProfilePost
               key={Math.random()}
@@ -83,16 +117,11 @@ const Profile = () => {
             />
           ))
         ) : (
-          // <img
-          //   src="../../../images/11210f3927a5c230f28ec52b609192-unscreen.gif"
-          //   width="10%"
-          //   style={{ margin: '0 auto' }}
-          // />
           <div>
             <h5>Вы пока не дали не одного обещания.</h5>
             <Link to="/contract/new">Дать обещание</Link>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
