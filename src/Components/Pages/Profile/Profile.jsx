@@ -54,7 +54,7 @@ const Profile = () => {
         .doc(currentUser.uid)
         .get()
         .then((doc) => doc.data());
-      setPoints(author.points);
+      setPoints(author.points ?? 0);
     };
     getPoints();
   }, []);
