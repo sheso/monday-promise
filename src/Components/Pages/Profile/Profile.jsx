@@ -6,15 +6,15 @@ import ProfilePost from "../../Elements/ProfilePost/ProfilePost";
 import Feed from "../Feed/Feed";
 import { NavLink, Link, useHistory } from "react-router-dom";
 import "../../Elements/ProfilePost/ProfilePost.css";
-import { CONTRACT_ACTIVE } from '../../../databaseHandlers';
-import './Profile.css';
+import { CONTRACT_ACTIVE } from "../../../databaseHandlers";
+import "./Profile.css";
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext);
   const [userContracts, setUserContracts] = useState([]);
   const [points, setPoints] = useState(0);
-	const [forceUpdate, setForceUpdate] = useState(false);
-	console.log('forceUpdate', forceUpdate);
+  const [forceUpdate, setForceUpdate] = useState(false);
+  console.log("forceUpdate", forceUpdate);
 
   useEffect(() => {
     const userPosts = async () => {
@@ -59,12 +59,16 @@ const Profile = () => {
     getPoints();
   }, []);
 
-	const contractsActive = userContracts.filter(el => el.post.status === CONTRACT_ACTIVE);
-	const contractsDone = userContracts.filter(el => el.post.status !== CONTRACT_ACTIVE);
-	console.log('contracts active and done', contractsActive, contractsDone);
+  const contractsActive = userContracts.filter(
+    (el) => el.post.status === CONTRACT_ACTIVE
+  );
+  const contractsDone = userContracts.filter(
+    (el) => el.post.status !== CONTRACT_ACTIVE
+  );
+  console.log("contracts active and done", contractsActive, contractsDone);
 
   return (
-    <div className="profile-container mt-5">
+    <div className="profile-container py-5">
       <h2 style={{ color: "white", textAlign: "center" }}>
         Привет, {currentUser.displayName}!
       </h2>
@@ -78,35 +82,44 @@ const Profile = () => {
             />
           </>
         ) : (
-          <h3 style={{ color: "white" }}>У тебя 0</h3>
+          <>
+            <h3 style={{ color: "white" }}>У тебя 0</h3>
+            <img
+              src="https://img.icons8.com/cotton/2x/dollar-coin.png"
+              width="30vw"
+            />
+          </>
         )}
       </div>
       <div className="porfile-container-lk ">
-				<h2 className="mt-4">Текущие цели</h2>
-					{
-						userContracts.filter(el => el.post.status === CONTRACT_ACTIVE) ? 
-						userContracts.filter(el => el.post.status === CONTRACT_ACTIVE).map(contract => 
-							<ProfilePost
-								key={Math.random()}
-								data={contract}
-								currentUser={currentUser}
-								setForceUpdate={setForceUpdate}
-            />
-						) : <p>Нет текущих обещаний</p>
-					}
-					<h2 className="mt-5">Завершенные цели</h2>
-					{
-						userContracts.filter(el => el.post.status !== CONTRACT_ACTIVE) ? 
-						userContracts.filter(el => el.post.status !== CONTRACT_ACTIVE).map(contract => 
-							<ProfilePost
-								key={Math.random()}
-								data={contract}
-								currentUser={currentUser}
-								setForceUpdate={setForceUpdate}
-            />
-						) : null
-					}
-
+        <h2 className="mt-4">Текущие цели</h2>
+        {userContracts.filter((el) => el.post.status === CONTRACT_ACTIVE) ? (
+          userContracts
+            .filter((el) => el.post.status === CONTRACT_ACTIVE)
+            .map((contract) => (
+              <ProfilePost
+                key={Math.random()}
+                data={contract}
+                currentUser={currentUser}
+                setForceUpdate={setForceUpdate}
+              />
+            ))
+        ) : (
+          <p>Нет текущих обещаний</p>
+        )}
+        <h2 className="mt-5">Завершенные цели</h2>
+        {userContracts.filter((el) => el.post.status !== CONTRACT_ACTIVE)
+          ? userContracts
+              .filter((el) => el.post.status !== CONTRACT_ACTIVE)
+              .map((contract) => (
+                <ProfilePost
+                  key={Math.random()}
+                  data={contract}
+                  currentUser={currentUser}
+                  setForceUpdate={setForceUpdate}
+                />
+              ))
+          : null}
 
         {/* {userContracts.length ? (
           userContracts.map((contract) => (

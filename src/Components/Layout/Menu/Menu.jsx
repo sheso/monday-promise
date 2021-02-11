@@ -18,9 +18,12 @@ const Menu = () => {
       <div className="dashboard">
         <div className="logo">
           <Link to="/">
-            <img src="../../../images/pinky-promise-small.png" alt="Monday Promise" />
+            <img
+              src="../../../images/pinky-promise-small.png"
+              alt="Monday Promise"
+            />
           </Link>
-          <p className="logoText mt-2">Monday Promise</p>
+          <p className="logoText">Monday Promise</p>
         </div>
         {currentUser ? (
           <>
@@ -62,9 +65,6 @@ const Menu = () => {
                     Чат
                   </NavLink>
                 </h2>
-              </div>
-              <div className="link py-3">
-                <img src="" alt="" />
               </div>
               <div className="link-button">
                 <button onClick={() => signoutUser()} className="exit">

@@ -92,7 +92,7 @@ const Feed = () => {
   console.log("my feed posts:", contractsList);
   return (
     <div className="feed-container">
-      <h1 className="mt-5">Лента обещаний</h1>
+      <h1>Лента обещаний</h1>
       {contractsList.length ? (
         contractsList.map((contract) => (
           <Post
