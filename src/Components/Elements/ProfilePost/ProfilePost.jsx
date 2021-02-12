@@ -1,6 +1,6 @@
 import "./ProfilePost.css";
-import { useEffect, useState } from "react";
-import { finishContract } from "../../../databaseHandlers";
+import { useState } from "react";
+import { CONTRACT_FAIL, finishContract } from "../../../databaseHandlers";
 import { CONTRACT_ACTIVE } from "../../../databaseHandlers";
 
 const ProfilePost = ({ data, currentUser, setForceUpdate }) => {
@@ -24,22 +24,34 @@ const ProfilePost = ({ data, currentUser, setForceUpdate }) => {
     //   <p>{deadlineString}</p>
     //   {data.post.status === CONTRACT_ACTIVE && <button onClick={userFinishContract}>Выполнить обещание</button>}
     //   </div>
-    <div className="post-container-lk my-3 mx-3">
+    <div className="post-container-lk my-5 mx-5">
       {data.post.status === CONTRACT_ACTIVE ? (
         <>
-          <p>Цель: {data.post.title}</p>
-          <p>Описание: {data.post.description}</p>
-          <p>До: {deadlineString}</p>
+          <div className="toptext active">
+            <p>{data.post.title}</p>
+          </div>
+          <p>{data.post.description}</p>
+          <p>{deadlineString}</p>
 
           <button className="lkbutton" onClick={userFinishContract}>
             Выполнить обещание
           </button>
         </>
+      ) : data.post.status === CONTRACT_FAIL ? (
+        <>
+          <div className="toptext fail">
+            <p>{data.post.title}</p>
+          </div>
+          <p>{data.post.description}</p>
+          <p>{deadlineString}</p>
+        </>
       ) : (
         <>
-          <p>Цель: {data.post.title}</p>
-          <p>Описание: {data.post.description}</p>
-          <p>До: {deadlineString}</p>
+          <div className="toptext done">
+            <p>{data.post.title}</p>
+          </div>
+          <p>{data.post.description}</p>
+          <p>{deadlineString}</p>
         </>
       )}
     </div>

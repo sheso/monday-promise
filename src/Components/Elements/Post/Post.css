@@ -141,7 +141,7 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 70vw;
+    width: 100vw;
   }
   .card-info-text {
     display: flex;
@@ -155,5 +155,9 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .card-text {
+    width: 80vw;
   }
 }
