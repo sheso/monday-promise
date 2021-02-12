@@ -49,8 +49,8 @@ const Friends = () => {
   };
 
   return (
-    <div className="friendsList py-3">
-      <h2>Друзья</h2>
+    <div className="friendsList py-3 mt-5">
+      <h2 className="mt-5">Друзья</h2>
       {peopleList.filter((user) => user.currentUserIsSubscribed).length ? (
         peopleList
           .filter((user) => user.currentUserIsSubscribed)
