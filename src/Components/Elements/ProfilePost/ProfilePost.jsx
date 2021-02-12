@@ -1,5 +1,4 @@
 import "./ProfilePost.css";
-import { useState } from "react";
 import { CONTRACT_FAIL, finishContract } from "../../../databaseHandlers";
 import { CONTRACT_ACTIVE } from "../../../databaseHandlers";
 

@@ -13,7 +13,6 @@ const ContractForm = () => {
     deadline: Date.now(),
     description: "",
     difficulty: 5,
-    startdate: Date.now(),
     title: "",
     why: "",
   };
@@ -33,7 +32,7 @@ const ContractForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 		setButtonDisabled(true);
-		const { deadline, description, difficulty, startdate, title, why } = inputs;
+		const { deadline, description, difficulty, title, why } = inputs;
     
 		contractsRef.add({
 			deadline: database.Timestamp.fromDate(new Date(deadline)),

@@ -3,7 +3,7 @@ import Post from "../../Elements/Post/Post";
 import { database } from "../../../Auth/Fire";
 import { AuthContext } from "../../../Context/AuthContext";
 import { makeBet, failAllExpired } from "../../../databaseHandlers";
-import { NavLink, Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Feed.css";
 
 const Feed = () => {
@@ -107,6 +107,7 @@ const Feed = () => {
           src="../../../images/11210f3927a5c230f28ec52b609192-unscreen.gif"
           width="20%"
           style={{ margin: "0 auto" }}
+					alt="Loading..."
         />
       ) : (
         <div className="empty-feed-container">

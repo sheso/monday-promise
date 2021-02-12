@@ -1,10 +1,5 @@
 import "./Post.css";
-import { useContext, useRef, useState } from "react";
-import { AuthContext } from "../../../Context/AuthContext";
-import { database } from "../../../Auth/Fire";
-import Chat from "../../Pages/Chat/Chat";
-import ChatMessage from "../../Pages/Chat/ChatMessage";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import Comment from "../../Pages/Comment/Comment";
 import Timer from "../Timer/Timer";
 import {
@@ -67,6 +62,7 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
                 <img
                   src={data.author.photoURL}
                   style={{ borderRadius: "50%", marginRight: "15px" }}
+									alt={data.author.name}
                 />
               ) : (
                 <img
@@ -76,6 +72,7 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
                     marginRight: "15px",
                     width: "20%",
                   }}
+									alt={data.author.name}
                 />
               )}
               <div className="card-info-text ">
@@ -92,9 +89,10 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
               <img
                 width="30%"
                 src="../../../../images/141-1416726_wasted-transparent-gta-wasted-transparent.png"
+								alt="Обещание не выполнено"
               />
             ) : (
-              <img width="22%" src="../../../../images/medal-pngrepo-com.png" />
+              <img width="22%" src="../../../../images/medal-pngrepo-com.png" alt="Обещание выполнено" />
             )}
           </div>
 
@@ -125,7 +123,7 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
             <div className="commentOne my-1">
               <img
                 src={el.photoURL}
-                alt="photo"
+                alt={el.displayName}
                 style={{ width: "70px", height: "70px" }}
               />
               <div className="commentLeft">

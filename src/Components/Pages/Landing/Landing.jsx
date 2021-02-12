@@ -15,7 +15,7 @@ const Landing = () => {
             пользователями!
           </p>
         </div>
-        <img src="../../images/1.png" />
+        <img src="../../images/1.png" alt="Landing" />
       </div>
       <h3 style={{ textAlign: "center", textDecoration: "underline" }}>
         Возможности сервиса
@@ -34,7 +34,7 @@ const Landing = () => {
             достижении своих целей, давая советы или просто подбадривая их.
           </p>
         </div>
-        <img src="../../images/5.png" />
+        <img src="../../images/5.png" alt="Landing" />
       </div>
       <div className="thirdBlock my-4">
         <div className="thirdBlockText">
@@ -44,7 +44,7 @@ const Landing = () => {
             сервиса, чтобы вы могли обсудить все волнующие вас вопросы.
           </p>
         </div>
-        <img src="../../images/3.png" />
+        <img src="../../images/3.png" alt="Landing" />
       </div>
 
       <div className="fourthBlock my-4">
@@ -55,7 +55,7 @@ const Landing = () => {
             сервиса, чтобы вы могли обсудить все волнующие вас вопросы.
           </p>
         </div>
-        <img src="../../images/6.png" width="50%" />
+        <img src="../../images/6.png" alt="Landing" width="50%" />
       </div>
     </div>
   );

@@ -1,17 +1,12 @@
 import { useContext, useRef, useState } from "react";
-import { useCollectionData } from "react-firebase-hooks/firestore";
 import { database } from "../../../Auth/Fire";
 import { AuthContext } from "../../../Context/AuthContext";
-import CommentMessage from "./CommentMessage";
 
 const Comment = ({ postId, setForceUpdate }) => {
   const { currentUser } = useContext(AuthContext);
   const scroll = useRef();
 
   const commentsRef = database.comments;
-  // const qurey = commentsRef.orderBy("createdAt");
-
-  // const [comments] = useCollectionData(qurey, { idField: "id" });
 
   const [formValue, setFormValue] = useState("");
 

@@ -1,10 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { database } from "../../../Auth/Fire";
 import { AuthContext } from "../../../Context/AuthContext";
-import Post from "../../Elements/Post/Post";
 import ProfilePost from "../../Elements/ProfilePost/ProfilePost";
-import Feed from "../Feed/Feed";
-import { NavLink, Link, useHistory } from "react-router-dom";
 import "../../Elements/ProfilePost/ProfilePost.css";
 import { CONTRACT_ACTIVE } from "../../../databaseHandlers";
 import "./Profile.css";
@@ -55,13 +52,6 @@ const Profile = () => {
     };
     getPoints();
   }, [forceUpdate]);
-
-  const contractsActive = userContracts.filter(
-    (el) => el.post.status === CONTRACT_ACTIVE
-  );
-  const contractsDone = userContracts.filter(
-    (el) => el.post.status !== CONTRACT_ACTIVE
-  );
 
   return (
     <div className="profile-container py-5">

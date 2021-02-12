@@ -1,17 +1,13 @@
 import 'firebase/firestore'
 import 'firebase/auth'
 import 'firebase/analytics'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useContext } from 'react'
 import { AuthContext } from '../../../Context/AuthContext'
-import { database } from '../../../Auth/Fire'
 import './Chat.css'
 
 const ChatMessage = ({ text, uid, photoURL, displayName, createdAt }) => {
-  const [userName, setUserName] = useState('')
-
   const createdData = createdAt?.toDate() ? new Date(createdAt?.toDate()) : new Date()
   const messageData = createdData.toLocaleDateString('ru-RU')
-
 
   const { currentUser } = useContext(AuthContext)
 
