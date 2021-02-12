@@ -29,7 +29,7 @@ const Menu = () => {
             <div className="user">
               {currentUser.photoURL && (
                 <img
-                  style={{ width: "50%" }}
+                  style={{ width: "40%" }}
                   src={currentUser.photoURL}
                   alt={currentUser.displayName}
                 />
