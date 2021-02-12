@@ -26,7 +26,7 @@ export const finishContract = async (contractId) => {
   });
 
   await contractData.author.update({
-    points: database.increment(100),
+    points: database.increment(100 * contractData.difficulty),
   });
 };
 
