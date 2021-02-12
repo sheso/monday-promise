@@ -61,7 +61,11 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
               {data.author.photoURL ? (
                 <img
                   src={data.author.photoURL}
-                  style={{ borderRadius: "50%", marginRight: "15px" }}
+                  style={{
+                    borderRadius: "50%",
+                    marginRight: "15px",
+                    width: "20%",
+                  }}
 									alt={data.author.name}
                 />
               ) : (

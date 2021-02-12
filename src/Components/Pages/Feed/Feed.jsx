@@ -33,45 +33,47 @@ const Feed = () => {
         return;
       }
 
-      const feed = await Promise.all(posts.docs.map(async (post) => {
-        const bets = await database.bets
-          .where("contract", "==", post.ref)
-          .get();
-        const authorSnapshot = await post.data().author.get();
-        const authorData = authorSnapshot.data();
+      const feed = await Promise.all(
+        posts.docs.map(async (post) => {
+          const bets = await database.bets
+            .where("contract", "==", post.ref)
+            .get();
+          const authorSnapshot = await post.data().author.get();
+          const authorData = authorSnapshot.data();
 
-        const commentsBase = await database.comments
-          .where("contractID", "==", post.id)
-          .get();
-        const test = commentsBase.docs.map((el) => {
+          const commentsBase = await database.comments
+            .where("contractID", "==", post.id)
+            .get();
+          const test = commentsBase.docs.map((el) => {
+            return {
+              ...el.data(),
+              createdAt: el.data().createdAt.toDate().toLocaleString("ru-RU"),
+            };
+          });
+
           return {
-            ...el.data(),
-            createdAt: el.data().createdAt.toDate().toLocaleString("ru-RU"),
+            author: authorData,
+            post: {
+              ...post.data(),
+              deadline: post.data().deadline?.toDate(),
+              createdAt: post.data().createdAt?.toDate(),
+            },
+            id: post.id,
+            comments: test,
+            betsFor: bets.docs.reduce(
+              (acc, doc) => (doc.data().bet === true ? (acc += 1) : acc),
+              0
+            ),
+            betsAgainst: bets.docs.reduce(
+              (acc, doc) => (doc.data().bet === false ? (acc += 1) : acc),
+              0
+            ),
+            userMadeBet: bets.docs
+              .find((doc) => doc.data().user.id === currentUser.uid)
+              ?.data().bet,
           };
-        });
-
-        return ({
-          author: authorData,
-          post: {
-            ...post.data(),
-            deadline: post.data().deadline?.toDate(),
-            createdAt: post.data().createdAt?.toDate(),
-          },
-          id: post.id,
-          comments: test,
-          betsFor: bets.docs.reduce(
-            (acc, doc) => (doc.data().bet === true ? (acc += 1) : acc),
-            0
-          ),
-          betsAgainst: bets.docs.reduce(
-            (acc, doc) => (doc.data().bet === false ? (acc += 1) : acc),
-            0
-          ),
-          userMadeBet: bets.docs
-            .find((doc) => doc.data().user.id === currentUser.uid)
-            ?.data().bet,
-        });
-      }));
+        })
+      );
 
       feed.sort(
         (docA, docB) =>
@@ -90,7 +92,7 @@ const Feed = () => {
   };
 
   return (
-    <div className="feed-container">
+    <div className="feed-container py-3">
       <h1>Лента обещаний</h1>
       {contractsList.length ? (
         contractsList.map((contract) => (
