@@ -40,7 +40,7 @@ const Profile = () => {
       setUserContracts(testArr);
     };
     userPosts();
-  }, [forceUpdate]);
+  }, [forceUpdate, currentUser.displayName, currentUser.uid]);
 
   useEffect(() => {
     const getPoints = async () => {
@@ -51,7 +51,7 @@ const Profile = () => {
       setPoints(author.points ?? 0);
     };
     getPoints();
-  }, [forceUpdate]);
+  }, [forceUpdate, currentUser.uid]);
 
   return (
     <div className="profile-container py-5">
@@ -65,6 +65,7 @@ const Profile = () => {
             <img
               src="https://img.icons8.com/cotton/2x/dollar-coin.png"
               width="30vw"
+							alt="coin"
             />
           </>
         ) : (
@@ -101,21 +102,6 @@ const Profile = () => {
                 />
               ))
           : null}
-
-        {/* {userContracts.length ? (
-          userContracts.map((contract) => (
-            <ProfilePost
-              key={Math.random()}
-              data={contract}
-              currentUser={currentUser}
-            />
-          ))
-        ) : (
-          <div>
-            <h5>Вы пока не дали не одного обещания.</h5>
-            <Link to="/contract/new">Дать обещание</Link>
-          </div>
-        )} */}
       </div>
     </div>
   );
