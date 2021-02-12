@@ -49,7 +49,7 @@ const Friends = () => {
   };
 
   return (
-    <div className="friendsList">
+    <div className="friendsList py-3">
       <h2>Друзья</h2>
       {peopleList.filter((user) => user.currentUserIsSubscribed).length ? (
         peopleList
@@ -74,6 +74,7 @@ const Friends = () => {
                     <img
                       className="coin-img "
                       src="https://img.icons8.com/cotton/2x/dollar-coin.png"
+											alt="Coins"
                     />
                   </div>
                   <button

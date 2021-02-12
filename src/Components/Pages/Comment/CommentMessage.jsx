@@ -1,12 +1,8 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../../Context/AuthContext";
 
 const CommentMessage = ({ text, uid, photoURL, displayName }) => {
-  const [userName, setUserName] = useState("");
-
   const { currentUser } = useContext(AuthContext);
-  console.log(uid, "uid");
-  console.log(currentUser, "user");
 
   const commentsClass = uid === currentUser.uid ? "sent" : "received";
 

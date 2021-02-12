@@ -8,12 +8,10 @@ export const InputsProvider = ({ children }) => {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
 
   const changeRegisterHandler = (e) => {
-    console.log(inputs);
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
 
   const changeLoginHandler = (e) => {
-    console.log(loginData);
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 

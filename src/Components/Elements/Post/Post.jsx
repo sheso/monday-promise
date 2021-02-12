@@ -1,10 +1,5 @@
 import "./Post.css";
-import { useContext, useRef, useState } from "react";
-import { AuthContext } from "../../../Context/AuthContext";
-import { database } from "../../../Auth/Fire";
-import Chat from "../../Pages/Chat/Chat";
-import ChatMessage from "../../Pages/Chat/ChatMessage";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import Comment from "../../Pages/Comment/Comment";
 import Timer from "../Timer/Timer";
 import {
@@ -24,8 +19,6 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
 
   data.comments.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
-  console.log(data.post, "data tut");
-
   const makeUserBet = (post, user, bet) => {
     if (betMade) {
       return;
@@ -39,13 +32,6 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
     currentDate.getTime(),
     deadline.getTime()
   );
-
-  console.log("dates", startdate, currentDate, deadline);
-  console.log(
-    "timerdata",
-    setTimer(startdate.getTime(), currentDate.getTime(), deadline.getTime())
-  );
-  console.log(data);
 
   return (
     <div className="container-post my-3">
@@ -75,7 +61,12 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
               {data.author.photoURL ? (
                 <img
                   src={data.author.photoURL}
-                  style={{ borderRadius: "50%", marginRight: "15px" }}
+                  style={{
+                    borderRadius: "50%",
+                    marginRight: "15px",
+                    width: "20%",
+                  }}
+									alt={data.author.name}
                 />
               ) : (
                 <img
@@ -85,6 +76,7 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
                     marginRight: "15px",
                     width: "20%",
                   }}
+									alt={data.author.name}
                 />
               )}
               <div className="card-info-text ">
@@ -101,9 +93,10 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
               <img
                 width="30%"
                 src="../../../../images/141-1416726_wasted-transparent-gta-wasted-transparent.png"
+								alt="Обещание не выполнено"
               />
             ) : (
-              <img width="22%" src="../../../../images/medal-pngrepo-com.png" />
+              <img width="22%" src="../../../../images/medal-pngrepo-com.png" alt="Обещание выполнено" />
             )}
           </div>
 
@@ -134,7 +127,7 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
             <div className="commentOne my-1">
               <img
                 src={el.photoURL}
-                alt="photo"
+                alt={el.displayName}
                 style={{ width: "70px", height: "70px" }}
               />
               <div className="commentLeft">

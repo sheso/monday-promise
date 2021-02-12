@@ -1,10 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { database } from "../../../Auth/Fire";
 import { AuthContext } from "../../../Context/AuthContext";
-import Post from "../../Elements/Post/Post";
 import ProfilePost from "../../Elements/ProfilePost/ProfilePost";
-import Feed from "../Feed/Feed";
-import { NavLink, Link, useHistory } from "react-router-dom";
 import "../../Elements/ProfilePost/ProfilePost.css";
 import { CONTRACT_ACTIVE } from "../../../databaseHandlers";
 import "./Profile.css";
@@ -14,7 +11,6 @@ const Profile = () => {
   const [userContracts, setUserContracts] = useState([]);
   const [points, setPoints] = useState(0);
   const [forceUpdate, setForceUpdate] = useState(false);
-  console.log("forceUpdate", forceUpdate);
 
   useEffect(() => {
     const userPosts = async () => {
@@ -46,8 +42,6 @@ const Profile = () => {
     userPosts();
   }, [forceUpdate]);
 
-  console.log(userContracts, "contracts");
-
   useEffect(() => {
     const getPoints = async () => {
       const author = await database.users
@@ -57,15 +51,7 @@ const Profile = () => {
       setPoints(author.points ?? 0);
     };
     getPoints();
-  }, []);
-
-  const contractsActive = userContracts.filter(
-    (el) => el.post.status === CONTRACT_ACTIVE
-  );
-  const contractsDone = userContracts.filter(
-    (el) => el.post.status !== CONTRACT_ACTIVE
-  );
-  console.log("contracts active and done", contractsActive, contractsDone);
+  }, [forceUpdate]);
 
   return (
     <div className="profile-container py-5">
