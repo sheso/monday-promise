@@ -1,4 +1,4 @@
-import { database } from "./Auth/Fire";
+import { database, firestore } from "./Auth/Fire";
 export const CONTRACT_ACTIVE = "CONTRACT_ACTIVE";
 export const CONTRACT_SUCCESS = "CONTRACT_SUCCESS";
 export const CONTRACT_FAIL = "CONTRACT_FAIL";
@@ -63,21 +63,50 @@ export const setTimer = (startTime, currentTime, endTime) => {
   };
 };
 
-export const failIfExpired = async (contract) => {
+const isContractExpired = (contract) => {
   const now = new Date();
   const contractExpires = new Date(contract.data().deadline.toDate());
-  const authorRef = contract.data().author;
+  
+  return (now.getTime() > contractExpires.getTime() &&
+    contract.data().status === CONTRACT_ACTIVE);
+}
 
-  if (
-    now.getTime() > contractExpires.getTime() &&
-    contract.data().status === CONTRACT_ACTIVE
-  ) {
-    await contract.ref.update({
+export const failAllExpired = async (contracts) => {
+  const expiredContracts = contracts.filter(isContractExpired);
+  
+  if (!expiredContracts.length) {
+    return false;
+  }
+
+  const batch = firestore.batch();
+  expiredContracts.forEach(contract => {
+    batch.update(contract.ref, {
       status: CONTRACT_FAIL,
     });
-    await authorRef.update({
+  
+    batch.update(contract.data().author, {
       points: database.increment(-100 * contract.data().difficulty),
     });
-    return true;
-  }
-};
+  });
+
+  await batch.commit();
+  return true;
+}
+
+// export const failIfExpired = async (contract) => {
+//   const now = new Date();
+//   const contractExpires = new Date(contract.data().deadline.toDate());
+
+//   if (
+//     now.getTime() > contractExpires.getTime() &&
+//     contract.data().status === CONTRACT_ACTIVE
+//   ) {
+//     await contract.ref.update({
+//       status: CONTRACT_FAIL,
+//     });
+//     await authorRef.update({
+//       points: database.increment(-100 * contract.data().difficulty),
+//     });
+//     return true;
+//   }
+// };

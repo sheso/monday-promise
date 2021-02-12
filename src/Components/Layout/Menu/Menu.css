@@ -18,14 +18,7 @@
 a.navlink:hover {
   text-decoration: none;
   color: white;
-}
-
-.link:hover {
-  background-color: rgba(18, 35, 46, 0.3);
-}
-
-.link:active {
-  background-color: rgba(18, 35, 46, 0.4);
+  text-decoration: underline;
 }
 
 .logo img {
@@ -54,11 +47,11 @@ a.navlink:hover {
   }
 
   .link {
-    margin-top: -5px;
+    margin-top: -15px;
   }
 
   .logo {
-    width: 25vw;
+    width: 40vw;
   }
 
   .logo img {
@@ -68,6 +61,11 @@ a.navlink:hover {
   .user img {
     border-radius: 50%;
     border: 2px solid white;
-    width: 60%;
+    width: 70%;
+  }
+
+  .logoText {
+    font-family: "Staatliches", sans-serif;
+    font-size: 20px;
   }
 }

@@ -6,9 +6,9 @@
 }
 
 .container img {
-  border-radius: 50%;
-  width: 400px;
+  width: 600px;
   height: 400px;
+  border-radius: 20px;
 }
 
 .firstblock {
@@ -37,6 +37,13 @@
   justify-content: center;
 }
 
+.firstblock,
+.secondBlock,
+.thirdBlock,
+.fourthBlock p {
+  font-size: 25px;
+}
+
 @media screen and (max-width: 600px) {
   .container img {
     width: 200px;
@@ -48,5 +55,11 @@
 
   .container h3 {
     font-size: 16px;
+  }
+  .firstblock,
+  .secondBlock,
+  .thirdBlock,
+  .fourthBlock p {
+    font-size: 15px;
   }
 }

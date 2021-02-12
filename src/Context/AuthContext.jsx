@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import firebase from "firebase";
 import { fire, database } from "../Auth/Fire";
 import { useHistory } from "react-router-dom";
+import { avaArray } from "./AvaArray";
 
 export const AuthContext = createContext();
 
@@ -11,19 +12,27 @@ export const AuthProvider = ({ children }) => {
   const history = useHistory();
 
   useEffect(() => {
-    fire.auth().onAuthStateChanged((current) => {
+    fire.auth().onAuthStateChanged(async (current) => {
       setCurrentUser(current ? { ...current } : null);
       setAuthInitialized(true);
       console.log("listener onAuthStateChange", !!current, current);
       if (current) {
-        database.users.doc(current.uid).set({
-          name: current.displayName,
-          email: current.email,
-          photoURL: current.photoURL,
-        }, { merge: true });
+        await updateDbUser(current);
       }
     });
   }, []);
+
+
+  const updateDbUser = async (sdkUser) => {
+    await database.users.doc(sdkUser.uid).set(
+      {
+        name: sdkUser.displayName,
+        email: sdkUser.email,
+        photoURL: sdkUser.photoURL,
+      },
+      { merge: true }
+    );
+  };
 
   const login = async (login) => {
     try {
@@ -34,6 +43,12 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+
+
+  const randomAvaFunc = (arr) => {
+    return Math.floor(Math.random() * arr.length);
+  }
+
   const signup = async (inputs) => {
     console.log("inputs register", inputs);
     try {
@@ -43,8 +58,11 @@ export const AuthProvider = ({ children }) => {
       let user = fire.auth().currentUser;
       await user.updateProfile({
         displayName: inputs.name,
+        photoURL: avaArray[randomAvaFunc(avaArray)],
       });
-      setCurrentUser({ ...fire.auth().currentUser });
+      console.log('after-update-profile', user === fire.auth().currentUser);
+      await updateDbUser(user);
+      setCurrentUser({ ...user });
     } catch (error) {
       alert(error);
       history.push("/register"); // TODO: handle errors

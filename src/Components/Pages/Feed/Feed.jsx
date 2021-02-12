@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import Post from "../../Elements/Post/Post";
 import { database } from "../../../Auth/Fire";
 import { AuthContext } from "../../../Context/AuthContext";
-import { makeBet, failIfExpired } from "../../../databaseHandlers";
+import { makeBet, failAllExpired } from "../../../databaseHandlers";
 import { NavLink, Link, useHistory } from "react-router-dom";
 import "./Feed.css";
 
@@ -27,14 +27,13 @@ const Feed = () => {
         .where("author", "in", authorRefs)
         .get();
 
-      const feed = [];
-      for (let post of posts.docs) {
-        const expired = await failIfExpired(post);
-        if (expired) {
-          console.log(expired);
-          setForceUpdate((pre) => !pre);
-          return;
-        }
+      const someContractExpired = await failAllExpired(posts.docs);
+      if (someContractExpired) {
+        setForceUpdate((pre) => !pre);
+        return;
+      }
+
+      const feed = await Promise.all(posts.docs.map(async (post) => {
         const bets = await database.bets
           .where("contract", "==", post.ref)
           .get();
@@ -44,14 +43,14 @@ const Feed = () => {
         const commentsBase = await database.comments
           .where("contractID", "==", post.id)
           .get();
-        const test = await commentsBase.docs.map((el) => {
+        const test = commentsBase.docs.map((el) => {
           return {
             ...el.data(),
             createdAt: el.data().createdAt.toDate().toLocaleString("ru-RU"),
           };
         });
 
-        feed.push({
+        return ({
           author: authorData,
           post: {
             ...post.data(),
@@ -72,7 +71,8 @@ const Feed = () => {
             .find((doc) => doc.data().user.id === currentUser.uid)
             ?.data().bet,
         });
-      }
+      }));
+
       feed.sort(
         (docA, docB) =>
           docB.post.createdAt.getTime() - docA.post.createdAt.getTime()

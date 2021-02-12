@@ -29,7 +29,11 @@ const Menu = () => {
           <>
             <div className="user">
               {currentUser.photoURL && (
-                <img src={currentUser.photoURL} alt={currentUser.displayName} />
+                <img
+                  style={{ width: "50%" }}
+                  src={currentUser.photoURL}
+                  alt={currentUser.displayName}
+                />
               )}
               <h3>
                 <NavLink to="/account" className="navlink">
