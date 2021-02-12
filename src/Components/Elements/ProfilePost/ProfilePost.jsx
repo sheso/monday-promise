@@ -51,6 +51,6 @@ const ProfilePost = ({ data, currentUser, setForceUpdate }) => {
       )}
     </div>
   );
-};
+}
 
-export default ProfilePost;
+export default ProfilePost

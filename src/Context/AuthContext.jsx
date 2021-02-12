@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import firebase from "firebase";
 import { fire, database } from "../Auth/Fire";
 import { useHistory } from "react-router-dom";
+import { avaArray } from "./AvaArray";
 
 export const AuthContext = createContext();
 
@@ -19,6 +20,7 @@ export const AuthProvider = ({ children }) => {
       }
     });
   }, []);
+
 
   const updateDbUser = async (sdkUser) => {
     await database.users.doc(sdkUser.uid).set(
@@ -40,6 +42,12 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+
+
+  const randomAvaFunc = (arr) => {
+    return Math.floor(Math.random() * arr.length);
+  }
+
   const signup = async (inputs) => {
     try {
       await fire
@@ -48,8 +56,7 @@ export const AuthProvider = ({ children }) => {
       let user = fire.auth().currentUser;
       await user.updateProfile({
         displayName: inputs.name,
-        photoURL:
-          "https://i.pinimg.com/originals/7f/2a/50/7f2a500aee5a59ea8722fcaf43d8ba09.png",
+        photoURL: avaArray[randomAvaFunc(avaArray)],
       });
       await updateDbUser(user);
       setCurrentUser({ ...user });
