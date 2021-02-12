@@ -91,7 +91,6 @@ const Feed = () => {
     setForceUpdate((pre) => !pre);
   };
 
-  console.log("my feed posts:", contractsList);
   return (
     <div className="feed-container py-3">
       <h1>Лента обещаний</h1>

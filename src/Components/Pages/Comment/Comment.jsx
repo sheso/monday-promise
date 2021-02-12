@@ -7,7 +7,6 @@ import CommentMessage from "./CommentMessage";
 const Comment = ({ postId, setForceUpdate }) => {
   const { currentUser } = useContext(AuthContext);
   const scroll = useRef();
-  console.log(postId);
 
   const commentsRef = database.comments;
   // const qurey = commentsRef.orderBy("createdAt");

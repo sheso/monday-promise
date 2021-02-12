@@ -14,7 +14,6 @@ export const AuthProvider = ({ children }) => {
     fire.auth().onAuthStateChanged(async (current) => {
       setCurrentUser(current ? { ...current } : null);
       setAuthInitialized(true);
-      console.log("listener onAuthStateChange", !!current, current);
       if (current) {
         await updateDbUser(current);
       }
@@ -42,7 +41,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signup = async (inputs) => {
-    console.log("inputs register", inputs);
     try {
       await fire
         .auth()
@@ -53,7 +51,6 @@ export const AuthProvider = ({ children }) => {
         photoURL:
           "https://i.pinimg.com/originals/7f/2a/50/7f2a500aee5a59ea8722fcaf43d8ba09.png",
       });
-      console.log('after-update-profile', user === fire.auth().currentUser);
       await updateDbUser(user);
       setCurrentUser({ ...user });
     } catch (error) {

@@ -24,8 +24,6 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
 
   data.comments.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
-  console.log(data.post, "data tut");
-
   const makeUserBet = (post, user, bet) => {
     if (betMade) {
       return;
@@ -39,13 +37,6 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
     currentDate.getTime(),
     deadline.getTime()
   );
-
-  console.log("dates", startdate, currentDate, deadline);
-  console.log(
-    "timerdata",
-    setTimer(startdate.getTime(), currentDate.getTime(), deadline.getTime())
-  );
-  console.log(data);
 
   return (
     <div className="container-post my-3">
