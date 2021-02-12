@@ -55,7 +55,7 @@ const Landing = () => {
             сервиса, чтобы вы могли обсудить все волнующие вас вопросы.
           </p>
         </div>
-        <img src="../../images/4.png" width="50%" />
+        <img src="../../images/6.png" width="50%" />
       </div>
     </div>
   );
