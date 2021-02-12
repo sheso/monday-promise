@@ -4,8 +4,6 @@ import { CONTRACT_FAIL, finishContract } from "../../../databaseHandlers";
 import { CONTRACT_ACTIVE } from "../../../databaseHandlers";
 
 const ProfilePost = ({ data, currentUser, setForceUpdate }) => {
-  console.log(data.post.createdAt, "hello form profile");
-
   const deadline = new Date(data.post.deadline);
   const deadlineString = deadline.toLocaleDateString("ru-RU");
 
@@ -13,8 +11,6 @@ const ProfilePost = ({ data, currentUser, setForceUpdate }) => {
     await finishContract(data.id);
     setForceUpdate((pre) => !pre);
   };
-
-  console.log(data);
 
   return (
     // <div className="post-container my-3 mx-3">

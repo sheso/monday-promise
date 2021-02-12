@@ -6,7 +6,6 @@ import "./Menu.css";
 const Menu = () => {
   const history = useHistory();
   const { currentUser, signout } = useContext(AuthContext);
-  console.log("current user in menu", currentUser);
 
   const signoutUser = async () => {
     await signout();

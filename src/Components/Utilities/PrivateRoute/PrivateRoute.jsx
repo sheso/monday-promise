@@ -4,8 +4,6 @@ import { AuthContext } from '../../../Context/AuthContext';
 
 const PrivateRoute = ({ children, ...rest }) => {
 	const { currentUser } = useContext(AuthContext);
-	console.log('user in private route', currentUser);
-	console.log('component:', children.type.name);
 
 	return (
 		<Route { ...rest }>

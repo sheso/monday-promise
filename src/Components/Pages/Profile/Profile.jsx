@@ -14,7 +14,6 @@ const Profile = () => {
   const [userContracts, setUserContracts] = useState([]);
   const [points, setPoints] = useState(0);
   const [forceUpdate, setForceUpdate] = useState(false);
-  console.log("forceUpdate", forceUpdate);
 
   useEffect(() => {
     const userPosts = async () => {
@@ -46,8 +45,6 @@ const Profile = () => {
     userPosts();
   }, [forceUpdate]);
 
-  console.log(userContracts, "contracts");
-
   useEffect(() => {
     const getPoints = async () => {
       const author = await database.users
@@ -57,7 +54,7 @@ const Profile = () => {
       setPoints(author.points ?? 0);
     };
     getPoints();
-  }, []);
+  }, [forceUpdate]);
 
   const contractsActive = userContracts.filter(
     (el) => el.post.status === CONTRACT_ACTIVE
@@ -65,7 +62,6 @@ const Profile = () => {
   const contractsDone = userContracts.filter(
     (el) => el.post.status !== CONTRACT_ACTIVE
   );
-  console.log("contracts active and done", contractsActive, contractsDone);
 
   return (
     <div className="profile-container py-5">
