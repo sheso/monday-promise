@@ -92,7 +92,7 @@ const Feed = () => {
   };
 
   return (
-    <div className="feed-container py-3">
+    <div className="feed-container py-3 mt-5">
       <h1>Лента обещаний</h1>
       {contractsList.length ? (
         contractsList.map((contract) => (

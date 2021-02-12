@@ -79,11 +79,11 @@ const Post = ({ data, makeBet, currentUser, setForceUpdate }) => {
 									alt={data.author.name}
                 />
               )}
-              <div className="card-info-text ">
-                <p className="card-text">{data.author.name}</p>
+              <div className="card-info-text mt-3">
+                <h5 className="card-text mx-1">{data.author.name}</h5>
                 <p className="card-text">{data.post.description}</p>
-                <p className="card-text">{data.post.why}</p>
-                <p className="card-text">{deadlineString}</p>
+                <p className="card-text">Зачем? {data.post.why}</p>
+                <p className="card-text">Дедлайн: {deadlineString}</p>
                 <p className="card-text">{data.post.done}</p>
               </div>
             </div>
