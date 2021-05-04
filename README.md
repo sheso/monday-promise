@@ -9,11 +9,11 @@ It's hard to keep your promise when you're the only one who knows about it, so M
 
 ![Image](./public/images/monday-promise.gif)
 
-Email or Google authentication
-Main page - your friends' promises feed, each of them has a deadline, description and "why" - user's motivation.
-You can comment and bet on someone's promise if you believe it will be kept or not.
-Your promises can be found on your account page, active and finished, successful and failed.
-Each kept promise brings you points and your friendlist is also a leaderboard. Achieve your goals and get to the top!
+* Email or Google authentication
+* Main page - your friends' promises feed, each of them has a deadline, description and "why" - user's motivation.
+* You can comment and bet on someone's promise if you believe it will be kept or not.
+* Your promises can be found on your account page, active and finished, successful and failed.
+* Each kept promise brings you points and your friendlist is also a leaderboard. Achieve your goals and get to the top!
 
 ## Tech stack
 
