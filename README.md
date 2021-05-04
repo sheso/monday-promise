@@ -1,32 +1,28 @@
 # Monday Promise
 
-## Что это?
+## What is Monday Promise?
 
-Monday Promise - это платформа для публичного объявления своих обещаний с элементами социальной сети.
-Сложно сдерживать обещания, когда никто, кроме тебя о них не знает - и наш сервис призван решить эту проблему.
+Monday Promise is a platform to publish your promises to yourself, kind of a social network for those who want to achieve their goals.
+It's hard to keep your promise when you're the only one who knows about it, so Monday Promise is here to help.
 
-## Возможности
+## Features
 
 ![Image](./public/images/monday-promise.gif)
 
-В приложении можно зарегистрироваться по email или войти через Google.  
-На главной - лента обещаний ваших друзей, каждое обещание имеет дедлайн, описание и мотивацию пользователя - зачем он хочет выполнить это обещание.  
-К обещанию можно добавить комментарий и сделать ставку - выполнит пользователь свое обещание, или не выполнить.  
-В личном кабинете есть список всех выполненных обещаний (с указанием, окончились они успехом или неудачей) и всех текущих с возможностью обещание выполнить.  
-За каждое выполненное обещание пользователь получает очки, за невыполненное очки снимаются. В личном кабинете указан рейтинг пользователя, а в списке друзей - рейтинг ваших друзей. Выполняйте обещания, чтобы подняться выше всех!
+Email or Google authentication
+Main page - your friends' promises feed, each of them has a deadline, description and "why" - user's motivation.
+You can comment and bet on someone's promise if you believe it will be kept or not.
+Your promises can be found on your account page, active and finished, successful and failed.
+Each kept promise brings you points and your friendlist is also a leaderboard. Achieve your goals and get to the top!
 
-## Технологии
-
-В проекте использовались:
+## Tech stack
 
 - Frontend - React.js, CSS, Bootstrap.
 - Backend - Firebase (Firestore, Authentication, Hosting)
 - Teamwork - Trello, Github, Slack
 
-## Перспективы развития
+## Roadmap
 
-В перспективе хотелось бы реализовать:
-
-- Мобильное приложение на React Native.
-- Систему отчетов по прогрессу выполнения обещания - фото или текст, подтверждающие, что сегодняшнее действие по выполнению обещания было совершено
-- Совершенствование системы мотивации.
+- Mobile app on React Native.
+- Report system so user could post about his progress on achieving his goal. Photo or text or even video to prove that you did that small step towards better self today.
+- Polishing motivation scheme - user needs to be controlled by "goal buddy", publish reports and get a deserved reward at the end.
